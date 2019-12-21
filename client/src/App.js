@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar/Navbar'
-import Landing from './components/Landing/Landing'
+import Navbar from './components/Layout/Navbar/Navbar'
+import Landing from './components/Layout/Landing/Landing'
 
 const App = () => {
   return (

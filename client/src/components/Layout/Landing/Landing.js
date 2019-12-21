@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../../images/logo.png'
-import video from '../../videos/spotlight.mp4'
+import logo from '../../../images/logo.png'
+import video from '../../../videos/spotlight.mp4'
 import './Landing.css'
 
 const Landing = () => {
