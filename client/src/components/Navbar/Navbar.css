@@ -1,0 +1,14 @@
+nav {
+    z-index: 1000;
+    overflow: visible;
+    margin-bottom: 50px;
+    background-color: none;
+}
+
+.smLogo {
+    max-height: 40px;
+}
+
+.menuIcons {
+    color: #85B598;
+}
