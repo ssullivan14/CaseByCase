@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import logo from '../../../images/logo.png';
 import video from '../../../videos/spotlight.mp4';
 import './Landing.css';
