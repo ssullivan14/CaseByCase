@@ -47,7 +47,7 @@ const Register = ({ setAlert, register }) => {
 							name='name'
 							value={name}
 							onChange={e => OnChange(e)}
-							// required
+							required
 						/>
 					</div>
 					<div className='form-group'>
@@ -58,7 +58,7 @@ const Register = ({ setAlert, register }) => {
 							name='email'
 							value={email}
 							onChange={e => OnChange(e)}
-							// required
+							required
 						/>
 						<small className='form-text'>
 							This site uses{' '}
@@ -82,7 +82,6 @@ const Register = ({ setAlert, register }) => {
 							minLength='6'
 							value={password}
 							onChange={e => OnChange(e)}
-							// required
 						/>
 					</div>
 					<div className='form-group'>
@@ -94,7 +93,6 @@ const Register = ({ setAlert, register }) => {
 							minLength='6'
 							value={passwordConfirm}
 							onChange={e => OnChange(e)}
-							// required
 						/>
 					</div>
 					<input type='submit' className='btn btn-secondary' value='Register' />
