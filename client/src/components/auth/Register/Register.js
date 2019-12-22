@@ -1,32 +1,36 @@
 import React, { useState } from 'react';
-import './Register.css'
+import { connect } from 'react-redux';
+import './Register.css';
 import { Link } from 'react-router-dom';
+import { setAlert } from '../../../actions/alert';
+import PropTypes from 'prop-types';
 
-const Register = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        passwordConfirm: ''
-    });
-    
+const Register = ({ setAlert }) => {
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: '',
+		passwordConfirm: ''
+	});
+
 	const { name, email, password, passwordConfirm } = formData;
-	
-	const OnChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+	const OnChange = e =>
+		setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const onSubmit = e => {
 		e.preventDefault();
 		if (password !== passwordConfirm) {
-			console.log('Passwords do not match');
+			setAlert('Passwords do not match!', 'danger');
 		} else {
 			console.log(formData);
 		}
 	};
 
-    return (
+	return (
 		<div className='row'>
-            <div className="col-md-2"></div>
-            <div className="col-md-8">
+			<div className='col-md-2'></div>
+			<div className='col-md-8'>
 				<h1>
 					<i>SIGN UP</i>
 				</h1>
@@ -56,8 +60,16 @@ const Register = () => {
 							required
 						/>
 						<small className='form-text'>
-							This site uses <a href="https://en.gravatar.com/" target="_blank" rel="noopener noreferrer">Gravatar</a> to manage profile photos. If you'd like one, please use a
-							Gravatar email.
+							This site uses{' '}
+							<a
+								href='https://en.gravatar.com/'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								Gravatar
+							</a>{' '}
+							to manage profile photos. If you'd like one, please use a Gravatar
+							email.
 						</small>
 					</div>
 					<div className='form-group'>
@@ -86,14 +98,18 @@ const Register = () => {
 					</div>
 					<input type='submit' className='btn btn-secondary' value='Register' />
 				</form>
-				<br/>
+				<br />
 				<p>
 					Already have an account? <Link to='/login'>Sign In</Link>.
 				</p>
 			</div>
-			<div className="col-md-2"></div>
+			<div className='col-md-2'></div>
 		</div>
 	);
 };
 
-export default Register;
+Register.propTypes = {
+	setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Register);
