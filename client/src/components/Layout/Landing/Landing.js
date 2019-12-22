@@ -18,7 +18,7 @@ const Landing = () => {
 			<div class='container h-100 parallax-container'>
 				<div class='d-flex h-100 text-center align-items-center'>
 					<div class='w-100 text-white'>
-						<img src={logo} class='img-fluid logo' alt='Responsive image' />
+						<img src={logo} class='img-fluid logo' alt='Case By Case logo' />
 						<p class='lead mb-0 spacer'>
 							a crime database aggregator, search engine, analysis, and
 							collaboration tool
