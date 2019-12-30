@@ -6,20 +6,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 	const authLinks = (
 		<div className='navbar-nav'>
+			<a href='/dashboard' className='nav-item nav-link'>
+				Dashboard
+			</a>
 			<a href='!#' className='nav-item nav-link'>
-                Search
+				Search
 			</a>
-            <a href='!#' className='nav-item nav-link'>
-                Posts
+			<a href='!#' className='nav-item nav-link'>
+				Posts
 			</a>
-            <a href='!#' className='nav-item nav-link disabled'>
-                |
+			<a href='!#' className='nav-item nav-link disabled'>
+				|
 			</a>
-            <a href='!#' className='nav-item nav-link nav-highlight'>
-                <i className='fas fa-user-secret userIcon'></i> <span class="member-name">Username</span>
+			<a href='!#' className='nav-item nav-link nav-highlight'>
+				<i className='fas fa-user-secret userIcon'></i>{' '}
+				<span class='member-name'>{ user && user.name}</span>
 			</a>
 			<a onClick={logout} href='/' className='nav-item nav-link'>
 				<i className='fas fa-sign-out-alt menuIcons'></i> Logout
@@ -29,8 +33,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
 	const guestLinks = (
 		<div className='navbar-nav'>
-			<Link to="/about" className='nav-item nav-link'>
-				About 
+			<Link to='/about' className='nav-item nav-link'>
+				About
 			</Link>
 			<Link to='/contact' className='nav-item nav-link'>
 				<i className='far fa-paper-plane menuIcons'></i> Contact Us
@@ -84,7 +88,7 @@ Navbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
+	auth: state.auth
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);
