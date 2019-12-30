@@ -9,6 +9,7 @@ import Contact from './components/other/Contact/Contact';
 import About from './components/other/About/About';
 import Alert from './components/layout/Alert/Alert';
 import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -37,7 +38,7 @@ const App = () => {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/contact' component={Contact} />
                 <Route exact path='/about' component={About} />
-                <Route exact path='/dashboard' component={Dashboard} />
+                <PrivateRoute exact path='/dashboard' component={Dashboard} />
               </Switch>
           </section>
         </Fragment>
