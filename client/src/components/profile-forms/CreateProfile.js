@@ -30,7 +30,7 @@ const CreateProfile = props => {
 
 	return (
 		<Fragment>
-			<h1>CREATE PROFILE</h1>
+			<h1><i>CREATE PROFILE</i></h1>
 			<p className='lead'>
 				{' '}
 				Let's get some information to make your profile stand out!
