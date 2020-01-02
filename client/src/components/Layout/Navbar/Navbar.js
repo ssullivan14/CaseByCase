@@ -21,13 +21,29 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 			<a href='!#' className='nav-item nav-link disabled'>
 				|
 			</a>
-			<a href='!#' className='nav-item nav-link nav-highlight'>
-				<i className='fas fa-user-secret userIcon'></i>{' '}
-				<span class='member-name'>{ user && user.name}</span>
-			</a>
-			<a onClick={logout} href='/' className='nav-item nav-link'>
-				<i className='fas fa-sign-out-alt menuIcons'></i> Logout
-			</a>
+			<li className='nav-item dropdown'>
+				<a
+					className='nav-link dropdown-toggle'
+					href='#'
+					id='navbarDropdown'
+					role='button'
+					data-toggle='dropdown'
+					aria-haspopup='true'
+					aria-expanded='false'
+				>
+					<i className='fas fa-user-secret userIcon'></i>{' '}
+					<span className='member-name'>{user && user.name}</span>
+				</a>
+				<div className='dropdown-menu' aria-labelledby='navbarDropdown'>
+					<a className='dropdown-item' href='/account'>
+						My Account
+					</a>
+					<div className='dropdown-divider'></div>
+					<a onClick={logout} className='dropdown-item' href='/'>
+						<i className='fas fa-sign-out-alt menuIcons'></i> Logout
+					</a>
+				</div>
+			</li>
 		</div>
 	);
 
@@ -51,13 +67,7 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark'>
 			<a className='navbar-brand' id='brand' href='/'>
-				<a className='navbar-brand' id='brand' href='/'>
-					<img
-						src={logo}
-						className='img-fluid smLogo'
-						alt='Case By Case logo'
-					/>
-				</a>
+				<img src={logo} className='img-fluid smLogo' alt='Case By Case logo' />
 			</a>
 			<button
 				className='navbar-toggler'

@@ -10,11 +10,13 @@ import About from './components/other/About/About';
 import Alert from './components/layout/Alert/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
+import Account from './components/account/Account';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import CreateProfile from './components/profile-forms/CreateProfile';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -39,6 +41,8 @@ const App = () => {
                 <Route exact path='/contact' component={Contact} />
                 <Route exact path='/about' component={About} />
                 <PrivateRoute exact path='/dashboard' component={Dashboard} />
+                <PrivateRoute exact path='/account' component={Account} />
+                <PrivateRoute exact path='/create-profile' component={CreateProfile} />
               </Switch>
           </section>
         </Fragment>

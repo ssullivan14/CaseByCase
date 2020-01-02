@@ -1,26 +1,40 @@
 nav {
-    z-index: 1000;
-    overflow: visible;
-    margin-bottom: 50px;
-    background-color: none;
+	z-index: 1000;
+	overflow: visible;
+	margin-bottom: 50px;
+	background-color: none;
 }
 
 .smLogo {
-    max-height: 40px;
+	max-height: 40px;
 }
 
 .menuIcons {
-    color: #85B598;
+	color: #85b598;
 }
 
 .userIcon {
-    color: #D8AC31
+	color: #d8ac31;
 }
 
 .member-name {
-    color: #dddddd;
+	color: #dddddd;
 }
 
 .member-name:hover {
-    color: #fff;
+	color: #fff;
+}
+
+/* Dropdown menu color */
+.navbar-nav > li > .dropdown-menu {
+	background-color: #24252a;
+}
+
+/* Dropdown menu font color */
+.navbar-nav > li > .dropdown-menu a {
+	color: #dddddd;
+}
+
+.navbar-nav > li > .dropdown-menu a:hover {
+	color: #5b7178;
 }

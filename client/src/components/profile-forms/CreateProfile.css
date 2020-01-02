@@ -1,0 +1,45 @@
+hr {
+    border-top: 1px solid  #5b7178;
+}
+
+.social-input {
+    margin-top: 15px;
+}
+  
+.input-group .form-control {
+    /*Just to make all border corners match as the icon attachment makes the right (top & bottom) border radius zero*/
+    border-radius: 4px !important;
+}
+  
+#twitter-icon {
+    color: #1dabdd;
+}
+
+#facebook-icon {
+    color: #4169a7;
+}
+
+#youtube-icon {
+    color: #cd201f;
+}
+
+#linkedin-icon {
+    color: #0077b5;
+}
+
+#instagram-icon {
+    color: #fff;
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    border-radius: 10px;
+}
+
+#profile-buttons {
+    margin-top: 20px;
+}
+
+#optional {
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #bbbbbb;
+}

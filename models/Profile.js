@@ -6,7 +6,13 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    status: {
+      type: String
+    },
     location: {
+      type: String
+    },
+    website: {
       type: String
     },
     bio: {

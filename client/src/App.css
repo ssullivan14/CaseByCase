@@ -1,0 +1,12 @@
+.green-btn {
+    background-color: #85b598;
+    border: 0px;
+}
+
+.green-btn:hover {
+    background-color: #648973;
+}
+
+.green-btn:active {
+    background-color: #648973;
+}
