@@ -1,11 +1,15 @@
 import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './CreateProfile.css';
+import { createProfile } from '../../actions/profile';
 
-const CreateProfile = props => {
+const CreateProfile = (createProfile, history) => {
 	// Form data state
 	const [formData, setFormData] = useState({
+		status: '',
+		website: '',
 		location: '',
 		bio: '',
 		twitter: '',
@@ -16,6 +20,8 @@ const CreateProfile = props => {
 	});
 
 	const {
+		status,
+		website,
 		location,
 		bio,
 		twitter,
@@ -28,17 +34,26 @@ const CreateProfile = props => {
 	// Social Input state
 	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
+	const onChange = e =>
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+
+	const onSubmit = e => {
+		e.preventDefault();
+		createProfile(formData, history);
+	};
+
 	return (
 		<Fragment>
 			<h1><i>CREATE PROFILE</i></h1>
 			<p className='lead'>
+			<i className='fas fa-user-secret userIcon'></i>
 				{' '}
 				Let's get some information to make your profile stand out!
 			</p>
-			<form className='form'>
+			<form className='form' onSubmit={e => onSubmit(e)}>
 				<div className='form-group'>
 					<label htmlFor='status'>Professional Status</label>
-					<select className='form-control' name='status'>
+					<select className='form-control' name='status' value={status} onChange={e => onChange(e)}>
 						<option value='Web Sleuth'>Web Sleuth</option>
 						<option value='Law Enforcement'>Law Enforcement</option>
 						<option value='Private Investigator'>Private Investigator</option>
@@ -56,6 +71,7 @@ const CreateProfile = props => {
 						type='text'
 						placeholder='www.example.com'
 						name='website'
+						value={website} onChange={e => onChange(e)}
 					/>
 					<small className='form-text'>
 						Could be your own or a company website.
@@ -68,6 +84,7 @@ const CreateProfile = props => {
 						type='text'
 						placeholder='Small Town, VA, USA'
 						name='location'
+						value={location} onChange={e => onChange(e)}
 					/>
 				</div>
 				<div className='form-group'>
@@ -76,6 +93,7 @@ const CreateProfile = props => {
 						className='form-control'
 						placeholder='A short bio of yourself.'
 						name='bio'
+						value={bio} onChange={e => onChange(e)}
 					></textarea>
 					<small className='form-text'>Tell us a little about yourself.</small>
 				</div>
@@ -104,6 +122,7 @@ const CreateProfile = props => {
 										type='text'
 										placeholder='Twitter URL'
 										name='twitter'
+										value={twitter} onChange={e => onChange(e)}
 									/>
 								</div>
 							</div>
@@ -119,6 +138,7 @@ const CreateProfile = props => {
 										type='text'
 										placeholder='Facebook URL'
 										name='facebook'
+										value={facebook} onChange={e => onChange(e)}
 									/>
 								</div>
 							</div>
@@ -134,6 +154,7 @@ const CreateProfile = props => {
 										type='text'
 										placeholder='YouTube URL'
 										name='youtube'
+										value={youtube} onChange={e => onChange(e)}
 									/>
 								</div>
 							</div>
@@ -149,6 +170,7 @@ const CreateProfile = props => {
 										type='text'
 										placeholder='Linkedin URL'
 										name='linkedin'
+										value={linkedin} onChange={e => onChange(e)}
 									/>
 								</div>
 							</div>
@@ -164,6 +186,7 @@ const CreateProfile = props => {
 										type='text'
 										placeholder='Instagram URL'
 										name='instagram'
+										value={instagram} onChange={e => onChange(e)}
 									/>
 								</div>
 							</div>
@@ -181,6 +204,8 @@ const CreateProfile = props => {
 	);
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+	createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfile;
+export default connect(null, { createProfile })(withRouter(CreateProfile));
