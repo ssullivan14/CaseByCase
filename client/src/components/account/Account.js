@@ -22,7 +22,7 @@ const Account = ({
 			<h1>
 				<i>MY ACCOUNT</i>
 			</h1>
-			<p class="lead"><i className='fas fa-user-secret userIcon'></i> { user && user.name}</p>
+			<p className="lead"><i className='fas fa-user-secret userIcon'></i> { user && user.name}</p>
 			{profile !== null ? (
                 <Fragment>Has</Fragment>
             ) : (
