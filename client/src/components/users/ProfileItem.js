@@ -7,7 +7,8 @@ const ProfileItem = ({
 	profile: {
 		user: { _id, name, avatar },
 		status,
-		location
+		location,
+		social
 	},
 	profile
 }) => {
@@ -22,7 +23,35 @@ const ProfileItem = ({
 					View Profile
 				</Link>
 			</div>
-			<div className='socials'>&nbsp;</div>
+			<div className='socials'>
+				<ul>
+					{social && social.twitter && (
+						<li>
+							<i className='fab fa-twitter' />
+						</li>
+					)}
+					{social && social.facebook && (
+						<li>
+							<i className='fab fa-facebook' />
+						</li>
+					)}
+					{social && social.linkedin && (
+						<li>
+							<i className='fab fa-linkedin' />
+						</li>
+					)}
+					{social && social.youtube && (
+						<li>
+							<i className='fab fa-youtube' />
+						</li>
+					)}
+					{social && social.instagram && (
+						<li>
+							<i className='fab fa-instagram' />
+						</li>
+					)}
+				</ul>
+			</div>
 		</div>
 	);
 };
