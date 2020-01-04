@@ -12,9 +12,10 @@ const Account = ({
 	auth: { user },
 	profile: { profile, loading }
 }) => {
+	// Get current profile data
 	useEffect(() => {
 		getCurrentProfile();
-	}, []);
+	}, [getCurrentProfile]);
 
 	// Render spinner if profile has not loaded
 	return loading && profile === null ? (
@@ -32,7 +33,7 @@ const Account = ({
 					<AccountActions />
 					&nbsp;&nbsp;
 					<button className='btn btn-danger' onClick={() => deleteAccount()}>
-						<i class='fas fa-user-times'></i> Delete Account
+						<i className='fas fa-user-times'></i> Delete Account
 					</button>
 				</Fragment>
 			) : (

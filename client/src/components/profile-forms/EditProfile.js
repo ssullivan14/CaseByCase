@@ -39,7 +39,7 @@ const EditProfile = ({
 	// Social Input state
 	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-    // Get current profile information
+	// Get current profile information
 	useEffect(() => {
 		getCurrentProfile();
 
@@ -54,7 +54,15 @@ const EditProfile = ({
 			youtube: loading || !profile.social ? '' : profile.social.youtube,
 			instagram: loading || !profile.social ? '' : profile.social.instagram
 		});
-	}, [loading, getCurrentProfile]);
+	}, [
+		loading,
+		getCurrentProfile,
+		profile.website,
+		profile.location,
+		profile.status,
+		profile.bio,
+		profile.social
+	]);
 
 	const onChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -70,7 +78,8 @@ const EditProfile = ({
 				<i>EDIT PROFILE</i>
 			</h1>
 			<p className='lead'>
-				<i className='fas fa-user-secret userIcon'></i> Update your profile with the latest information.
+				<i className='fas fa-user-secret userIcon'></i> Update your profile with
+				the latest information.
 			</p>
 			<form className='form' onSubmit={e => handleSubmit(e)}>
 				<div className='form-group'>
@@ -231,8 +240,9 @@ const EditProfile = ({
 					</Fragment>
 				)}
 				<div id='profile-buttons'>
-					<input type='submit' className='btn btn-secondary' />&nbsp;&nbsp;
-					<Link className='btn btn-light my-1' to='/dashboard'>
+					<input type='submit' className='btn btn-secondary' />
+					&nbsp;&nbsp;
+					<Link className='btn btn-light my-1' to='/account'>
 						Go Back
 					</Link>
 				</div>
