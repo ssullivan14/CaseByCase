@@ -15,12 +15,34 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 			<Link to='!#' className='nav-item nav-link'>
 				Search
 			</Link>
-			<Link to='!#' className='nav-item nav-link'>
-				Posts
+			<Link to='/collaborate' className='nav-item nav-link'>
+				Collaborate
 			</Link>
+			<li className='nav-item dropdown'>
+				<Link
+					className='nav-link dropdown-toggle'
+					to='!#'
+					id='navbarDropdown'
+					role='button'
+					data-toggle='dropdown'
+					aria-haspopup='true'
+					aria-expanded='false'
+				>
+					Community
+				</Link>
+				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
+					<Link className='dropdown-item' to='/posts'>
+						Posts
+					</Link>
+					<Link className='dropdown-item' to='/users'>
+						Users
+					</Link>
+				</div>
+			</li>
 			<Link to='!#' className='nav-item nav-link disabled'>
 				|
 			</Link>
+			&nbsp;
 			<li className='nav-item dropdown'>
 				<Link
 					className='nav-link dropdown-toggle'
@@ -34,7 +56,7 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 					<i className='fas fa-user-secret userIcon'></i>{' '}
 					<span className='member-name'>{user && user.name}</span>
 				</Link>
-				<div className='dropdown-menu' aria-labelledby='navbarDropdown'>
+				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
 					<Link className='dropdown-item' to='/account'>
 						My Account
 					</Link>

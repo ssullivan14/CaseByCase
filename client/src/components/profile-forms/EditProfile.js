@@ -56,18 +56,14 @@ const EditProfile = ({
 		});
 	}, [
 		loading,
-		getCurrentProfile,
-		profile.website,
-		profile.location,
-		profile.status,
-		profile.bio,
-		profile.social
+		getCurrentProfile
 	]);
 
 	const onChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const handleSubmit = e => {
+		console.log(formData);
 		e.preventDefault();
 		createProfile(formData, history, true);
 	};
@@ -141,7 +137,7 @@ const EditProfile = ({
 					<button
 						onClick={() => toggleSocialInputs(!displaySocialInputs)}
 						type='button'
-						className='btn btn-dark green-btn'
+						className='btn green-btn'
 					>
 						Add Social Network Links
 					</button>

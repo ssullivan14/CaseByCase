@@ -40,7 +40,7 @@ const Account = ({
 				<Fragment>
 					<p>You have not yet setup a profile. Please add some info.</p>
 					<Link to='/create-profile' className='btn btn-secondary'>
-						<i class='fas fa-user-tag'></i> Create Profile
+						<i className='fas fa-user-tag'></i> Create Profile
 					</Link>
 				</Fragment>
 			)}

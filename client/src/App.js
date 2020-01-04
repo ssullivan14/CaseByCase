@@ -11,6 +11,7 @@ import Alert from './components/Layout/Alert/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Account from './components/account/Account';
+import Users from './components/users/Users';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -42,6 +43,7 @@ const App = () => {
                 <Route exact path='/contact' component={Contact} />
                 <Route exact path='/about' component={About} />
                 <PrivateRoute exact path='/dashboard' component={Dashboard} />
+                <PrivateRoute exact path='/users' component={Users} />
                 <PrivateRoute exact path='/account' component={Account} />
                 <PrivateRoute exact path='/create-profile' component={CreateProfile} />
                 <PrivateRoute exact path='/edit-profile' component={EditProfile} />

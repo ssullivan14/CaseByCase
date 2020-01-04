@@ -1,12 +1,35 @@
 .green-btn {
+    color: #eee;
     background-color: #85b598;
     border: 0px;
 }
 
 .green-btn:hover {
+    color: #eee;
     background-color: #648973;
 }
 
 .green-btn:active {
+    color: #eee;
     background-color: #648973;
+}
+
+.blue-btn {
+    color: #eee;
+    background-color: #1D3B68;
+    border: 0px;
+}
+
+.blue-btn:hover {
+    color: #eee;
+    background-color: #172F54;
+}
+
+.blue-btn:active {
+    color: #eee;
+    background-color: #172F54;
+}
+
+.gold-icon {
+    color: #d8ac31;
 }
