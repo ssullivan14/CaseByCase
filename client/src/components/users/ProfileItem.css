@@ -10,7 +10,7 @@
 }
 
 .profile {
-	background-color: #eeeeee;
+	background-color: rgba(238, 238, 238, 0.9);
 	color: #11151c;
 	border-radius: 25px;
 	display: grid;
@@ -23,4 +23,5 @@
 
 ul {
 	list-style-type: none;
+	color: #303B4F;
 }

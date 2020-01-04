@@ -8,7 +8,8 @@ const ProfileItem = ({
 		user: { _id, name, avatar },
 		status,
 		location,
-		social
+		social,
+		website
 	},
 	profile
 }) => {
@@ -25,6 +26,11 @@ const ProfileItem = ({
 			</div>
 			<div className='socials'>
 				<ul>
+					{website && (
+						<li>
+							<i className='fab fa-globe' />
+						</li>
+					)}
 					{social && social.twitter && (
 						<li>
 							<i className='fab fa-twitter' />
