@@ -7,25 +7,23 @@ const ProfileItem = ({
 	profile: {
 		user: { _id, name, avatar },
 		status,
-        location
-	}, profile
+		location
+	},
+	profile
 }) => {
-
 	return (
-        <div className='profile col-md-6'>
-			<img src={avatar} className='round-img' />
-            <div>
-                <h2>{name}</h2>
-                <p className='subtitle'>{location}</p>
-                <p>{status}</p>
-                <Link to={`/profile/${_id}`} className='btn btn-sm blue-btn'>
-                    View Profile
-                </Link>
-            </div>
-            <div className='socials'>
-                &nbsp;
-            </div>
-        </div>
+		<div className='profile col-md-6'>
+			<img src={avatar} className='users-img' />
+			<div>
+				<h2>{name}</h2>
+				<p className='subtitle'>{location}</p>
+				<p>{status}</p>
+				<Link to={`/profile/${_id}`} className='btn btn-sm green-btn'>
+					View Profile
+				</Link>
+			</div>
+			<div className='socials'>&nbsp;</div>
+		</div>
 	);
 };
 
