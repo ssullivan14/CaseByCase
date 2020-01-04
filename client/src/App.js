@@ -13,6 +13,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Account from './components/account/Account';
 import Users from './components/users/Users';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -49,6 +50,7 @@ const App = () => {
                 <PrivateRoute exact path='/account' component={Account} />
                 <PrivateRoute exact path='/create-profile' component={CreateProfile} />
                 <PrivateRoute exact path='/edit-profile' component={EditProfile} />
+                <PrivateRoute exact path='/posts' component={Posts} />
               </Switch>
           </section>
         </Fragment>
