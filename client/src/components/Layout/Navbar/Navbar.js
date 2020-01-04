@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import './Navbar.css';
 import logo from '../../../images/logo.png';
 import { Link } from 'react-router-dom';
@@ -9,22 +9,44 @@ import { logout } from '../../../actions/auth';
 const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 	const authLinks = (
 		<div className='navbar-nav'>
-			<a href='/dashboard' className='nav-item nav-link'>
+			<Link to='/dashboard' className='nav-item nav-link'>
 				Dashboard
-			</a>
-			<a href='!#' className='nav-item nav-link'>
+			</Link>
+			<Link to='!#' className='nav-item nav-link'>
 				Search
-			</a>
-			<a href='!#' className='nav-item nav-link'>
-				Posts
-			</a>
-			<a href='!#' className='nav-item nav-link disabled'>
-				|
-			</a>
+			</Link>
+			<Link to='/collaborate' className='nav-item nav-link'>
+				Collaborate
+			</Link>
 			<li className='nav-item dropdown'>
-				<a
+				<Link
 					className='nav-link dropdown-toggle'
-					href='#'
+					to='!#'
+					id='navbarDropdown'
+					role='button'
+					data-toggle='dropdown'
+					aria-haspopup='true'
+					aria-expanded='false'
+				>
+					Community
+				</Link>
+				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
+					<Link className='dropdown-item' to='/posts'>
+						Posts
+					</Link>
+					<Link className='dropdown-item' to='/users'>
+						Users
+					</Link>
+				</div>
+			</li>
+			<Link to='!#' className='nav-item nav-link disabled'>
+				|
+			</Link>
+			&nbsp;
+			<li className='nav-item dropdown'>
+				<Link
+					className='nav-link dropdown-toggle'
+					to='!#'
 					id='navbarDropdown'
 					role='button'
 					data-toggle='dropdown'
@@ -33,15 +55,15 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 				>
 					<i className='fas fa-user-secret userIcon'></i>{' '}
 					<span className='member-name'>{user && user.name}</span>
-				</a>
-				<div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-					<a className='dropdown-item' href='/account'>
+				</Link>
+				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
+					<Link className='dropdown-item' to='/account'>
 						My Account
-					</a>
+					</Link>
 					<div className='dropdown-divider'></div>
-					<a onClick={logout} className='dropdown-item' href='/'>
+					<Link onClick={logout} className='dropdown-item' to='/'>
 						<i className='fas fa-sign-out-alt menuIcons'></i> Logout
-					</a>
+					</Link>
 				</div>
 			</li>
 		</div>

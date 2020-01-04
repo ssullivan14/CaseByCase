@@ -11,7 +11,7 @@ const Dashboard = ({
 }) => {
 	useEffect(() => {
 		getCurrentProfile();
-	}, []);
+	}, [getCurrentProfile]);
 
 	// Render spinner if profile has not loaded
 	return loading && profile === null ? (
@@ -21,7 +21,7 @@ const Dashboard = ({
 			<h1>
 				<i>DASHBOARD</i>
 			</h1>
-			<p class="lead"><i className='fas fa-user-secret userIcon'></i> Welcome { user && user.name}</p>
+			<p className="lead"><i className='fas fa-user-secret userIcon'></i> Welcome { user && user.name}</p>
 			<p>What do we want here?</p>
 		</Fragment>
 	);
