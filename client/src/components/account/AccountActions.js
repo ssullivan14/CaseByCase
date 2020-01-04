@@ -11,4 +11,4 @@ export const AccountActions = () => {
 	);
 };
 
-export default AccountActions
+export default AccountActions;

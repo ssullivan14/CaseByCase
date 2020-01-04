@@ -231,7 +231,7 @@ const EditProfile = ({
 					</Fragment>
 				)}
 				<div id='profile-buttons'>
-					<input type='submit' className='btn btn-secondary' />
+					<input type='submit' className='btn btn-secondary' />&nbsp;&nbsp;
 					<Link className='btn btn-light my-1' to='/dashboard'>
 						Go Back
 					</Link>
