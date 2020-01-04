@@ -74,6 +74,8 @@ router.post(
 	auth,
 	async (req, res) => {
 		const {
+			status,
+			website,
 			location,
 			bio,
 			youtube,
@@ -86,8 +88,10 @@ router.post(
 		// Build profile object
 		const profileFields = {};
 		profileFields.user = req.user.id;
+		if (status) profileFields.status = status;
 		if (location) profileFields.location = location;
 		if (bio) profileFields.bio = bio;
+		if (website) profileFields.website = website;
 
 		// Build social object
 		profileFields.social = {};

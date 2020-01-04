@@ -86,6 +86,7 @@ const EditProfile = ({
 						value={status}
 						onChange={e => onChange(e)}
 					>
+						<option></option>
 						<option value='Web Sleuth'>Web Sleuth</option>
 						<option value='Law Enforcement'>Law Enforcement</option>
 						<option value='Private Investigator'>Private Investigator</option>

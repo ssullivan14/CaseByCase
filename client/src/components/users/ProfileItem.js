@@ -18,8 +18,8 @@ const ProfileItem = ({
 			<img src={avatar} className='users-img' />
 			<div>
 				<h2>{name}</h2>
-				<p className='subtitle'>{location}</p>
-				<p>{status}</p>
+				<h6 className='subtitle'>{location}</h6>
+				<p><i>{status}</i></p>
 				<Link to={`/profile/${_id}`} className='btn btn-sm green-btn'>
 					View Profile
 				</Link>
@@ -28,7 +28,7 @@ const ProfileItem = ({
 				<ul>
 					{website && (
 						<li>
-							<i className='fab fa-globe' />
+							<i className='fas fa-globe' />
 						</li>
 					)}
 					{social && social.twitter && (
