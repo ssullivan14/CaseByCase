@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../Layout/Spinner/Spinner';
+import AccountActions from './AccountActions';
 
 const Account = ({
 	getCurrentProfile,
@@ -24,7 +25,7 @@ const Account = ({
 			</h1>
 			<p className="lead"><i className='fas fa-user-secret userIcon'></i> { user && user.name}</p>
 			{profile !== null ? (
-                <Fragment>Has</Fragment>
+                <AccountActions />
             ) : (
                 <Fragment>
                     <p>You have not yet setup a profile. Please add some info.</p>

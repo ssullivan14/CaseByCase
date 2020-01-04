@@ -1,11 +1,16 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileForms.css';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = ({ createProfile, history }) => {
+const EditProfile = ({
+	profile: { profile, loading },
+	createProfile,
+	getCurrentProfile,
+	history
+}) => {
 	// Form data state
 	const [formData, setFormData] = useState({
 		status: '',
@@ -34,22 +39,38 @@ const CreateProfile = ({ createProfile, history }) => {
 	// Social Input state
 	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
+    // Get current profile information
+	useEffect(() => {
+		getCurrentProfile();
+
+		setFormData({
+			website: loading || !profile.website ? '' : profile.website,
+			location: loading || !profile.location ? '' : profile.location,
+			status: loading || !profile.status ? '' : profile.status,
+			bio: loading || !profile.bio ? '' : profile.bio,
+			twitter: loading || !profile.social ? '' : profile.social.twitter,
+			facebook: loading || !profile.social ? '' : profile.social.facebook,
+			linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+			youtube: loading || !profile.social ? '' : profile.social.youtube,
+			instagram: loading || !profile.social ? '' : profile.social.instagram
+		});
+	}, [loading, getCurrentProfile]);
+
 	const onChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		createProfile(formData, history);
+		createProfile(formData, history, true);
 	};
 
 	return (
 		<Fragment>
 			<h1>
-				<i>CREATE PROFILE</i>
+				<i>EDIT PROFILE</i>
 			</h1>
 			<p className='lead'>
-				<i className='fas fa-user-secret userIcon'></i> Let's get some
-				information to make your profile stand out!
+				<i className='fas fa-user-secret userIcon'></i> Update your profile with the latest information.
 			</p>
 			<form className='form' onSubmit={e => handleSubmit(e)}>
 				<div className='form-group'>
@@ -220,8 +241,16 @@ const CreateProfile = ({ createProfile, history }) => {
 	);
 };
 
-CreateProfile.propTypes = {
-	createProfile: PropTypes.func.isRequired
+EditProfile.propTypes = {
+	createProfile: PropTypes.func.isRequired,
+	getCurrentProfile: PropTypes.func.isRequired,
+	profile: PropTypes.object.isRequired
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+const mapStateToProps = state => ({
+	profile: state.profile
+});
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+	withRouter(EditProfile)
+);
