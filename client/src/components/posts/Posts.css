@@ -9,6 +9,10 @@ th {
 	text-transform: uppercase;
 }
 
+.post-header {
+	margin-bottom: 1rem;
+}
+
 .post-form .post-form-header {
 	background: var(--primary-color);
 	padding: 0.5rem;
@@ -42,5 +46,10 @@ th {
 .post .post-date {
 	color: #aaa;
 	font-size: 0.8rem;
-	margin-bottom: 0.5rem;
+	padding-top: .5rem;
+	margin-bottom: .7rem;
+}
+
+.post-buttons {
+	margin-bottom: .5rem;
 }

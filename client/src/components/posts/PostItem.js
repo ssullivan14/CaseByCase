@@ -21,58 +21,60 @@ const PostItem = ({
 				</a>
 			</div>
 			<div>
-				<h3>{title}</h3>
+				<h3 className='post-header'>{title}</h3>
 				<p class='my-1'>{text}</p>
 				<p class='post-date'>
 					Posted on <Moment format='MM/DD/YYYY hh:mm A'>{date}</Moment>
 				</p>
-				{/* Check if logged in user is post author, if so, disable like/unlike buttons */}
-				{!auth.loading && user === auth.user._id ? (
-					<Fragment>
-						<button type='button' class='btn btn-dark disabled'>
-							<i class='fas fa-thumbs-up'></i>
-							{likes.length > 0 && <span>&nbsp;&nbsp;{likes.length}</span>}
-						</button>
-						&nbsp;&nbsp;
-						<button type='button' class='btn btn-dark disabled'>
-							<i class='fas fa-thumbs-down'></i>
-						</button>
-						&nbsp;&nbsp;
-					</Fragment>
-				) : (
-					<Fragment>
-						<button
-							onClick={e => addLike(_id)}
-							type='button'
-							class='btn btn-dark'
-						>
-							<i class='fas fa-thumbs-up'></i>
-							{likes.length > 0 && <span>&nbsp;&nbsp;{likes.length}</span>}
-						</button>
-						&nbsp;&nbsp;
-						<button
-							onClick={e => removeLike(_id)}
-							type='button'
-							class='btn btn-dark'
-						>
-							<i class='fas fa-thumbs-down'></i>
-						</button>
-						&nbsp;&nbsp;
-					</Fragment>
-				)}
-				<a href='post.html' class='btn green-btn'>
-					Discussion
-					{comments.length > 0 && (
-						<span class='comment-count'>&nbsp;{comments.length}</span>
+				<div className='post-buttons'>
+					{/* Check if logged in user is post author, if so, disable like/unlike buttons */}
+					{!auth.loading && user === auth.user._id ? (
+						<Fragment>
+							<button type='button' class='btn btn-dark disabled'>
+								<i class='fas fa-thumbs-up'></i>
+								{likes.length > 0 && <span>&nbsp;&nbsp;{likes.length}</span>}
+							</button>
+							&nbsp;&nbsp;
+							<button type='button' class='btn btn-dark disabled'>
+								<i class='fas fa-thumbs-down'></i>
+							</button>
+							&nbsp;&nbsp;
+						</Fragment>
+					) : (
+						<Fragment>
+							<button
+								onClick={e => addLike(_id)}
+								type='button'
+								class='btn btn-dark'
+							>
+								<i class='fas fa-thumbs-up'></i>
+								{likes.length > 0 && <span>&nbsp;&nbsp;{likes.length}</span>}
+							</button>
+							&nbsp;&nbsp;
+							<button
+								onClick={e => removeLike(_id)}
+								type='button'
+								class='btn btn-dark'
+							>
+								<i class='fas fa-thumbs-down'></i>
+							</button>
+							&nbsp;&nbsp;
+						</Fragment>
 					)}
-				</a>
-				&nbsp;&nbsp;
-				{/* If post user and authenticated user are the same, show delete button */}
-				{!auth.loading && user === auth.user._id && (
-					<button type='button' class='btn red-btn'>
-						<i class='fas fa-times'></i>
-					</button>
-				)}
+					<a href='post.html' class='btn green-btn'>
+						Discussion
+						{comments.length > 0 && (
+							<span class='comment-count'>&nbsp;{comments.length}</span>
+						)}
+					</a>
+					&nbsp;&nbsp;
+					{/* If post user and authenticated user are the same, show delete button */}
+					{!auth.loading && user === auth.user._id && (
+						<button type='button' class='btn red-btn'>
+							<i class='fas fa-times'></i>
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 	</Fragment>
