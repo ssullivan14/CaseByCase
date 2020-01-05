@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import Spinner from '../Layout/Spinner/Spinner';
@@ -29,44 +30,49 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
                         <th scope="row">Last Post</th>
                     </tr>
                     <tr>
-                        <td>California</td>
+                        <td><Link to='/posts/california'>California</Link></td>
                         <td>5 Posts</td>
                         <td>01/01/2020</td>
                     </tr>
                     <tr>
-                        <td>Florida</td>
+                        <td><Link to='/posts/florida'>Florida</Link></td>
                         <td>100 Posts</td>
                         <td>01/03/2020</td>
                     </tr>
                     <tr>
-                        <td>Illinois</td>
+                        <td><Link to='/posts/illinois'>Illinois</Link></td>
                         <td>2 Posts</td>
                         <td>12/23/2019</td>
                     </tr>
                     <tr>
-                        <td>Indiana</td>
+                        <td><Link to='/posts/indiana'>Indiana</Link></td>
                         <td>3 Posts</td>
                         <td>12/15/2019</td>
                     </tr>
                     <tr>
-                        <td>Missouri</td>
+                        <td><Link to='/posts/missouri'>Missouri</Link></td>
                         <td>2 Posts</td>
                         <td>12/23/2019</td>
                     </tr>
                     <tr>
-                        <td>New Mexico</td>
+                        <td><Link to='/posts/new%20mexico'>New Mexico</Link></td>
                         <td>6 Posts</td>
                         <td>01/02/2020</td>
                     </tr>
                     <tr>
-                        <td>Tennessee</td>
+                        <td><Link to='/posts/tennessee'>Tennessee</Link></td>
                         <td>2 Posts</td>
                         <td>01/03/2020</td>
                     </tr>
                     <tr>
-                        <td>Utah</td>
+                        <td><Link to='/posts/utah'>Utah</Link></td>
                         <td>7 Posts</td>
                         <td>01/04/2020</td>
+                    </tr>
+                    <tr>
+                        <td><Link to='/posts/virginia'>Virginia</Link></td>
+                        <td>22 Posts</td>
+                        <td>12/13/2019</td>
                     </tr>
                     <tr>
                         <th className='th-large' scope="col">General</th>
@@ -79,12 +85,12 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
                         <th scope="row">Last Post</th>
                     </tr>
                     <tr>
-                        <td>General Discussion</td>
+                        <td><Link to='/posts/general%20discussion'>General Discussion</Link></td>
                         <td>20 Posts</td>
                         <td>01/04/2020</td>
                     </tr>
                     <tr>
-                        <td>Enhancement Requests</td>
+                        <td><Link to='/posts/enhancement%20requests'>Enhancement Requests</Link></td>
                         <td>1 Posts</td>
                         <td>01/01/2020</td>
                     </tr>
