@@ -20,7 +20,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 				<i className='fas fa-comments gold-icon'></i> Discuss cases with other
 				users
 			</p>
-			<table class='table table-striped table-dark'>
+			<table className='table table-striped table-dark'>
 				<thead>
 					<tr>
 						<th className='th-large' scope='col'>
