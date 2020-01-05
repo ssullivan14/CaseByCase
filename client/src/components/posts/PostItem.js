@@ -34,19 +34,19 @@ const PostItem = ({
 				<button type='button' class='btn btn-dark'>
 					<i class='fas fa-thumbs-up'></i>
 					{likes.length > 0 && <span>&nbsp;&nbsp;{likes.length}</span>}
-				</button>
+				</button>&nbsp;&nbsp;
 				<button type='button' class='btn btn-dark'>
 					<i class='fas fa-thumbs-down'></i>
-				</button>
-				<a href='post.html' class='btn btn-primary'>
-					Discussion{' '}
+				</button>&nbsp;&nbsp;
+				<a href='post.html' class='btn green-btn'>
+					Discussion
 					{comments.length > 0 && (
-						<span class='comment-count'> {comments.length}</span>
+						<span class='comment-count'>&nbsp;{comments.length}</span>
 					)}
-				</a>
+				</a>&nbsp;&nbsp;
 				{/* If post user and authenticated user are the same, show delete button */}
 				{!auth.loading && user === auth.user._id && (
-					<button type='button' class='btn btn-danger'>
+					<button type='button' class='btn red-btn'>
 						<i class='fas fa-times'></i>
 					</button>
 				)}

@@ -46,3 +46,18 @@
 	left: -55px;
 	transform: rotate(90deg);
 }
+
+.red-btn {
+	color: #eee;
+	background-color: #931D14;
+}
+
+.red-btn:hover {
+	color: #eee;
+	background-color: #7F1911;
+}
+
+.red-btn:active {
+	color: #eee;
+	background-color: #7F1911;
+}
