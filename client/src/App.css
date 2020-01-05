@@ -1,3 +1,7 @@
+.btn {
+	border: none;
+}
+
 .page-header { 
 	text-transform: uppercase;
 }
@@ -5,7 +9,6 @@
 .green-btn {
 	color: #eee;
 	background-color: #85b598;
-	border: 0px;
 }
 
 .green-btn:hover {
@@ -21,7 +24,6 @@
 .blue-btn {
 	color: #eee;
 	background-color: #1d3b68;
-	border: 0px;
 }
 
 .blue-btn:hover {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import Spinner from '../Layout/Spinner/Spinner';
+import PostItem from './PostItem';
 import './Posts.css';
 
 const Posts = ({ getPosts, post: { posts, loading}, match }) => {
@@ -13,7 +14,7 @@ const Posts = ({ getPosts, post: { posts, loading}, match }) => {
     // Get topic from url
     const topic = match.params.topic;
 
-	return (
+	return loading ? <Spinner /> : (
 		<Fragment>
 			<h1 className='page-header'>
 				<i>{topic}</i>
@@ -22,8 +23,16 @@ const Posts = ({ getPosts, post: { posts, loading}, match }) => {
 				<i className='fas fa-comments gold-icon'></i> Discuss cases with other
 				users
 			</p>
+            {/* Submit Post Form */}
+            <div className="posts">
+                {posts.map(post => (
+                    post.topic === topic && (
+                        <PostItem key={post._id} post={post} />
+                    )
+                ))}
+            </div>
 		</Fragment>
-	);
+    )
 };
 
 Posts.propTypes = {};
