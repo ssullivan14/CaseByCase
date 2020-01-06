@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,7 +12,96 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 		getPosts();
 	}, [getPosts]);
 
-	return (
+	let topics = {
+		'0': {
+			topic: 'california',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'1': {
+			topic: 'florida',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'2': {
+			topic: 'illinois',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'3': {
+			topic: 'indinia',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'4': {
+			topic: 'missouri',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'5': {
+			topic: 'new mexico',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'6': {
+			topic: 'tennessee',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'7': {
+			topic: 'utah',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'8': {
+			topic: 'virginia',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
+		'9': {
+			topic: 'general discussion',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'general'
+		},
+		'10': {
+			topic: 'enhancement requests',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		}
+	};
+
+	const keys = Object.keys(topics);
+
+	for (const key of keys) {
+		let topicPosts = posts.filter(function(post) {
+			return post.topic === topics[key].topic;
+		});
+
+		let mostRecent = topicPosts
+			.map(function(e) {
+				return e.date;
+			})
+			.sort()
+			.reverse()[0];
+
+		topics[key].numPosts = topicPosts.length;
+		topics[key].mostRecent = mostRecent;
+	}
+
+	return loading ? (
+		<Spinner />
+	) : (
 		<Fragment>
 			<h1>
 				<i>POSTS</i>
@@ -40,64 +130,64 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						<td>
 							<Link to='/posts/california'>California</Link>
 						</td>
-						<td>5 Posts</td>
-						<td>01/01/2020</td>
+						<td>{topics[0].numPosts} Posts</td>
+						<td>{topics[0].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[0].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/florida'>Florida</Link>
 						</td>
-						<td>100 Posts</td>
-						<td>01/03/2020</td>
+						<td>{topics[1].numPosts} Posts</td>
+						<td>{topics[1].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[1].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/illinois'>Illinois</Link>
 						</td>
-						<td>2 Posts</td>
-						<td>12/23/2019</td>
+						<td>{topics[2].numPosts} Posts</td>
+						<td>{topics[2].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[2].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/indiana'>Indiana</Link>
 						</td>
-						<td>3 Posts</td>
-						<td>12/15/2019</td>
+						<td>{topics[3].numPosts} Posts</td>
+						<td>{topics[3].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[3].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/missouri'>Missouri</Link>
 						</td>
-						<td>2 Posts</td>
-						<td>12/23/2019</td>
+						<td>{topics[4].numPosts} Posts</td>
+						<td>{topics[4].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[4].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/new%20mexico'>New Mexico</Link>
 						</td>
-						<td>6 Posts</td>
-						<td>01/02/2020</td>
+						<td>{topics[5].numPosts} Posts</td>
+						<td>{topics[5].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[5].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/tennessee'>Tennessee</Link>
 						</td>
-						<td>2 Posts</td>
-						<td>01/03/2020</td>
+						<td>{topics[6].numPosts} Posts</td>
+						<td>{topics[6].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[6].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/utah'>Utah</Link>
 						</td>
-						<td>7 Posts</td>
-						<td>01/04/2020</td>
+						<td>{topics[7].numPosts} Posts</td>
+						<td>{topics[7].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[7].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
 							<Link to='/posts/virginia'>Virginia</Link>
 						</td>
-						<td>22 Posts</td>
-						<td>12/13/2019</td>
+						<td>{topics[8].numPosts} Posts</td>
+						<td>{topics[8].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[8].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<th className='th-large' scope='col'>
@@ -115,8 +205,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						<td>
 							<Link to='/posts/general%20discussion'>General Discussion</Link>
 						</td>
-						<td>20 Posts</td>
-						<td>01/04/2020</td>
+						<td>{topics[9].numPosts} Posts</td>
+						<td>{topics[9].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[9].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
@@ -124,8 +214,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 								Enhancement Requests
 							</Link>
 						</td>
-						<td>1 Posts</td>
-						<td>01/01/2020</td>
+						<td>{topics[10].numPosts} Posts</td>
+						<td>{topics[10].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[10].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 				</tbody>
 			</table>
