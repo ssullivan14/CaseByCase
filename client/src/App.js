@@ -15,6 +15,7 @@ import Users from './components/users/Users';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import TopicPosts from './components/posts/TopicPosts';
+import Post from './components/post/Post';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -53,6 +54,7 @@ const App = () => {
                 <PrivateRoute exact path='/edit-profile' component={EditProfile} />
                 <PrivateRoute exact path='/posts' component={Posts} />
                 <PrivateRoute exact path='/posts/:topic' component={TopicPosts} />
+                <PrivateRoute exact path='/post/:id' component={Post} />
               </Switch>
           </section>
         </Fragment>

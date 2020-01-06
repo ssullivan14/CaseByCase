@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getPosts, addPost } from '../../actions/post';
 import Spinner from '../Layout/Spinner/Spinner';
@@ -43,10 +44,10 @@ const Posts = ({ getPosts, post: { posts, loading }, match, addPost }) => {
 		<Fragment>
 			<div className='row'>
 				<div className='col-md-12'>
-					<a href='/posts' className='btn btn-secondary back-btn'>
+					<Link to='/posts' className='btn btn-secondary back-btn'>
 						<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
 						Posts
-					</a>
+					</Link>
 				</div>
 			</div>
 			<h1 className='page-header'>
@@ -59,7 +60,7 @@ const Posts = ({ getPosts, post: { posts, loading }, match, addPost }) => {
 			{/* Submit new post form */}
 			<div className='post-form'>
 				<div className='post-form-header'>
-					<h5>Say Something...</h5>
+					<h5>Make a Statement</h5>
 				</div>
 				<form className='form' id='new-post' onSubmit={e => handleSubmit(e)}>
 					<input
