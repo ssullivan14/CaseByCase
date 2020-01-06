@@ -24,7 +24,7 @@ const Dashboard = ({
 				<i>DASHBOARD</i>
 			</h1>
 			<p className='lead'>
-				<i className='fas fa-user-secret userIcon'></i> Welcome{' '}
+				<i className='fas fa-user-secret userIcon'></i> Welcome back,{' '}
 				{user && user.name}
 			</p>
 			<div className='row'>

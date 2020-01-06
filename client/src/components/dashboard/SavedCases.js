@@ -8,7 +8,7 @@ const SavedCases = props => {
 				<div className='card-header'>
 					<i className='fas fa-archive'></i>&nbsp;&nbsp;Saved Cases
 				</div>
-                <table className='card-table table table-dark'>
+                <table className='card-table table table-striped table-dark'>
                     <thead>
                         <tr>
                             <th scope="col">Case No.</th>
