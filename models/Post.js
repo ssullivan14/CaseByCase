@@ -6,15 +6,20 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  title: {
+    type: String,
+  },
   text: {
     type: String,
-    required: true
   },
   name: {
     type: String
   },
   avatar: {
     type: String
+  },
+  topic: {
+    type: String,
   },
   likes: [
     {
@@ -32,7 +37,6 @@ const PostSchema = new Schema({
       },
       text: {
         type: String,
-        required: true
       },
       name: {
         type: String

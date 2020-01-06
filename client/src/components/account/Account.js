@@ -32,7 +32,7 @@ const Account = ({
 				<Fragment>
 					<AccountActions />
 					&nbsp;&nbsp;
-					<button className='btn btn-danger' onClick={() => deleteAccount()}>
+					<button className='btn red-btn' onClick={() => deleteAccount()}>
 						<i className='fas fa-user-times'></i> Delete Account
 					</button>
 				</Fragment>
