@@ -14,8 +14,14 @@ th {
 }
 
 .post-form .post-form-header {
-	background: var(--primary-color);
-	padding: 0.5rem;
+	background-color: #314447;
+	border-radius: 5px;
+	padding: 0.2rem;
+	margin-bottom: 0.2rem;
+}
+
+.post-control {
+	margin-bottom: 0.2rem;
 }
 
 .post {
@@ -23,7 +29,7 @@ th {
 	grid-template-columns: 1fr 4fr;
 	grid-gap: 2rem;
     align-items: center;
-    border-radius: 5px;
+	border-radius: 5px;
 }
 
 .post > div:first-child {

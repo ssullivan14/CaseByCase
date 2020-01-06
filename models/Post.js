@@ -8,11 +8,9 @@ const PostSchema = new Schema({
   },
   title: {
     type: String,
-    required: true
   },
   text: {
     type: String,
-    required: true
   },
   name: {
     type: String
@@ -22,7 +20,6 @@ const PostSchema = new Schema({
   },
   topic: {
     type: String,
-    required: true
   },
   likes: [
     {
@@ -40,7 +37,6 @@ const PostSchema = new Schema({
       },
       text: {
         type: String,
-        required: true
       },
       name: {
         type: String
