@@ -1,8 +1,8 @@
-th {
+.post-th {
 	background-color: #314447;
 }
 
-.th-large {
+.post-th-large {
 	background-color: #263c3f;
 	font-size: 20px;
 	font-style: italic;

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../Layout/Spinner/Spinner';
 import RecentPosts from './RecentPosts';
+import SavedCases from './SavedCases';
 
 const Dashboard = ({
 	getCurrentProfile,
@@ -26,9 +27,10 @@ const Dashboard = ({
 				<i className='fas fa-user-secret userIcon'></i> Welcome{' '}
 				{user && user.name}
 			</p>
-			<p>What do we want here?</p>
 			<div className='row'>
-				<div className='col-md-8'></div>
+				<div className='col-md-8'>
+					<SavedCases />
+				</div>
 				<div className='col-md-4'>
 					<RecentPosts />
 				</div>

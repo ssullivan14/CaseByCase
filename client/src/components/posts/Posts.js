@@ -113,18 +113,18 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 			<table className='table table-striped table-dark'>
 				<thead>
 					<tr>
-						<th className='th-large' scope='col'>
+						<th className='post-th-large' scope='col'>
 							State Discussions
 						</th>
-						<th className='th-large' scope='col'></th>
-						<th className='th-large' scope='col'></th>
+						<th className='post-th-large' scope='col'></th>
+						<th className='post-th-large' scope='col'></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope='row'>Name</th>
-						<th scope='row'>Statistics</th>
-						<th scope='row'>Last Post</th>
+						<th className='post-th' scope='row'>Name</th>
+						<th className='post-th' scope='row'>Statistics</th>
+						<th className='post-th' scope='row'>Last Post</th>
 					</tr>
 					<tr>
 						<td>
@@ -190,11 +190,11 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						<td>{topics[8].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[8].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
-						<th className='th-large' scope='col'>
+						<th className='post-th-large' scope='col'>
 							General
 						</th>
-						<th className='th-large' scope='col'></th>
-						<th className='th-large' scope='col'></th>
+						<th className='post-th-large' scope='col'></th>
+						<th className='post-th-large' scope='col'></th>
 					</tr>
 					<tr>
 						<th scope='row'>Name</th>
