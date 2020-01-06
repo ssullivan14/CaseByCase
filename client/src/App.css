@@ -4,6 +4,7 @@
 
 .page-header { 
 	text-transform: uppercase;
+	font-style: italic;
 }
 
 .green-btn {
