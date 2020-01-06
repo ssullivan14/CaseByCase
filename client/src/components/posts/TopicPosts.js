@@ -29,6 +29,12 @@ const Posts = ({ getPosts, post: { posts, loading }, match, addPost }) => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		addPost(formData);
+		//  Clear form after post is submitted
+		setFormData({
+			title: '',
+			text: '',
+			topic: `${category}`
+		});
 	};
 
 	return loading ? (
@@ -55,7 +61,7 @@ const Posts = ({ getPosts, post: { posts, loading }, match, addPost }) => {
 				<div className='post-form-header'>
 					<h5>Say Something...</h5>
 				</div>
-				<form className='form' onSubmit={e => handleSubmit(e)}>
+				<form className='form' id='new-post' onSubmit={e => handleSubmit(e)}>
 					<input
 						type='text'
 						className='form-control post-control'
