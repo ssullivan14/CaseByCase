@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getRecent } from '../../actions/post';
 import RecentItem from './RecentItem';
@@ -13,15 +11,13 @@ const RecentPosts = ({ getRecent, post: { posts, loading } }) => {
 		getRecent();
 	}, [getRecent]);
 
-	console.log(posts);
-
 	return (
 		<Fragment>
-			<div class='card bg-dark recent-card'>
-				<div class='card-header'>
+			<div className='card bg-dark recent-card'>
+				<div className='card-header'>
 					<i className='fas fa-comment-dots'></i>&nbsp;&nbsp;Recent Posts
 				</div>
-				<ul class='list-group list-group-flush recent-posts-list'>
+				<ul className='list-group list-group-flush recent-posts-list'>
 					{posts.length > 0 ? (
 						posts.map(post => (
 							<RecentItem
@@ -40,7 +36,7 @@ const RecentPosts = ({ getRecent, post: { posts, loading } }) => {
 
 RecentPosts.propTypes = {
 		getRecent: PropTypes.func.isRequired,
-		posts: PropTypes.object.isRequired
+		post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

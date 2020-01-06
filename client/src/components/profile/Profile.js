@@ -21,10 +21,10 @@ const Profile = ({ getProfileById, profile: { profile, loading }, match }) => {
 				<Fragment>
 					<div className='row'>
 						<div className='col-md-12'>
-							<a href='/users' className='btn btn-secondary back-btn'>
+							<Link to='/users' className='btn btn-secondary back-btn'>
 								<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
 								Users
-							</a>
+							</Link>
 						</div>
 					</div>
                     <div className='profile-grid'>

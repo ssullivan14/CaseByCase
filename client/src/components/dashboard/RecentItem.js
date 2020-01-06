@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 
 const RecentItem = ({ post: { _id, title, topic, avatar, date }, post }) => {
 	return (
-		<li class='list-group-item list-group-item-dark'>
-			<img
-				className='recent-img'
-				src={avatar}
-			/>
+		<li className='list-group-item list-group-item-dark'>
+			<img className='recent-img' src={avatar} alt="User's avatar" />
 
 			<h6 className='recent-title'>
 				<Link to={`/post/${_id}`}>{post.title}</Link>
 			</h6>
-	<p className='recent-date-topic my-1'><Moment format='MM/DD/YYYY hh:mm A'>{date}</Moment>&nbsp;&nbsp;|&nbsp;&nbsp;<span className='recent-topic'>{topic}</span></p>
+			<p className='recent-date-topic my-1'>
+				<Moment format='MM/DD/YYYY hh:mm A'>{date}</Moment>
+				&nbsp;&nbsp;|&nbsp;&nbsp;<span className='recent-topic'>{topic}</span>
+			</p>
 		</li>
 	);
 };
