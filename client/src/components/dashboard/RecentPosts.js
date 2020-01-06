@@ -1,9 +1,18 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getRecent } from '../../actions/post';
 import './Dashboard.css';
 
-const RecentPosts = props => {
+const RecentPosts = ({ getRecent, post: { posts, loading } }) => {
+	useEffect(() => {
+		getRecent();
+    }, [getRecent]);
+    
+    console.log(posts[0].avatar);
+
 	return (
 		<Fragment>
 			<div class='card bg-dark recent-card'>
@@ -30,4 +39,8 @@ const RecentPosts = props => {
 
 RecentPosts.propTypes = {};
 
-export default RecentPosts;
+const mapStateToProps = state => ({
+	post: state.post
+});
+
+export default connect(mapStateToProps, { getRecent })(RecentPosts);

@@ -6,7 +6,8 @@ import {
 	ADD_POST,
 	GET_POST,
 	ADD_COMMENT,
-	REMOVE_COMMENT
+	REMOVE_COMMENT,
+	GET_RECENT
 } from '../actions/types';
 
 const initialState = {
@@ -27,11 +28,18 @@ export default function(state = initialState, action) {
 				loading: false
 			};
 
+		case GET_RECENT:
+			return {
+				...state,
+				posts: payload,
+				loading: false
+			};
+
 		case GET_POST:
 			return {
 				...state,
 				post: payload,
-				loading:false
+				loading: false
 			};
 
 		case ADD_POST:
@@ -39,7 +47,7 @@ export default function(state = initialState, action) {
 				...state,
 				posts: [payload, ...state.posts],
 				loading: false
-			}
+			};
 
 		case POST_ERROR:
 			return {
@@ -75,7 +83,9 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				post: {
-					comments: state.post.comments.filter(comment => comment._id !== payload)
+					comments: state.post.comments.filter(
+						comment => comment._id !== payload
+					)
 				},
 				loading: false
 			};
