@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../Layout/Spinner/Spinner';
+import RecentPosts from './RecentPosts';
+import SavedCases from './SavedCases';
 
 const Dashboard = ({
 	getCurrentProfile,
@@ -21,8 +23,18 @@ const Dashboard = ({
 			<h1>
 				<i>DASHBOARD</i>
 			</h1>
-			<p className="lead"><i className='fas fa-user-secret userIcon'></i> Welcome { user && user.name}</p>
-			<p>What do we want here?</p>
+			<p className='lead'>
+				<i className='fas fa-user-secret userIcon'></i> Welcome back,{' '}
+				{user && user.name}
+			</p>
+			<div className='row'>
+				<div className='col-md-8'>
+					<SavedCases />
+				</div>
+				<div className='col-md-4'>
+					<RecentPosts />
+				</div>
+			</div>
 		</Fragment>
 	);
 };

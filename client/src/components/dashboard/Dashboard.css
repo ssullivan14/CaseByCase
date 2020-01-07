@@ -1,0 +1,37 @@
+.recent-card {
+    padding: 0px;
+}
+
+.recent-posts-list {
+    display: inline-block;
+}
+
+.recent-img {
+    border-radius: 50%;
+    width: 75px;
+    float: left;
+}
+
+.recent-title {
+    padding-top: 15px;
+    padding-left: 90px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.recent-title a {
+    color: #1d3b68;
+}
+
+.recent-date-topic {
+    color: #343a40;
+	font-size: 0.7rem;
+    padding-top: .5rem;
+    padding-left: 90px;
+    padding-bottom: .7rem;
+    line-height: 5px;
+}
+
+.recent-topic {
+    text-transform: capitalize;
+}

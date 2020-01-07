@@ -22,6 +22,19 @@ router.get('/', auth, async (req, res) => {
 	}
 });
 
+// @route   GET api/posts/recent
+// @desc    Get 5 most recent posts
+// @access  Private
+router.get('/recent', auth, async (req, res) => {
+	try {
+		const posts = await Post.find().sort({ date: -1 }).limit(5);
+		res.json(posts);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
+});
+
 // @route   GET api/posts/:id
 // @desc    Get all posts
 // @access  Private

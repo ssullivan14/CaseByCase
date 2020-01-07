@@ -15,7 +15,7 @@ const ProfileItem = ({
 }) => {
 	return (
 		<div className='profile col-md-6'>
-			<img src={avatar} className='users-img' />
+			<img src={avatar} className='users-img' alt="User's avatar" />
 			<div>
 				<h2>{name}</h2>
 				<h6 className='subtitle'>{location}</h6>

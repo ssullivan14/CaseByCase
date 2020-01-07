@@ -19,6 +19,7 @@ const CommentItem = ({
 					<img
 						class='round-img'
 						src={avatar}
+						alt="User's avatar"
 					/>
 					<h4>{name}</h4>
 				</Link>
