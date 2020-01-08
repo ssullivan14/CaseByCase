@@ -5,31 +5,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
+import Collaborate from './Collaborate'
 
 
 const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
-	useEffect(() => {
-        const script = document.createElement('script');
-      
-        script.src = "https://togetherjs.com/togetherjs-min.js";
-        script.async = false;
-      
-        document.body.appendChild(script);
 
-        const span = document.createElement('span');
-        span.innerHTML = '<li className="nav-item nav-link" onclick="TogetherJS(this); return false;">Collaborate</li>'
-
-		// document.body.appendChild(span);
-		console.log(span);
-		
-		document.getElementById("collab").appendChild(span);
-
-        return () => {
-          document.body.removeChild(script);
-        }
-      }, []);
-	
-	
 	const authLinks = (
 		<div className='navbar-nav'>
 			<Link to='/dashboard' className='nav-item nav-link'>
@@ -39,7 +19,7 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 				Search
 			</Link>
 			<span id="collab">	
-						
+				<Collaborate />		
 			</span>
 			<li className='nav-item dropdown'>
 				<Link

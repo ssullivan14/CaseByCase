@@ -12,19 +12,17 @@ const Collaborate = () => {
         document.body.appendChild(script);
 
         const span = document.createElement('span');
-        span.innerHTML = '<button onclick="TogetherJS(this); return false;">Start TogetherJS</button>'
+        span.innerHTML = '<a href="!#" class="nav-item nav-link" onclick="TogetherJS(this); return false;">Collaborate</a>'
 
-        document.body.appendChild(span);
-      
+        document.getElementById("collab").appendChild(span);
+
         return () => {
           document.body.removeChild(script);
         }
       }, []);
 
     return (
-        <div>
-          
-        </div>
+        <span></span>
     )
 }
 
