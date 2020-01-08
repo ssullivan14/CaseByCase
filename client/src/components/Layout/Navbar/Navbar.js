@@ -1,12 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../../../images/logo.png';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
+import Collaborate from './Collaborate'
+
 
 const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
+
 	const authLinks = (
 		<div className='navbar-nav'>
 			<Link to='/dashboard' className='nav-item nav-link'>
@@ -15,9 +18,9 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 			<Link to='!#' className='nav-item nav-link'>
 				Search
 			</Link>
-			<Link to='/collaborate' className='nav-item nav-link'>
-				Collaborate
-			</Link>
+			<span id="collab">	
+				<Collaborate />		
+			</span>
 			<li className='nav-item dropdown'>
 				<Link
 					className='nav-link dropdown-toggle'
