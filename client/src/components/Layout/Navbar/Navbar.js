@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../../../images/logo.png';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,30 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
 
+
 const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
+	useEffect(() => {
+        const script = document.createElement('script');
+      
+        script.src = "https://togetherjs.com/togetherjs-min.js";
+        script.async = false;
+      
+        document.body.appendChild(script);
+
+        const span = document.createElement('span');
+        span.innerHTML = '<li className="nav-item nav-link" onclick="TogetherJS(this); return false;">Collaborate</li>'
+
+		// document.body.appendChild(span);
+		console.log(span);
+		
+		document.getElementById("collab").appendChild(span);
+
+        return () => {
+          document.body.removeChild(script);
+        }
+      }, []);
+	
+	
 	const authLinks = (
 		<div className='navbar-nav'>
 			<Link to='/dashboard' className='nav-item nav-link'>
@@ -15,9 +38,9 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 			<Link to='!#' className='nav-item nav-link'>
 				Search
 			</Link>
-			<Link to='/collaborate' className='nav-item nav-link'>
-				Collaborate
-			</Link>
+			<span id="collab">	
+						
+			</span>
 			<li className='nav-item dropdown'>
 				<Link
 					className='nav-link dropdown-toggle'
