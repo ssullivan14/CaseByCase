@@ -15,7 +15,7 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 			<Link to='/dashboard' className='nav-item nav-link'>
 				Dashboard
 			</Link>
-			<Link to='!#' className='nav-item nav-link'>
+			<Link to='/search' className='nav-item nav-link'>
 				Search
 			</Link>
 			<span id="collab">	

@@ -16,7 +16,9 @@ import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import TopicPosts from './components/posts/TopicPosts';
 import Post from './components/post/Post';
+import Search from './components/search/Search';
 import NotFound from './components/Layout/NotFound/NotFound';
+
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -48,6 +50,7 @@ const App = () => {
 							<Route exact path='/contact' component={Contact} />
 							<Route exact path='/about' component={About} />
 							<PrivateRoute exact path='/dashboard' component={Dashboard} />
+							<PrivateRoute exact path='/search' component={Search} />
 							<PrivateRoute exact path='/users' component={Users} />
 							<PrivateRoute exact path='/profile/:id' component={Profile} />
 							<PrivateRoute exact path='/account' component={Account} />
