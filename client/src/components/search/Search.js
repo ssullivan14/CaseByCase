@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import './Search.css';
 
 const Search = props => {
 	const stateLocations = (
@@ -30,7 +31,18 @@ const Search = props => {
 			<option value='Santa Fe, NM'>Santa Fe, NM</option>
 			<option value='Salt Lake City, UT'>Salt Lake City, UT</option>
 		</Fragment>
-	);
+    );
+    
+    // Load date picker to search form
+    // var date_input=$('input[name="date"]'); //our date input has the name "date"
+    // var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    // var options={
+    //     format: 'mm/dd/yyyy',
+    //     container: container,
+    //     todayHighlight: true,
+    //     autoclose: true,
+    // };
+    // date_input.datepicker(options);
 
 	// Form data state
 	const [formData, setFormData] = useState({
@@ -58,7 +70,9 @@ const Search = props => {
 				<h1>
 					<i>SEARCH DATABASE</i>
 				</h1>
-				<p className='spacer'>Search Type</p>
+                <p className="lead">
+                <i className="fas fa-search gold-icon"></i> Track down incidents in various locations</p>
+				<p className='h5 spacer'>Search Type</p>
 				<div className='form-row'>
 					<div className='form-check form-check-inline'>
 						&nbsp;&nbsp;
