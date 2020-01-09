@@ -148,7 +148,7 @@ const Search = props => {
 				<div className='form-row'>
 					<div className='col spacer'>
 						<label className='control-label' htmlFor='start-date'>
-                        <i className="far fa-calendar-alt green-icon"></i>&nbsp;&nbsp;Start Date
+                        <i className="fas fa-calendar-alt green-icon"></i>&nbsp;&nbsp;Start Date
 						</label>
 						<div className='input-group mb-3'>
 							<DatePicker
@@ -161,7 +161,7 @@ const Search = props => {
 					</div>
 					<div className='col spacer'>
 						<label className='control-label' htmlFor='end-date'>
-                        <i className="far fa-calendar-alt green-icon"></i>&nbsp;&nbsp;End Date
+                        <i className="fas fa-calendar-alt green-icon"></i>&nbsp;&nbsp;End Date
 						</label>
 						<div className='input-group mb-3'>
 							<DatePicker
