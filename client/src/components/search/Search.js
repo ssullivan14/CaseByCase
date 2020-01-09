@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
+import "react-datepicker/dist/react-datepicker.css";
 import './Search.css';
 
 const Search = props => {
@@ -31,36 +34,28 @@ const Search = props => {
 			<option value='Santa Fe, NM'>Santa Fe, NM</option>
 			<option value='Salt Lake City, UT'>Salt Lake City, UT</option>
 		</Fragment>
-    );
-    
-    // Load date picker to search form
-    // var date_input=$('input[name="date"]'); //our date input has the name "date"
-    // var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    // var options={
-    //     format: 'mm/dd/yyyy',
-    //     container: container,
-    //     todayHighlight: true,
-    //     autoclose: true,
-    // };
-    // date_input.datepicker(options);
+	);
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
 
 	// Form data state
 	const [formData, setFormData] = useState({
 		searchType: '',
 		location: '',
-		incidentType: '',
-		startDate: '',
-		endDate: ''
+		incidentType: ''
 	});
 
-	const { searchType, location, incidentType, startDate, endDate } = formData;
+	const { searchType, location, incidentType } = formData;
 
 	const onChange = e => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = e => {
-		console.log(formData);
+        console.log(formData);
+        console.log(startDate);
+        console.log(endDate);
 		e.preventDefault();
 	};
 
@@ -70,8 +65,10 @@ const Search = props => {
 				<h1>
 					<i>SEARCH DATABASE</i>
 				</h1>
-                <p className="lead">
-                <i className="fas fa-search gold-icon"></i> Track down incidents in various locations</p>
+				<p className='lead'>
+					<i className='fas fa-search gold-icon'></i> Track down incidents in
+					various locations
+				</p>
 				<p className='h5 spacer'>Search Type</p>
 				<div className='form-row'>
 					<div className='form-check form-check-inline'>
@@ -151,45 +148,27 @@ const Search = props => {
 				<div className='form-row'>
 					<div className='col spacer'>
 						<label className='control-label' htmlFor='start-date'>
-							Start Date
+                        <i className="far fa-calendar-alt green-icon"></i>&nbsp;&nbsp;Start Date
 						</label>
 						<div className='input-group mb-3'>
-							<div className='input-group-prepend'>
-								<span className='input-group-text' id='basic-addon1'>
-									<i className='fas fa-calendar-alt'></i>
-								</span>
-							</div>
-							<input
-								className='form-control'
-								id='startDate'
-								name='startDate'
-								placeholder='MM/DD/YYY'
-								type='text'
-								data-toggle='datepicker'
-								value={startDate}
-								onChange={e => onChange(e)}
+							<DatePicker
+                                name='startDate'
+                                className='form-control'
+								selected={startDate}
+                                onChange={startDate => setStartDate(startDate)}
 							/>
 						</div>
 					</div>
 					<div className='col spacer'>
 						<label className='control-label' htmlFor='end-date'>
-							End Date
+                        <i className="far fa-calendar-alt green-icon"></i>&nbsp;&nbsp;End Date
 						</label>
 						<div className='input-group mb-3'>
-							<div className='input-group-prepend'>
-								<span className='input-group-text' id='basic-addon1'>
-									<i className='fas fa-calendar-alt'></i>
-								</span>
-							</div>
-							<input
-								className='form-control'
-								id='endDate'
-								name='endDate'
-								placeholder='MM/DD/YYY'
-								type='text'
-								data-toggle='datepicker'
-								value={endDate}
-								onChange={e => onChange(e)}
+							<DatePicker
+                                name='startDate'
+                                className='form-control'
+								selected={endDate}
+                                onChange={endDate => setEndDate(endDate)}
 							/>
 						</div>
 					</div>
