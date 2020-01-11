@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react';
-import getCurrentProfile from '../../../actions/profile'
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getCurrentProfile } from '../../../actions/profile';
 
 
 
 
 
-const Collaborate = () => {
+const Collaborate = ({
+  getCurrentProfile,
+	profile: { profile, loading }
+}) => {
     useEffect(() => {
-    
-      
+      getCurrentProfile();
+            
         const script1 = document.createElement('script');
         script1.innerHTML = `
         var TogetherJSConfig_siteName = "CaseByCase";
@@ -32,11 +37,20 @@ const Collaborate = () => {
         return () => {
           document.body.removeChild(script2);
         }
-      }, []);
+      }, [getCurrentProfile]);
 
     return (
         <span></span>
     )
 }
 
-export default Collaborate;
+Collaborate.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+	profile: PropTypes.object.isRequired,
+};
+const mapStateToProps = state => ({
+	profile: state.profile
+});
+
+export default connect(mapStateToProps, { getCurrentProfile })
+	(Collaborate);
