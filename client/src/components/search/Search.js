@@ -1,12 +1,15 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
-// import Results from '../results/Results';
+import { connect } from 'react-redux';
+import Results from '../results/Results';
 import "react-datepicker/dist/react-datepicker.css";
 import './Search.css';
+import { getNamus } from '../../actions/namus';
 
-const Search = props => {
+const Search = ({ getNamus, history }) => {
 	const stateLocations = (
 		<Fragment>
 			<option></option>
@@ -54,10 +57,11 @@ const Search = props => {
 	};
 
 	const handleSubmit = e => {
-		formData.startDate = startDate;
-		formData.endDate = endDate
-		console.log(formData);
 		e.preventDefault();
+		formData.startDate = startDate;
+		formData.endDate = endDate;
+		
+		getNamus(formData, history);
 	};
 
 	return (
@@ -186,6 +190,8 @@ const Search = props => {
 	);
 };
 
-Search.propTypes = {};
+Search.propTypes = {
+	getNamus: PropTypes.func.isRequired
+};
 
-export default Search;
+export default connect(null, { getNamus })(withRouter(Search));

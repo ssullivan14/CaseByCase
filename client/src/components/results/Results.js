@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const Results = () => {
+const Results = ({
+    persons
+}) => {
     const socrataHeader = (
         <Fragment>
             <th scope="col">Case Number</th>
@@ -35,10 +37,10 @@ const Results = () => {
                 </div>
             </div>
             <h1 className='page-header'>Results</h1>
-            <table className="table table-dark table-striped">
+            {/* <table className="table table-dark table-striped">
                 <thead>
                     <tr>
-                        {/* Check incident type and display appropriate headers */}
+                        Check incident type and display appropriate headers
                         {incidentType === 'unidentified persons' ? (
                             unidentifiedHeader
                         ) : searchType === 'missing person' ? (
@@ -58,9 +60,13 @@ const Results = () => {
                         <td></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> */}
         </Fragment>
     )
 }
+
+const mapStateToProps = state => ({
+	persons: state.persons
+});
 
 export default Results;

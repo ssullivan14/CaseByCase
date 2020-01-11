@@ -1,18 +1,26 @@
 import axios from 'axios';
-import { GET_NAMUS } from './types';
+import { GET_NAMUS, NAMUS_ERROR } from './types';
 
 // Get namus
-export const getNamus = () => async dispatch => {
+export const getNamus = (formData, history) => async dispatch => {
     try {
-        const res = await axios.get('/api/namus');
+        const config = {
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		};
+
+        const res = await axios.get('/api/namus', formData, config);
 
         dispatch({
             type: GET_NAMUS,
             payload: res.data
         });
+
+        console.log(res.data);
     } catch (err) {
         dispatch({
-            type: POST_ERROR,
+            type: NAMUS_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         });
     }
