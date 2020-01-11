@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
-import Collaborate from './Collaborate'
+import Collaborate from './Collaborate';
+
 
 
 const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
