@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import Moment from 'react-moment';
 import PropTypes from 'prop-types';
+// import Results from '../results/Results';
 import "react-datepicker/dist/react-datepicker.css";
 import './Search.css';
 
@@ -53,9 +54,9 @@ const Search = props => {
 	};
 
 	const handleSubmit = e => {
-        console.log(formData);
-        console.log(startDate);
-        console.log(endDate);
+		formData.startDate = startDate;
+		formData.endDate = endDate
+		console.log(formData);
 		e.preventDefault();
 	};
 
@@ -135,7 +136,7 @@ const Search = props => {
 							<option value='assault'>Assault</option>
 							<option value='battery'>Battery</option>
 							<option value='homocide'>Homocide</option>
-							<option value='Missing Person'>Missing Person</option>
+							<option value='missing person'>Missing Person</option>
 							<option value='murder'>Murder</option>
 							<option value='rape'>Rape</option>
 							<option value='sexual'>Sexual Criminal Acts</option>
