@@ -2,7 +2,7 @@ import axios from 'axios';
 import { GET_NAMUS, NAMUS_ERROR } from './types';
 
 // Get namus
-export const getNamus = (formData, history) => async dispatch => {
+export const getNamus = (formData) => async dispatch => {
     try {
         const config = {
 			headers: {
@@ -10,7 +10,9 @@ export const getNamus = (formData, history) => async dispatch => {
 			}
 		};
 
-        const res = await axios.get('/api/namus', formData, config);
+        console.log(formData);
+
+        const res = await axios.post('/api/namus', formData, config);
 
         dispatch({
             type: GET_NAMUS,

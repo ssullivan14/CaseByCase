@@ -60,8 +60,17 @@ const Search = ({ getNamus, history }) => {
 		e.preventDefault();
 		formData.startDate = startDate;
 		formData.endDate = endDate;
+
+		if (searchType === 'state') {
+			formData.state = formData.location;
+			formData.city = '';
+		} else if (searchType === 'city') {
+			let locString = formData.location.split(',');
+			formData.city = locString[0].trim();
+			formData.state = locString[1].trim();
+		}
 		
-		getNamus(formData, history);
+		getNamus(formData);
 	};
 
 	return (

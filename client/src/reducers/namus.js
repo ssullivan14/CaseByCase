@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
 		case GET_NAMUS:
 			return {
 				...state,
-				persons: payload,
+				persons: payload, ...state.persons,
 				loading: false
 			};
 
