@@ -1,8 +1,25 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const MissngPersonItem = () => {
+const MissingPersonItem = ({ person: {
+    _id,
+    First_Name,
+    Middle_Name,
+    Last_Name,
+    link,
+    image,
+    City_Of_Last_Contact,
+    State_Of_Last_Contact,
+    Date_Of_Last_Contact,
+    Computed_Missing_Min_Age,
+    Current_Age_To,
+    Race_Ethnicity,
+    Gender,
+    Modified_Date_Time
+} }) => {
     return (
         <Fragment>
             <div className="card text-white bg-dark">
@@ -31,6 +48,10 @@ const MissngPersonItem = () => {
             </div>
         </Fragment>
     )
+}
+
+MissingPersonItem.propTypes = {
+    person: PropTypes.object.isRequired
 }
 
 export default MissingPersonItem;

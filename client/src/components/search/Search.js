@@ -1,15 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import Moment from 'react-moment';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Results from '../results/Results';
 import "react-datepicker/dist/react-datepicker.css";
 import './Search.css';
-import { getNamus } from '../../actions/namus';
 
-const Search = ({ getNamus, history }) => {
+const Search = ({ history }) => {
 	const stateLocations = (
 		<Fragment>
 			<option></option>
@@ -70,7 +66,8 @@ const Search = ({ getNamus, history }) => {
 			formData.state = locString[1].trim();
 		}
 		
-		getNamus(formData);
+		localStorage.setItem('searchRequest', JSON.stringify(formData));
+		history.push('/results');
 	};
 
 	return (
@@ -93,6 +90,7 @@ const Search = ({ getNamus, history }) => {
 							name='searchType'
 							value='state'
 							onChange={e => onChange(e)}
+							required
 						/>
 						<label className='form-check-label' htmlFor='inlineRadio1'>
 							Statewide
@@ -105,6 +103,7 @@ const Search = ({ getNamus, history }) => {
 							name='searchType'
 							value='city'
 							onChange={e => onChange(e)}
+							required
 						/>
 						<label className='form-check-label' htmlFor='inlineRadio2'>
 							City-specific
@@ -123,6 +122,7 @@ const Search = ({ getNamus, history }) => {
 							className='form-control'
 							value={location}
 							onChange={e => onChange(e)}
+							required
 						>
 							{/* Check search type and display appropriate locations */}
 							{searchType === 'state' ? (
@@ -144,6 +144,7 @@ const Search = ({ getNamus, history }) => {
 							className='form-control'
 							value={incidentType}
 							onChange={e => onChange(e)}
+							required
 						>
 							<option></option>
 							<option value='assault'>Assault</option>
@@ -199,8 +200,4 @@ const Search = ({ getNamus, history }) => {
 	);
 };
 
-Search.propTypes = {
-	getNamus: PropTypes.func.isRequired
-};
-
-export default connect(null, { getNamus })(withRouter(Search));
+export default connect(null, { })(withRouter(Search));
