@@ -91,9 +91,11 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark'>
-			<a className='navbar-brand' id='brand' href='/'>
+			{!loading && (
+				isAuthenticated ? <Fragment><a className='navbar-brand' id='brand' href='/'>
 				<img src={logo} className='img-fluid smLogo' alt='Case By Case logo' />
-			</a>
+			</a></Fragment> : <Fragment></Fragment>
+			)}
 			<button
 				className='navbar-toggler'
 				type='button'
