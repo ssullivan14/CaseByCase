@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import Moment from 'react-moment';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import "react-datepicker/dist/react-datepicker.css";
 import './Search.css';
 
-const Search = props => {
+const Search = ({ history }) => {
 	const stateLocations = (
 		<Fragment>
 			<option></option>
@@ -53,10 +53,21 @@ const Search = props => {
 	};
 
 	const handleSubmit = e => {
-        console.log(formData);
-        console.log(startDate);
-        console.log(endDate);
 		e.preventDefault();
+		formData.startDate = startDate;
+		formData.endDate = endDate;
+
+		if (searchType === 'state') {
+			formData.state = formData.location;
+			formData.city = '';
+		} else if (searchType === 'city') {
+			let locString = formData.location.split(',');
+			formData.city = locString[0].trim();
+			formData.state = locString[1].trim();
+		}
+		
+		localStorage.setItem('searchRequest', JSON.stringify(formData));
+		history.push('/results');
 	};
 
 	return (
@@ -79,6 +90,7 @@ const Search = props => {
 							name='searchType'
 							value='state'
 							onChange={e => onChange(e)}
+							required
 						/>
 						<label className='form-check-label' htmlFor='inlineRadio1'>
 							Statewide
@@ -91,6 +103,7 @@ const Search = props => {
 							name='searchType'
 							value='city'
 							onChange={e => onChange(e)}
+							required
 						/>
 						<label className='form-check-label' htmlFor='inlineRadio2'>
 							City-specific
@@ -109,6 +122,7 @@ const Search = props => {
 							className='form-control'
 							value={location}
 							onChange={e => onChange(e)}
+							required
 						>
 							{/* Check search type and display appropriate locations */}
 							{searchType === 'state' ? (
@@ -130,12 +144,13 @@ const Search = props => {
 							className='form-control'
 							value={incidentType}
 							onChange={e => onChange(e)}
+							required
 						>
 							<option></option>
 							<option value='assault'>Assault</option>
 							<option value='battery'>Battery</option>
 							<option value='homocide'>Homocide</option>
-							<option value='Missing Person'>Missing Person</option>
+							<option value='missing person'>Missing Person</option>
 							<option value='murder'>Murder</option>
 							<option value='rape'>Rape</option>
 							<option value='sexual'>Sexual Criminal Acts</option>
@@ -185,6 +200,4 @@ const Search = props => {
 	);
 };
 
-Search.propTypes = {};
-
-export default Search;
+export default connect(null, { })(withRouter(Search));
