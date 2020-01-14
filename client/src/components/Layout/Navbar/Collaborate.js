@@ -12,13 +12,26 @@ const Collaborate = ({
 	profile: { profile, loading }
 }) => {
     useEffect(() => {
-      getCurrentProfile();
-            
+
+
+
+        console.log("Profile Test: " + getCurrentProfile.profile);
+        console.log("Profile Test: " + getCurrentProfile.user);
+        console.log("Profile Test: " + profile);
+        console.log("Profile Test: " + profile);
         const script1 = document.createElement('script');
         script1.innerHTML = `
+        var avatarUrl = "http://www.gravatar.com/avatar/46e1f7fabd42627db9132dfd84700b2b?s=200&r=pg&d=mm";
+
+        TogetherJSConfig_getUserName = function () {return 'Arthidon';};
+        TogetherJSConfig_getUserAvatar = function () {return avatarUrl;};
+
         var TogetherJSConfig_siteName = "CaseByCase";
         var TogetherJSConfig_toolName = "Collaborate";
+
+        TogetherJS.refreshUserData();
         `
+        //"//www.gravatar.com/avatar/46e1f7fabd42627db9132dfd84700b2b?s=200&r=pg&d=mm"
         document.body.appendChild(script1);
         
 
