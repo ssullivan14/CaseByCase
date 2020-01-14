@@ -1,15 +1,20 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getNamus } from '../../actions/namus';
 import Spinner from '../Layout/Spinner/Spinner';
+import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
 
 const Results = ({ getNamus, namus: { persons, loading } }) => {
 	// Get search request out of local storage and convert back to an object
 	const searchRequest = JSON.parse(localStorage.getItem('searchRequest'));
+
+	// Setup how many results to display per page
+	const [currentPage, setCurrentPage] = useState(1);
+	const [resultsPerPage, setPostsPerPage] = useState(10);
 
 	useEffect(() => {
 		if (searchRequest.incidentType === 'missing person') {
@@ -38,6 +43,17 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 			<th scope='col'>Images</th>
 		</Fragment>
 	);
+
+	// Get current posts
+	const indexOfLastResult = currentPage * resultsPerPage;
+	const indexofFirstResult = indexOfLastResult - resultsPerPage;
+	const getCurrentResults = persons.slice(
+		indexofFirstResult,
+		indexOfLastResult
+	);
+
+	// Change page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return loading && persons === null ? (
 		<Spinner />
@@ -75,14 +91,13 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 					{searchRequest.incidentType === 'unidentified persons' ? (
 						unidentifiedHeader
 					) : searchRequest.incidentType === 'missing person' ? (
-						persons.map(person => 
-                            <MissingPersonItem key={person._id} person={person} />
-                        )
+						<MissingPersonItem persons={getCurrentResults} loading={loading} />
 					) : (
 						socrataHeader
 					)}
 				</tbody>
 			</table>
+			<Pagination resultsPerPage={resultsPerPage} totalResults={persons.length} paginate={paginate} />
 		</Fragment>
 	);
 };
