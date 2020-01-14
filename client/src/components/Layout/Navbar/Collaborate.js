@@ -25,6 +25,7 @@ const Collaborate = ({
 
         TogetherJSConfig_getUserName = function () {return 'Arthidon';};
         TogetherJSConfig_getUserAvatar = function () {return avatarUrl;};
+        TogetherJSConfig_getUserColor = function () {return '#ff00ff';};
 
         var TogetherJSConfig_siteName = "CaseByCase";
         var TogetherJSConfig_toolName = "Collaborate";
