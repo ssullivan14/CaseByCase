@@ -15,7 +15,7 @@ const Collaborate = ({
 
 
 
-        console.log("Profile Test: " + getCurrentProfile.profile);
+        console.log("Profile Test: " + getCurrentProfile.social);
         console.log("Profile Test: " + getCurrentProfile.user);
         console.log("Profile Test: " + profile);
         console.log("Profile Test: " + profile);
