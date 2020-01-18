@@ -1,6 +1,6 @@
-4import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { GoogleMap, withScriptjs,withGoogleMap } from 'react-google-maps';         
+import { GoogleMap, withScriptjs,withGoogleMap, Marker} from 'react-google-maps';         
 import { connect } from "react-redux";
 import mapStyles from "./MapStyles";
 
@@ -8,11 +8,11 @@ import mapStyles from "./MapStyles";
     var locations = [];
     var zoomOption;
     var centerOption = {};
-    console.log(locations[0]);
+    // console.log(locations[0]);
 
 
 const Map = ({ persons, loading }) => {    
-
+  console.log(locations);
 
     return (
  
@@ -21,10 +21,17 @@ const Map = ({ persons, loading }) => {
           defaultCenter={locations[0]}
           defaultOptions={{ styles: mapStyles }}
           
-        />
+        >
+          {locations.map((locations) =>(
+                          <Marker 
+                          position={locations}
+                           />
+         ) )}
+    
+          </GoogleMap>
     )
 }
-const MapWrapped = withScriptjs(withGoogleMap());
+const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function GMap({ persons, loading }) {
 persons.forEach(person => {
@@ -32,19 +39,18 @@ persons.forEach(person => {
     temp['lat'] = parseFloat(person.Latitude);
     temp["lng"] = parseFloat(person.Longitude);
     locations.push(temp);
-    zoomOption = 10;
-    centerOption = locations[0];
     // console.log(temp);
         
 });
 // return locations
 
-console.log(locations);
+// console.log(locations);
 
 
   return  (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    <div style={{ width: "100%", height: "35vh" }}>
       <MapWrapped
+      
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
           process.env.REACT_APP_GOOGLE_KEY
         }`}
