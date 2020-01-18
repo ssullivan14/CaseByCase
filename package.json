@@ -28,6 +28,7 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.2",
+    "react-google-maps": "^9.4.5",
     "request": "^2.88.0"
   },
   "devDependencies": {

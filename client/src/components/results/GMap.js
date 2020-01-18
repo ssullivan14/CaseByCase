@@ -1,57 +1,64 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { GoogleMap, LoadScript } from '@react-google-maps/api';         
+import { GoogleMap, withScriptjs,withGoogleMap } from 'react-google-maps';         
 import { connect } from "react-redux";
-// import "./MapStyle.css";
-
-
-
-const GMap = ({ persons, loading }) => {    
+import mapStyles from "./MapStyles";
 
     // VARIABLES
     var locations = [];
     var zoomOption;
     var centerOption = {};
+    console.log(locations[0]);
 
+
+const Map = ({ persons, loading }) => {    
+
+
+    return (
+ 
+        <GoogleMap
+          defaultZoom={10}
+          defaultCenter={locations[0]}
+          defaultOptions={{ styles: mapStyles }}
+          
+        />
+    )
+}
+const MapWrapped = withScriptjs(withGoogleMap());
+
+export default function GMap({ persons, loading }) {
 persons.forEach(person => {
-    var temp = {};                                
+    let temp = {};                                
     temp['lat'] = parseFloat(person.Latitude);
     temp["lng"] = parseFloat(person.Longitude);
     locations.push(temp);
     zoomOption = 10;
     centerOption = locations[0];
-    console.log(temp);
-    
+    // console.log(temp);
+        
 });
+// return locations
+
 console.log(locations);
 
 
+  return  (
+    <div style={{ width: "100vw", height: "100vh" }}>
+      <MapWrapped
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
+          process.env.REACT_APP_GOOGLE_KEY
+        }`}
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
 
+    </div>
+  );
 
-    return (
-      <LoadScript
-        id="script-loader"
-        googleMapsApiKey="AIzaSyBut6rvhLZm-6aFYXPzICjQ-V4caIfxS2U"
-      >
-        <GoogleMap
-          id="circle-example"
-          mapContainerStyle={{
-            width: '100%',
-            height: '25%'
-          }}
-          zoom={7}
-          center={{            
-            lat: parseInt(-37.765015),
-            lng: parseInt(145.133858)
-          }}
-        />
-      </LoadScript>    
-    )
 }
 
-
-GMap.propTypes = {
+Map.propTypes = {
     person: PropTypes.object.isRequired
   };
   
-  export default GMap;
