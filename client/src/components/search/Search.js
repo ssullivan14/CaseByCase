@@ -8,31 +8,21 @@ import './Search.css';
 const Search = ({ history }) => {
 	const stateLocations = (
 		<Fragment>
-			<option></option>
-			<option value='VA'>Virginia</option>
-			<option value='IL'>Illinois</option>
-			<option value='FL'>Florida</option>
+			<option></option>			
 			<option value='CA'>California</option>
-			<option value='IN'>Indiana</option>
-			<option value='MO'>Missouri</option>
-			<option value='TN'>Tennessee</option>
-			<option value='NM'>New Mexico</option>
-			<option value='UT'>Utah</option>
+			<option value='IL'>Illinois</option>
+			<option value='LA'>Louisiana</option>
+			<option value='TX'>Texas</option>
 		</Fragment>
 	);
 
 	const cityLocations = (
 		<Fragment>
 			<option></option>
-			<option value='Ashland, VA'>Ashland, VA</option>
-			<option value='Chicago, IL'>Chicago, IL</option>
-			<option value='Collier County, FL'>Collier County, FL</option>
 			<option value='Contra Costa County, CA'>Contra Costa County, CA</option>
-			<option value='Indianapolis, IN'>Indianapolis, IN</option>
-			<option value='Kansas City, MO'>Kansas City, MO</option>
-			<option value='Memphis, TN'>Memphis, TN</option>
-			<option value='Santa Fe, NM'>Santa Fe, NM</option>
-			<option value='Salt Lake City, UT'>Salt Lake City, UT</option>
+			<option value='Chicago, IL'>Chicago, IL</option>
+			<option value='Naperville, IL'>Naperville, IL</option>
+			<option value='Urbana, IL'>Urbana, IL</option>
 		</Fragment>
 	);
 
