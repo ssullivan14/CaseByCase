@@ -18,6 +18,7 @@ import TopicPosts from './components/posts/TopicPosts';
 import Post from './components/post/Post';
 import Search from './components/search/Search';
 import Results from './components/results/Results';
+import Case from './components/case/Case';
 import NotFound from './components/Layout/NotFound/NotFound';
 
 // Redux
@@ -69,6 +70,7 @@ const App = () => {
 							<PrivateRoute exact path='/posts' component={Posts} />
 							<PrivateRoute exact path='/posts/:topic' component={TopicPosts} />
 							<PrivateRoute exact path='/post/:id' component={Post} />
+							<PrivateRoute exact path='/case/:id' component={Case} />
 							<Route component={NotFound} />
 						</Switch>
 					</section>
