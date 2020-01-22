@@ -75,7 +75,8 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
         <Moment format="MM/DD/YYYY">{searchRequest.startDate}</Moment> -{" "}
         <Moment format="MM/DD/YYYY">{searchRequest.endDate}</Moment>
       </p>
-	  <GMap 
+    <GMap 
+    searchType={searchRequest.searchType}
 	  persons={getCurrentResults} loading={loading}
 	  />
 

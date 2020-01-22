@@ -5,11 +5,19 @@ import { connect } from "react-redux";
 import mapStyles from "./MapStyles";
 
     // VARIABLES
-    var locations = [];
-    var zoomOption;
+    var locations;
+    var zoomOptions;
     var centerOption = {};
     // console.log(locations[0]);
 
+    // const zoomSwitch = () => {
+    //   if (searchType === 'state') {
+    //     zoomOptions = 7
+    //   }
+    //   else {
+    //     zoomOptions = 10
+    //   }
+    // }
 
 const Map = ({ persons, loading }) => {    
   console.log(locations);
@@ -34,6 +42,7 @@ const Map = ({ persons, loading }) => {
 const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function GMap({ persons, loading }) {
+  locations = [];
 persons.forEach(person => {
     let temp = {};                                
     temp['lat'] = parseFloat(person.Latitude);
@@ -48,7 +57,7 @@ persons.forEach(person => {
 
 
   return  (
-    <div style={{ width: "100%", height: "35vh" }}>
+    <div style={{ width: "100%", height: "45vh" }}>
       <MapWrapped
       
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
