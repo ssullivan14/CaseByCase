@@ -19,10 +19,12 @@ const Search = ({ history }) => {
 	const cityLocations = (
 		<Fragment>
 			<option></option>
-			<option value='Contra Costa County, CA'>Contra Costa County, CA</option>
+			<option value='San Francisco, CA'>San Fransisco, CA</option>
 			<option value='Chicago, IL'>Chicago, IL</option>
 			<option value='Naperville, IL'>Naperville, IL</option>
 			<option value='Urbana, IL'>Urbana, IL</option>
+			<option value='Baton Rouge, LA'>Baton Rouge, LA</option>
+			<option value='Dallas, TX'>Dallas, TX</option>
 		</Fragment>
 	);
 
