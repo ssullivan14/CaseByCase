@@ -12,9 +12,11 @@ import mapStyles from "./MapStyles";
 // VARIABLES
 var locations;
 var centerOption = {};
+//getting search parameters
 
-const searchRequest = JSON.parse(localStorage.getItem("searchRequest"));
-var searchType = searchRequest.searchType
+const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {searchType : "state"};
+var searchType = searchRequest.searchType;
+console.log("SearchType: " + searchType)
 
 const Map = ({ persons, loading }) => {
   console.log(locations);
@@ -35,6 +37,7 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function GMap({ persons, loading }) {
   locations = [];
+  let mapLoaded = false;
   persons.forEach(person => {
     let temp = {};
     temp["lat"] = parseFloat(person.Latitude);
@@ -42,18 +45,20 @@ export default function GMap({ persons, loading }) {
     locations.push(temp);
     // console.log(temp);
   });
+  if (locations.length) {mapLoaded = true}
   // return locations
 
   // console.log(locations);
 
   return (
     <div style={{ width: "100%", height: "45vh" }}>
-      <MapWrapped
+      {mapLoaded &&      <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
-      />
+      /> }
+
     </div>
   );
 }
