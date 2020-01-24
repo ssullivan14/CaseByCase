@@ -2,7 +2,7 @@ import { GET_CRIMES, CRIMES_ERROR } from '../actions/types';
 
 const initialState = {
 	persons: [],
-	loading: true,
+	crimeLoading: true,
 	error: {}
 };
 
@@ -14,14 +14,14 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				incidents: payload,
-				loading: false
+				crimeLoading: false
 			};
 
 		case CRIMES_ERROR:
 			return {
 				...state,
 				incidents: payload,
-				loading: false
+				crimeLoading: false
 			};
 
 		default:

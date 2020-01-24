@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import Spinner from '../Layout/Spinner/Spinner';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const MissingPersonItem = ({ persons, loading }) => {
