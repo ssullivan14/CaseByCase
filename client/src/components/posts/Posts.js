@@ -19,60 +19,30 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 			type: 'state'
 		},
 		'1': {
-			topic: 'florida',
-			numPosts: 0,
-			mostRecent: '',
-			type: 'state'
-		},
-		'2': {
 			topic: 'illinois',
 			numPosts: 0,
 			mostRecent: '',
 			type: 'state'
 		},
+		'2': {
+			topic: 'louisiana',
+			numPosts: 0,
+			mostRecent: '',
+			type: 'state'
+		},
 		'3': {
-			topic: 'indinia',
+			topic: 'texas',
 			numPosts: 0,
 			mostRecent: '',
 			type: 'state'
 		},
 		'4': {
-			topic: 'missouri',
-			numPosts: 0,
-			mostRecent: '',
-			type: 'state'
-		},
-		'5': {
-			topic: 'new mexico',
-			numPosts: 0,
-			mostRecent: '',
-			type: 'state'
-		},
-		'6': {
-			topic: 'tennessee',
-			numPosts: 0,
-			mostRecent: '',
-			type: 'state'
-		},
-		'7': {
-			topic: 'utah',
-			numPosts: 0,
-			mostRecent: '',
-			type: 'state'
-		},
-		'8': {
-			topic: 'virginia',
-			numPosts: 0,
-			mostRecent: '',
-			type: 'state'
-		},
-		'9': {
 			topic: 'general discussion',
 			numPosts: 0,
 			mostRecent: '',
 			type: 'general'
 		},
-		'10': {
+		'5': {
 			topic: 'enhancement requests',
 			numPosts: 0,
 			mostRecent: '',
@@ -134,59 +104,24 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 					</tr>
 					<tr>
 						<td>
-							<Link to='/posts/florida'>Florida</Link>
+							<Link to='/posts/illinois'>Illinois</Link>
 						</td>
 						<td>{topics[1].numPosts} Posts</td>
 						<td>{topics[1].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[1].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
-							<Link to='/posts/illinois'>Illinois</Link>
+							<Link to='/posts/louisiana'>Louisiana</Link>
 						</td>
 						<td>{topics[2].numPosts} Posts</td>
 						<td>{topics[2].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[2].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
-							<Link to='/posts/indiana'>Indiana</Link>
+							<Link to='/posts/texas'>Texas</Link>
 						</td>
 						<td>{topics[3].numPosts} Posts</td>
 						<td>{topics[3].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[3].mostRecent}</Moment> : 'Never' }</td>
-					</tr>
-					<tr>
-						<td>
-							<Link to='/posts/missouri'>Missouri</Link>
-						</td>
-						<td>{topics[4].numPosts} Posts</td>
-						<td>{topics[4].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[4].mostRecent}</Moment> : 'Never' }</td>
-					</tr>
-					<tr>
-						<td>
-							<Link to='/posts/new%20mexico'>New Mexico</Link>
-						</td>
-						<td>{topics[5].numPosts} Posts</td>
-						<td>{topics[5].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[5].mostRecent}</Moment> : 'Never' }</td>
-					</tr>
-					<tr>
-						<td>
-							<Link to='/posts/tennessee'>Tennessee</Link>
-						</td>
-						<td>{topics[6].numPosts} Posts</td>
-						<td>{topics[6].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[6].mostRecent}</Moment> : 'Never' }</td>
-					</tr>
-					<tr>
-						<td>
-							<Link to='/posts/utah'>Utah</Link>
-						</td>
-						<td>{topics[7].numPosts} Posts</td>
-						<td>{topics[7].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[7].mostRecent}</Moment> : 'Never' }</td>
-					</tr>
-					<tr>
-						<td>
-							<Link to='/posts/virginia'>Virginia</Link>
-						</td>
-						<td>{topics[8].numPosts} Posts</td>
-						<td>{topics[8].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[8].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<th className='post-th-large' scope='col'>
@@ -204,8 +139,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 						<td>
 							<Link to='/posts/general%20discussion'>General Discussion</Link>
 						</td>
-						<td>{topics[9].numPosts} Posts</td>
-						<td>{topics[9].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[9].mostRecent}</Moment> : 'Never' }</td>
+						<td>{topics[4].numPosts} Posts</td>
+						<td>{topics[4].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[4].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 					<tr>
 						<td>
@@ -213,8 +148,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 								Enhancement Requests
 							</Link>
 						</td>
-						<td>{topics[10].numPosts} Posts</td>
-						<td>{topics[10].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[10].mostRecent}</Moment> : 'Never' }</td>
+						<td>{topics[5].numPosts} Posts</td>
+						<td>{topics[5].mostRecent ? <Moment format='MM/DD/YYYY hh:mm A'>{topics[5].mostRecent}</Moment> : 'Never' }</td>
 					</tr>
 				</tbody>
 			</table>
