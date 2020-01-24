@@ -4,11 +4,13 @@ import auth from './auth';
 import profile from './profile';
 import post from './post';
 import namus from './namus';
+import crimes from './crimes';
 
 export default combineReducers({
     alert,
     auth,
     profile,
     post,
-    namus
+    namus,
+    crimes
 });

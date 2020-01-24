@@ -5,10 +5,7 @@ export const Pagination = ({ resultsPerPage, totalResults, paginate }) => {
 
     for(let i=1; i <= Math.ceil(totalResults / resultsPerPage); i++) {
         pageNumbers.push(i);
-        console.log(pageNumbers);
     }
-
-    console.log(pageNumbers);
 
     return (
         <nav>

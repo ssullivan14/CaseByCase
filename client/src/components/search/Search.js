@@ -141,7 +141,7 @@ const Search = ({ history }) => {
 							<option></option>
 							<option value='assault'>Assault</option>
 							<option value='battery'>Battery</option>
-							<option value='homocide'>Homocide</option>
+							<option value='homicide'>Homicide</option>
 							<option value='missing person'>Missing Person</option>
 							<option value='murder'>Murder</option>
 							<option value='rape'>Rape</option>

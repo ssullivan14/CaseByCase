@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import Spinner from '../Layout/Spinner/Spinner';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const MissingPersonItem = ({ persons, loading }) => {
@@ -15,6 +14,12 @@ const MissingPersonItem = ({ persons, loading }) => {
 					<div className='d-flex align-items-center'>
 						<h5 className='highlight card-header mx-auto w-100'>
 							{person.First_Name} {person.Middle_Name} {person.Last_Name}
+							<a
+								href='#!'
+								className='btn float-right'
+							>
+								<i className='far fa-heart'></i>
+							</a>
 							<a
 								href={person.link}
 								target='_blank'
