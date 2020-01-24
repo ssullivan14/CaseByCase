@@ -21,5 +21,6 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/namus', require('./routes/api/namus'));
 app.use('/api/crimes', require('./routes/api/crimes'));
+app.use('/api/unidentified', require('./routes/api/unidentified'));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

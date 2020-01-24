@@ -2,23 +2,23 @@
 // DEPENDENCIES
 const express = require('express');
 const router = express.Router();
-const allCrimes = require('../../models/Crimes');
+const unIdentified = require('../../models/Unidentified');
 
 
-//Routes(to hit route /api/cimes)
+//Routes(to hit route /api/unidentified/)
 router.get('/', async (req, res) => {
     //find results from namus collection in the db with a query that finds all in our db
     try {
-        const crimes = await allCrimes.find({
-            Offense: req.body.Offense,
-            Date: req.body.Date,
-            State: req.body.State,
-            City: req.body.City
-
-
-        });
-        res.json(crimes)
-    } catch (err) {
+        const unidentified = await unIdentified.find();
+        //     {
+        //     city: req.body.city,
+        //     state: req.body.state,
+        //     modifiedDateTime: req.body.state
+        // });
+        res.json(unidentified);
+    } 
+    
+    catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }

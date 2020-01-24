@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const CrimeSchema = new mongoose.Schema({
-    CaseByCase_Header : {
+    City : {
         type: String,
+      },
+      State : {
+          type: String,
       },
       ID : {
         type: String,
