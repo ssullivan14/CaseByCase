@@ -7,6 +7,7 @@ import { getNamus } from '../../actions/namus';
 import Spinner from '../Layout/Spinner/Spinner';
 import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
+import './Results.css';
 
 const Results = ({ getNamus, namus: { persons, loading } }) => {
 	// Get search request out of local storage and convert back to an object
