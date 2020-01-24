@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getNamus } from '../../actions/namus';
+import { getCrimes } from '../../actions/crimes';
 import Spinner from '../Layout/Spinner/Spinner';
 import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
 import './Results.css';
 
-const Results = ({ getNamus, namus: { persons, loading } }) => {
+const Results = ({ getNamus, namus: { persons, loading }, getCrimes, crimes: { incidents } }) => {
 	// Get search request out of local storage and convert back to an object
 	const searchRequest = JSON.parse(localStorage.getItem('searchRequest'));
 
@@ -18,9 +19,22 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 	const [resultsPerPage, setPostsPerPage] = useState(10);
 
 	useEffect(() => {
-		if (searchRequest.incidentType === 'missing person') {
-			getNamus(searchRequest);
+		switch (searchRequest.incidentType) {
+			case 'missing person':
+				getNamus(searchRequest);
+				break;
+			case 'unidentified persons':
+				console.log("Unidentified persons search");
+				break;
+			default:
+				getCrimes(searchRequest);
 		}
+
+
+
+		// if (searchRequest.incidentType === 'missing person') {
+		// 	getNamus(searchRequest);
+		// }
 	}, [getNamus]);
 
 	const socrataHeader = (
@@ -59,57 +73,60 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 	return loading && persons === null ? (
 		<Spinner />
 	) : (
-		<Fragment>
-			<div className='row'>
-				<div className='col-md-12'>
-					<Link to='/search' className='btn btn-secondary back-btn'>
-						<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
-						Search
+			<Fragment>
+				<div className='row'>
+					<div className='col-md-12'>
+						<Link to='/search' className='btn btn-secondary back-btn'>
+							<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
+							Search
 					</Link>
+					</div>
 				</div>
-			</div>
-			<h1 className='page-header'>Search Results</h1>
-			<p className='lead'>
-				<i class='fas fa-clipboard-list gold-icon'></i>&nbsp;&nbsp;
+				<h1 className='page-header'>Search Results</h1>
+				<p className='lead'>
+					<i class='fas fa-clipboard-list gold-icon'></i>&nbsp;&nbsp;
 				{searchRequest.location} > {searchRequest.incidentType} >{' '}
-				<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
-				<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
-			</p>
-			<table className='table table-dark table-striped'>
-				<thead>
-					<tr>
-						{/* Check incident type and display appropriate headers */}
+					<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
+					<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
+				</p>
+				<table className='table table-dark table-striped'>
+					<thead>
+						<tr>
+							{/* Check incident type and display appropriate headers */}
+							{searchRequest.incidentType === 'unidentified persons' ? (
+								unidentifiedHeader
+							) : searchRequest.incidentType === 'missing person' ? (
+								<Fragment></Fragment>
+							) : (
+										socrataHeader
+									)}
+						</tr>
+					</thead>
+					<tbody>
 						{searchRequest.incidentType === 'unidentified persons' ? (
 							unidentifiedHeader
 						) : searchRequest.incidentType === 'missing person' ? (
-							<Fragment></Fragment>
+							<MissingPersonItem persons={getCurrentResults} loading={loading} />
 						) : (
-							socrataHeader
-						)}
-					</tr>
-				</thead>
-				<tbody>
-					{searchRequest.incidentType === 'unidentified persons' ? (
-						unidentifiedHeader
-					) : searchRequest.incidentType === 'missing person' ? (
-						<MissingPersonItem persons={getCurrentResults} loading={loading} />
-					) : (
-						socrataHeader
-					)}
-				</tbody>
-			</table>
-			<Pagination resultsPerPage={resultsPerPage} totalResults={persons.length} paginate={paginate} />
-		</Fragment>
-	);
+									socrataHeader
+								)}
+					</tbody>
+				</table>
+				<Pagination resultsPerPage={resultsPerPage} totalResults={persons.length} paginate={paginate} />
+			</Fragment>
+		);
 };
 
 Results.propTypes = {
 	getNamus: PropTypes.func.isRequired,
-	namus: PropTypes.object.isRequired
+	namus: PropTypes.object.isRequired,
+	getCrimes: PropTypes.func.isRequired,
+	crimes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-	namus: state.namus
+	namus: state.namus,
+	crimes: state.crimes
 });
 
-export default connect(mapStateToProps, { getNamus })(Results);
+export default connect(mapStateToProps, { getNamus, getCrimes })(Results);

@@ -5,8 +5,8 @@ const router = express.Router();
 const allCrimes = require('../../models/Crimes');
 
 
-//Routes(to hit route /api/cimes)
-router.get('/', async (req, res) => {
+//Routes(to hit route /api/crimes)
+router.post('/', async (req, res) => {  
     //find results from namus collection in the db with a query that finds all in our db
     try {
         const crimes = await allCrimes.find({
