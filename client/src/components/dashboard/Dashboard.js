@@ -5,11 +5,13 @@ import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../Layout/Spinner/Spinner';
 import RecentPosts from './RecentPosts';
 import SavedCases from './SavedCases';
+import { favorites } from './favorites';
 
 const Dashboard = ({
 	getCurrentProfile,
 	auth: { user },
-	profile: { profile, loading }
+	profile: { profile, loading },
+	favorites
 }) => {
 	useEffect(() => {
 		getCurrentProfile();
