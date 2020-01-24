@@ -11,15 +11,15 @@ import mapStyles from "./MapStyles";
 
 // VARIABLES
 var locations;
-var centerOption = {};
 //getting search parameters
 
 const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {searchType : "state"};
 var searchType = searchRequest.searchType;
 console.log("SearchType: " + searchType)
 
-const Map = ({ persons, loading }) => {
+const Map = () => {
   console.log(locations);
+ 
 
   return (
     <GoogleMap
@@ -28,7 +28,9 @@ const Map = ({ persons, loading }) => {
       defaultOptions={{ styles: mapStyles }}
     >
       {locations.map(locations => (
-        <Marker position={locations} />
+        <Marker 
+        key={locations.name}
+        position={locations} />
       ))}
     </GoogleMap>
   );
@@ -39,11 +41,14 @@ export default function GMap({ persons, loading }) {
   locations = [];
   let mapLoaded = false;
   persons.forEach(person => {
-    let temp = {};
+    // console.log(tempKey)
+    // console.log(nameKey)
+;    let temp = {};
     temp["lat"] = parseFloat(person.Latitude);
     temp["lng"] = parseFloat(person.Longitude);
+    temp.name = person._id;
     locations.push(temp);
-    // console.log(temp);
+    // console.log(temp.name);
   });
   if (locations.length) {mapLoaded = true}
   // return locations
