@@ -15,6 +15,12 @@ const MissingPersonItem = ({ persons, loading }) => {
 						<h5 className='highlight card-header mx-auto w-100'>
 							{person.First_Name} {person.Middle_Name} {person.Last_Name}
 							<a
+								href='#!'
+								className='btn float-right'
+							>
+								<i className='far fa-heart'></i>
+							</a>
+							<a
 								href={person.link}
 								target='_blank'
 								className='btn float-right ext-btn'

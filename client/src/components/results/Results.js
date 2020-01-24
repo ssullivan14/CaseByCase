@@ -40,6 +40,7 @@ const Results = ({
 
 	const socrataHeader = (
 		<Fragment>
+			<th scope='col'></th>
 			<th scope='col'>Case Number</th>
 			<th scope='col'>Incident Date/Time</th>
 			<th scope='col'>Incident Day of Week</th>

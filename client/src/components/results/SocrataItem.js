@@ -11,19 +11,22 @@ const SocrataItem = ({ incidents, loading }) => {
 		<Fragment>
 			{incidents.map(incident => (
 				<tr key={incident._id}>
+                    <td>
+						<a href='#!' className='btn float-right'>
+							<i className='far fa-heart'></i>
+						</a>
+					</td>
 					<th className='highlight' scope='row'>
 						{incident.Case_Number}
 					</th>
 					<td>
-						<Moment format='MM/DD/YYYY hh:mm A'>
-							{incident.Date}
-						</Moment>
+						<Moment format='MM/DD/YYYY hh:mm A'>{incident.Date}</Moment>
 					</td>
-					<td><Moment format='dddd'>
-							{incident.Date}
-						</Moment></td>
-                    <td>{incident.Descript || incident.Description}</td>
-                    <td>{incident.Block}</td>
+					<td>
+						<Moment format='dddd'>{incident.Date}</Moment>
+					</td>
+					<td>{incident.Descript || incident.Description}</td>
+					<td>{incident.Block}</td>
 					<td>
 						{incident.City}, {incident.State}
 					</td>
