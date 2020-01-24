@@ -29,10 +29,10 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-router.get("/case/:case_id", auth, async (req, res) => {
+router.get("/case/:case_id", async (req, res) => {
   try {
     const namusCase = await namusData.findOne({
-      case: req.params.id_Formatted
+      _id: req.params.case_id
     });
 
     if (!namusCase) return res.status(400).json({ msg: "Case not found" });

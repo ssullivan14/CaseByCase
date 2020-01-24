@@ -30,8 +30,9 @@ export const getNamus = formData => async dispatch => {
 
 // Get Namus Case by case number
 export const getNamusCase = caseNum => async dispatch => {
+  console.log("case number " + caseNum);
   try {
-    const res = await axios.get(`/api/case/${caseNum}`);
+    const res = await axios.get(`/api/namus/case/${caseNum}`);
 
     dispatch({
       type: NAMUS_CASE,

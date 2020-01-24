@@ -1,4 +1,4 @@
-import { GET_NAMUS, NAMUS_ERROR } from "../actions/types";
+import { GET_NAMUS, NAMUS_ERROR, NAMUS_CASE } from "../actions/types";
 
 const initialState = {
   persons: [],
