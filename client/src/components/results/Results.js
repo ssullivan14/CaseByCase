@@ -10,6 +10,8 @@ import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
 import SocrataItem from './SocrataItem';
 import './Results.css';
+import GMap from "./GMap";
+
 
 const Results = ({
 	getNamus,
@@ -117,6 +119,10 @@ const Results = ({
 				<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
 				<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
 			</p>
+			
+			<GMap 
+	  		persons={getCurrentResults} loading={loading}
+	  		/>
 			<table className='table table-dark table-striped'>
 				<thead>
 					<tr>
