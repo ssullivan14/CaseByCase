@@ -26,5 +26,5 @@ export const GET_NAMUS = 'GET_NAMUS';
 export const NAMUS_ERROR = 'NAMUS_ERROR';
 export const GET_CRIMES = 'GET_CRIMES';
 export const CRIMES_ERROR = 'CRIMES_ERROR';
-export const POST_FAVORITES = 'POST_FAVORITES';
-export const ADD_FAVORITES = 'ADD_FAVORITES';
+// export const POST_FAVORITES = 'POST_FAVORITES';
+// export const ADD_FAVORITES = 'ADD_FAVORITES';
