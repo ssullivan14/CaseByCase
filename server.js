@@ -11,7 +11,9 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Init middleware
-app.use(express.json({ extended: false }));
+app.use(express.json({
+    extended: false
+}));
 
 // Define routes
 app.use('/api/users', require('./routes/api/users'));
@@ -21,6 +23,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/namus', require('./routes/api/namus'));
 app.use('/api/crimes', require('./routes/api/crimes'));
 app.use('/api/unidentified', require('./routes/api/unidentified'));
+app.use('/api/favorites', require('./routes/api/favorites'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

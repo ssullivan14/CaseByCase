@@ -11,11 +11,13 @@ import MissingPersonItem from './MissingPersonItem';
 import SocrataItem from './SocrataItem';
 import './Results.css';
 
+
 const Results = ({
 	getNamus,
 	namus: { persons, loading },
 	getCrimes,
 	crimes: { incidents, crimeLoading }
+
 }) => {
 	// Get search request out of local storage and convert back to an object
 	const searchRequest = JSON.parse(localStorage.getItem('searchRequest'));
