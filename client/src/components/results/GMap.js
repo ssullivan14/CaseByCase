@@ -13,25 +13,24 @@ import mapStyles from "./MapStyles";
 var locations;
 //getting search parameters
 
-const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {searchType : "state"};
+const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {
+  searchType: "state"
+};
 var searchType = searchRequest.searchType;
-console.log("SearchType: " + searchType)
+console.log("SearchType: " + searchType);
 
 const Map = () => {
   const [selectCase, setSelectedCase] = useState();
   // console.log(locations);
- 
 
   return (
     <GoogleMap
-      defaultZoom={searchType === "state" ? ( 7 ) : ( 10 )}
+      defaultZoom={searchType === "state" ? 7 : 10}
       defaultCenter={locations[0]}
       defaultOptions={{ styles: mapStyles }}
     >
       {locations.map(locations => (
-        <Marker 
-        key={locations.name}
-        position={locations} />
+        <Marker key={locations.name} position={locations} />
       ))}
     </GoogleMap>
   );
@@ -44,27 +43,31 @@ export default function GMap({ persons, loading }) {
   persons.forEach(person => {
     // console.log(tempKey)
     // console.log(nameKey)
-;    let temp = {};
+    console.log(person.Block);
+    let temp = {};
     temp["lat"] = parseFloat(person.Latitude);
     temp["lng"] = parseFloat(person.Longitude);
     temp.name = person._id;
     locations.push(temp);
     // console.log(temp.name);
   });
-  if (locations.length) {mapLoaded = true}
+  if (locations.length) {
+    mapLoaded = true;
+  }
   // return locations
 
   // console.log(locations);
 
   return (
     <div style={{ width: "100%", height: "45vh" }}>
-      {mapLoaded &&      <MapWrapped
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      /> }
-
+      {mapLoaded && (
+        <MapWrapped
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      )}
     </div>
   );
 }

@@ -121,7 +121,7 @@ const Results = ({
 			</p>
 			
 			<GMap 
-	  		persons={getCurrentResults} loading={loading}
+			  persons={getCurrentResults} loading={loading}
 	  		/>
 			<table className='table table-dark table-striped'>
 				<thead>
