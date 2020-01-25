@@ -56,6 +56,7 @@ const Results = ({
 
 	const unidentifiedHeader = (
 		<Fragment>
+			<th scope='col'></th>
 			<th scope='col'>Case Number</th>
 			<th scope='col'>Date Found</th>
 			<th scope='col'>Gender</th>
