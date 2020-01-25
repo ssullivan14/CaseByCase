@@ -4,31 +4,47 @@ const express = require("express");
 const router = express.Router();
 const allCrimes = require("../../models/Crimes");
 
-//Routes(to hit route /api/cimes)
-router.get("/", async (req, res) => {
-  //find results from namus collection in the db with a query that finds all in our db
+//Routes(to hit route /api/crimes)
+router.post("/", async (req, res) => {
+  //find results from crimes collection in the db with a query that finds all in our db
+  console.log(req.body);
+
   try {
-    const crimes = await allCrimes.find({
-      Offense: req.body.Offense,
-      Date: req.body.Date,
-      State: req.body.State,
-      City: req.body.City
-    });
-    res.json(crimes);
+    if (req.body.city) {
+      const crimes = await allCrimes.find({
+        Offense: {
+          $regex: new RegExp(".*" + req.body.incidentType + ".*", "i")
+        },
+        State: { $regex: new RegExp(req.body.state, "i") },
+        City: { $regex: new RegExp(req.body.city, "i") }
+      });
+
+      res.json(crimes);
+    } else {
+      const crimes = await allCrimes.find({
+        Offense: {
+          $regex: new RegExp(".*" + req.body.incidentType + ".*", "i")
+        },
+        State: { $regex: new RegExp(req.body.state, "i") }
+      });
+
+      res.json(crimes);
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
+  res.status(500).send("Server Error");
 });
 
 router.get("/case/:case_id", async (req, res) => {
   try {
-    const crimeCase = await allCrimes.findOne({
+    const crimesCase = await allCrimes.findOne({
       _id: req.params.case_id
     });
 
-    if (!crimeCase) return res.status(400).json({ msg: "Case not found" });
-    res.json(crimeCase);
+    if (!crimesCase) return res.status(400).json({ msg: "Case not found" });
+    res.json(crimesCase);
   } catch (err) {
     console.error(err.message);
     if (err.kind === "ObjectId") {

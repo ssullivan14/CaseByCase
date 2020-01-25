@@ -25,3 +25,6 @@ export const REMOVE_COMMENT = "REMOVE_COMMENT";
 export const GET_NAMUS = "GET_NAMUS";
 export const NAMUS_ERROR = "NAMUS_ERROR";
 export const NAMUS_CASE = "NAMUS_CASE";
+export const GET_CRIMES = "GET_CRIMES";
+export const CRIMES_ERROR = "CRIMES_ERROR";
+export const CRIMES_CASE = "CRIME_CASE";

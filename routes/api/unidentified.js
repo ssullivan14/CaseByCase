@@ -6,7 +6,7 @@ const unid = require('../../models/Unidentified');
 
 
 //Routes(to hit route /api/unidentified/)
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     //find results from namus collection in the db with a query that finds all in our db
     try {
         const unidentified = await unid.find({});

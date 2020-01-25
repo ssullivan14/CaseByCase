@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getNamus } from '../../actions/namus';
+import { getCrimes } from '../../actions/crimes';
 import Spinner from '../Layout/Spinner/Spinner';
 import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
+import SocrataItem from './SocrataItem';
 import './Results.css';
 
-const Results = ({ getNamus, namus: { persons, loading } }) => {
+const Results = ({
+	getNamus,
+	namus: { persons, loading },
+	getCrimes,
+	crimes: { incidents, crimeLoading }
+}) => {
 	// Get search request out of local storage and convert back to an object
 	const searchRequest = JSON.parse(localStorage.getItem('searchRequest'));
 
@@ -17,14 +24,23 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [resultsPerPage, setPostsPerPage] = useState(10);
 
+	// Determine which search to run and then call the action
 	useEffect(() => {
-		if (searchRequest.incidentType === 'missing person') {
-			getNamus(searchRequest);
+		switch (searchRequest.incidentType) {
+			case 'missing person':
+				getNamus(searchRequest);
+				break;
+			case 'unidentified persons':
+				console.log('Unidentified persons search');
+				break;
+			default:
+				getCrimes(searchRequest);
 		}
-	}, [getNamus]);
+	}, [getNamus, getCrimes]);
 
 	const socrataHeader = (
 		<Fragment>
+			<th scope='col'></th>
 			<th scope='col'>Case Number</th>
 			<th scope='col'>Incident Date/Time</th>
 			<th scope='col'>Incident Day of Week</th>
@@ -44,19 +60,45 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 			<th scope='col'>Images</th>
 		</Fragment>
 	);
+	
+	function waitForResults(variable){
+		if(typeof variable !== "undefined"){
+			getCurrentResults = variable.slice(
+				indexofFirstResult,
+				indexOfLastResult
+			);
+		}
+		else{
+			setTimeout(waitForResults, 1000);
+		}
+	}
 
 	// Get current posts
+	let getCurrentResults = [];
 	const indexOfLastResult = currentPage * resultsPerPage;
 	const indexofFirstResult = indexOfLastResult - resultsPerPage;
-	const getCurrentResults = persons.slice(
-		indexofFirstResult,
-		indexOfLastResult
-	);
+	switch (searchRequest.incidentType) {
+		case 'missing person':
+			waitForResults(persons);
+			break;
+		case 'unidentified persons':
+			console.log('Unidentified persons search');
+			break;
+		case 'assault':
+		case 'battery':
+		case 'homocide':
+		case 'murder':
+		case 'rape':
+		case 'sexual':
+		case 'shot':
+			waitForResults(incidents);
+	}
 
 	// Change page
-	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+	const paginate = pageNumber => setCurrentPage(pageNumber);
 
-	return loading && persons === null ? (
+	return (loading && persons === null) ||
+		(crimeLoading && incidents === null) ? (
 		<Spinner />
 	) : (
 		<Fragment>
@@ -70,7 +112,7 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 			</div>
 			<h1 className='page-header'>Search Results</h1>
 			<p className='lead'>
-				<i class='fas fa-clipboard-list gold-icon'></i>&nbsp;&nbsp;
+				<i className='fas fa-clipboard-list gold-icon'></i>&nbsp;&nbsp;
 				{searchRequest.location} > {searchRequest.incidentType} >{' '}
 				<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
 				<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
@@ -94,22 +136,29 @@ const Results = ({ getNamus, namus: { persons, loading } }) => {
 					) : searchRequest.incidentType === 'missing person' ? (
 						<MissingPersonItem persons={getCurrentResults} loading={loading} />
 					) : (
-						socrataHeader
+						<SocrataItem incidents={getCurrentResults} loading={crimeLoading} />
 					)}
 				</tbody>
 			</table>
-			<Pagination resultsPerPage={resultsPerPage} totalResults={persons.length} paginate={paginate} />
+			<Pagination
+				resultsPerPage={resultsPerPage}
+				totalResults={persons.length}
+				paginate={paginate}
+			/>
 		</Fragment>
 	);
 };
 
 Results.propTypes = {
 	getNamus: PropTypes.func.isRequired,
-	namus: PropTypes.object.isRequired
+	namus: PropTypes.object.isRequired,
+	getCrimes: PropTypes.func.isRequired,
+	crimes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-	namus: state.namus
+	namus: state.namus,
+	crimes: state.crimes
 });
 
-export default connect(mapStateToProps, { getNamus })(Results);
+export default connect(mapStateToProps, { getNamus, getCrimes })(Results);

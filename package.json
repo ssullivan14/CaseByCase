@@ -7,19 +7,20 @@
     "start": "node server.js",
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bflatbader/devconnector.git"
+    "url": "git+https://github.com/ssullivan14/CaseByCase.git"
   },
   "keywords": [],
-  "author": "Bishop Bader",
+  "author": "Bishop Bader, Sara Sullivan, Tony Yonta, Matt Funk",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bflatbader/devconnector/issues"
+    "url": "https://github.com/ssullivan14/CaseByCase/issues"
   },
-  "homepage": "https://github.com/bflatbader/devconnector#readme",
+  "homepage": "https://github.com/ssullivan14/CaseByCase/#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.2.4",
