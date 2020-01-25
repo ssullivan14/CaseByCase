@@ -11,6 +11,7 @@ import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
 import SocrataItem from './SocrataItem';
 import UnidentifiedPersonItem from './UnidentifiedPersonItem';
+import ConfirmModal from './ConfirmModal';
 import './Results.css';
 
 const Results = ({
@@ -42,6 +43,7 @@ const Results = ({
 		}
 	}, [getNamus, getCrimes, getUnidentified]);
 
+	// Setup different result headers
 	const socrataHeader = (
 		<Fragment>
 			<th scope='col'></th>
@@ -68,13 +70,9 @@ const Results = ({
 	);
 
 	function waitForResults(variable) {
-		if (typeof variable !== "undefined") {
-			getCurrentResults = variable.slice(
-				indexofFirstResult,
-				indexOfLastResult
-			);
-		}
-		else {
+		if (typeof variable !== 'undefined') {
+			getCurrentResults = variable.slice(indexofFirstResult, indexOfLastResult);
+		} else {
 			setTimeout(waitForResults, 1000);
 		}
 	}
@@ -104,55 +102,64 @@ const Results = ({
 	const paginate = pageNumber => setCurrentPage(pageNumber);
 
 	return (loading && persons === null) ||
-		(crimeLoading && incidents === null) || (unIDloading && unIDpersons === null) ? (
-			<Spinner />
-		) : (
-			<Fragment>
-				<div className='row'>
-					<div className='col-md-12'>
-						<Link to='/search' className='btn btn-secondary back-btn'>
-							<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
-							Search
+		(crimeLoading && incidents === null) ||
+		(unIDloading && unIDpersons === null) ? (
+		<Spinner />
+	) : (
+		<Fragment>
+			{searchRequest.incidentType === 'unidentified persons' ? (
+				<ConfirmModal />
+			) : (
+				<Fragment></Fragment>
+			)}
+			<div className='row'>
+				<div className='col-md-12'>
+					<Link to='/search' className='btn btn-secondary back-btn'>
+						<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
+						Search
 					</Link>
-					</div>
 				</div>
-				<h1 className='page-header'>Search Results</h1>
-				<p className='lead'>
-					<i className='fas fa-clipboard-list gold-icon'></i>&nbsp;&nbsp;
+			</div>
+			<h1 className='page-header'>Search Results</h1>
+			<p className='lead'>
+				<i className='fas fa-clipboard-list gold-icon'></i>&nbsp;&nbsp;
 				{searchRequest.location} > {searchRequest.incidentType} >{' '}
-					<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
-					<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
-				</p>
-				<table className='table table-dark table-striped'>
-					<thead>
-						<tr>
-							{/* Check incident type and display appropriate headers */}
-							{searchRequest.incidentType === 'unidentified persons' ? (
-								unidentifiedHeader
-							) : searchRequest.incidentType === 'missing person' ? (
-								<Fragment></Fragment>
-							) : (
-										socrataHeader
-									)}
-						</tr>
-					</thead>
-					<tbody>
+				<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
+				<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
+			</p>
+			<table className='table table-dark table-striped'>
+				<thead>
+					<tr>
+						{/* Check incident type and display appropriate headers */}
 						{searchRequest.incidentType === 'unidentified persons' ? (
-							<UnidentifiedPersonItem persons={getCurrentResults} loading={unIDloading} />
+							unidentifiedHeader
 						) : searchRequest.incidentType === 'missing person' ? (
-							<MissingPersonItem persons={getCurrentResults} loading={loading} />
+							<Fragment></Fragment>
 						) : (
-									<SocrataItem incidents={getCurrentResults} loading={crimeLoading} />
-								)}
-					</tbody>
-				</table>
-				<Pagination
-					resultsPerPage={resultsPerPage}
-					totalResults={persons.length}
-					paginate={paginate}
-				/>
-			</Fragment>
-		);
+							socrataHeader
+						)}
+					</tr>
+				</thead>
+				<tbody>
+					{searchRequest.incidentType === 'unidentified persons' ? (
+						<UnidentifiedPersonItem
+							persons={getCurrentResults}
+							loading={unIDloading}
+						/>
+					) : searchRequest.incidentType === 'missing person' ? (
+						<MissingPersonItem persons={getCurrentResults} loading={loading} />
+					) : (
+						<SocrataItem incidents={getCurrentResults} loading={crimeLoading} />
+					)}
+				</tbody>
+			</table>
+			<Pagination
+				resultsPerPage={resultsPerPage}
+				totalResults={persons.length}
+				paginate={paginate}
+			/>
+		</Fragment>
+	);
 };
 
 Results.propTypes = {
@@ -170,4 +177,8 @@ const mapStateToProps = state => ({
 	unidentified: state.unidentified
 });
 
-export default connect(mapStateToProps, { getNamus, getCrimes, getUnidentified })(Results);
+export default connect(mapStateToProps, {
+	getNamus,
+	getCrimes,
+	getUnidentified
+})(Results);
