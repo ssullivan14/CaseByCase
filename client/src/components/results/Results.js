@@ -14,6 +14,7 @@ import UnidentifiedPersonItem from './UnidentifiedPersonItem';
 import ConfirmModal from './ConfirmModal';
 import './Results.css';
 
+
 const Results = ({
 	getNamus,
 	namus: { persons, loading },
