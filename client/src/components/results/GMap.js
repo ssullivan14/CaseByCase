@@ -8,6 +8,10 @@ import {
 } from "react-google-maps";
 import { connect } from "react-redux";
 import mapStyles from "./MapStyles";
+import Geocode from "react-geocode";
+Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`);
+Geocode.setLanguage("en");
+Geocode.setRegion("us");
 
 // VARIABLES
 var locations;
@@ -17,11 +21,13 @@ const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {
   searchType: "state"
 };
 var searchType = searchRequest.searchType;
-console.log("SearchType: " + searchType);
+var geoCity = searchRequest.location;
+// console.log("SearchType: " + searchType);
+
 
 const Map = () => {
   const [selectCase, setSelectedCase] = useState();
-  // console.log(locations);
+  console.log(locations);
 
   return (
     <GoogleMap
@@ -40,23 +46,44 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
 export default function GMap({ persons, loading }) {
   locations = [];
   let mapLoaded = false;
+
+  
   persons.forEach(person => {
     // console.log(tempKey)
     // console.log(nameKey)
-    console.log(person.Block);
+    
+    //Missing Person
     let temp = {};
     temp["lat"] = parseFloat(person.Latitude);
     temp["lng"] = parseFloat(person.Longitude);
     temp.name = person._id;
     locations.push(temp);
-    // console.log(temp.name);
+    
+    //Crime
+    console.log(person.Block);
+
+ Geocode.fromAddress(person.Block + geoCity).then(
+        response => {
+          const { lat, lng } = response.results[0].geometry.location;
+          locations.push({ lat, lng });
+          console.log({ lat, lng });
+        },
+        // error => {
+        //   console.error(error);
+        // }
+      )
+    
+
+
+    //Unidentified
+
   });
   if (locations.length) {
     mapLoaded = true;
   }
   // return locations
 
-  // console.log(locations);
+  // console.log("locations: " + locations);
 
   return (
     <div style={{ width: "100%", height: "45vh" }}>
