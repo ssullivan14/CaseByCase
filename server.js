@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Init middleware
-app.use(express.json({ extended: false }));
+app.use(express.json({
+    extended: false
+}));
 
 app.get('/', (req, res) => res.send('API running'));
 
@@ -22,5 +24,6 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/namus', require('./routes/api/namus'));
 app.use('/api/crimes', require('./routes/api/crimes'));
 app.use('/api/unidentified', require('./routes/api/unidentified'));
+app.use('/api/favorites', require('./routes/api/favorites'));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

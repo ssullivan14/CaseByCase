@@ -12,7 +12,7 @@ import {
 import Spinner from '../Layout/Spinner/Spinner';
 import RecentPosts from './RecentPosts';
 import SavedCases from './SavedCases';
-// import { favorites } from './favorites';
+
 
 const Dashboard = ({
 	getCurrentProfile,
@@ -23,7 +23,6 @@ const Dashboard = ({
 		profile,
 		loading
 	},
-	// favorites
 }) => {
 	useEffect(() => {
 		getCurrentProfile();
