@@ -26,3 +26,5 @@ export const GET_NAMUS = 'GET_NAMUS';
 export const NAMUS_ERROR = 'NAMUS_ERROR';
 export const GET_CRIMES = 'GET_CRIMES';
 export const CRIMES_ERROR = 'CRIMES_ERROR';
+export const GET_UNIDENTIFIED = 'GET_UNIDENTIFIED';
+export const UNIDENTIFIED_ERROR = 'UNIDENTIFIED_ERROR';
