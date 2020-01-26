@@ -2,9 +2,9 @@ import axios from 'axios';
 import { POST_FAVORITES, GET_FAVORITES, PUT_FAVORITES, FAVS_ERROR } from './types';
 
 //GET FAVS
-export const getFavs = () => async dispatch => {
+export const getFavs = id => async dispatch => {    
     try {
-        const res = await axios.get('/api/favorites');
+        const res = await axios.get(`/api/favorites/${id}`);
 
         dispatch({
             type: GET_FAVORITES,

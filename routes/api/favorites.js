@@ -18,7 +18,7 @@ router.post('/:id', auth, async (req, res) => {
 		);
 		const favorited = await favCase.find({ Case_Number: req.params.id });
 		// Check if case has already been favorited
-        if (favorited.length > 0) {
+		if (favorited.length > 0) {
 			favorited[0].Users.push(user);
 
 			await favorited[0].save();
@@ -51,39 +51,44 @@ router.post('/:id', auth, async (req, res) => {
 // @desc    Delete favorite case
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id).select(
-            '-password -email -avatar -date'
-        ); 
-        const favs = await favCase.findOneAndUpdate({$pull: {Users: { _id: user._id, name: user.name}}});
+	try {
+		const user = await User.findById(req.user.id).select(
+			'-password -email -avatar -date'
+		);
+		const favs = await favCase.findOneAndUpdate({ $pull: { Users: { _id: user._id, name: user.name } } });
 
-        res.json({
-            msg: 'Saved case removed'
-        });
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).send('Server error');
-    }
+		res.json({
+			msg: 'Saved case removed'
+		});
+	} catch (err) {
+		console.log(err.message);
+		res.status(500).send('Server error');
+	}
 });
 
 //@route   GET API/FAVORITES 
 //@desc    GET FAVs by ID
 //@access  Public
-router.get('/', async (req, res) => {
-    try {
-		// const favs = await favPosts.findById(req.params.id);
-		const favs = await favCase.find();
+router.get('/:id', async (req, res) => {
+	try {
+		const user = await User.findById(req.params.id).select(
+			'-password -email -avatar -date'
+		);
 
-        if (!favs) {
-            return res.status(404).json({
-                msg: 'Fav not found'
-            });
-        }
-        res.json(favs);
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).send('Server error');
-    }
+		console.log(user);
+
+		await favCase.find({'Users': user._id});
+
+		if (!favs) {
+			return res.status(404).json({
+				msg: 'Fav not found'
+			});
+		}
+		res.json(favs);
+	} catch (err) {
+		console.log(err.message);
+		res.status(500).send('Server error');
+	}
 });
 
 

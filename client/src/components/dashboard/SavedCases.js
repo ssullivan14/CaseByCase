@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import Spinner from '../Layout/Spinner/Spinner';
 import PropTypes from 'prop-types';
 
-const SavedCases = ({getFavs, favs}) => {
+const SavedCases = ({ user, getFavs, favs }) => {
     useEffect(() => {
-        getFavs();
+        getFavs(user._id);
     }, [getFavs]);
+
 	return (
 		<Fragment>
 			<div className='card bg-dark'>
