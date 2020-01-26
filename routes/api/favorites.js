@@ -3,31 +3,26 @@
 //put person's id in an array and put the case 
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 const favCase = require('../../models/Favorites');
 const User = require('../../models/User');
-const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
-const auth = require('../../middleware/auth');
-const {
-    check,
-    validationResult
-} = require('express-validator');
 
-//@route    Post api/favorites
+//@route    Post api/favorites/
 //@desc     Create a favorite
 //@access   Public
-router.post('/', async (req, res) => {
+router.post('/:id', auth, async (req, res) => {
     try {
-        // const user = await User.findById(req.User);
-        // console.log(user)
+        const user = await User.findById(req.user.id).select('-password');
+        console.log(user)
         const newFav = new favCase({
-            Case_Number: req.body.Case_Number,
+            Case_Number: req.params.id,
             Date_Of_Incident: req.body.Date_Of_Incident,
             Description: req.body.Description,
             Link: req.body.Link,
             Users: [{
-                name: req.body.User.name,
-                id: req.body.User.id
+                name: user.name,
+                user: user.id
             }]
         });
 
