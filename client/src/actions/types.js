@@ -32,3 +32,5 @@ export const GET_FAVORITES = 'GET_FAVORITES';
 export const POST_FAVORITES = 'POST_FAVORITES';
 export const PUT_FAVORITES = 'PUT_FAVORITES';
 export const FAVS_ERROR = 'FAVS_ERROR';
+export const CRIMES_CASE = "CRIMES_CASE";
+export const NAMUS_CASE = "NAMUS_CASE";
