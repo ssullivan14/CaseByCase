@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {
   GoogleMap,
@@ -8,45 +8,36 @@ import {
 } from "react-google-maps";
 import { connect } from "react-redux";
 import mapStyles from "./MapStyles";
-import Geocode from "react-geocode";
-Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`);
-Geocode.setLanguage("en");
-Geocode.setRegion("us");
 
 // VARIABLES
 var locations;
 //getting search parameters
-
 const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {
   searchType: "state"
 };
 var searchType = searchRequest.searchType;
-var geoCity = searchRequest.location;
-// console.log("SearchType: " + searchType);
 
+const Map = () => {
+  console.log(locations);
 
-
+  return (
+    <GoogleMap
+      defaultZoom={searchType === "state" ? 7 : 10}
+      defaultCenter={locations[0]}
+      defaultOptions={{ styles: mapStyles }}
+    >
+      {locations.map(locations => (
+        <Marker key={locations.name} position={locations} />
+      ))}
+    </GoogleMap>
+  );
+};
+const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function GMap({ persons, loading }) {
   locations = [];
   let mapLoaded = false;
-  const Map = () => {
-    const [selectCase, setSelectedCase] = useState();
-    console.log(locations);
-  
-    return (
-      <GoogleMap
-        defaultZoom={searchType === "state" ? 7 : 10}
-        defaultCenter={locations[0]}
-        defaultOptions={{ styles: mapStyles }}
-      >
-        {locations.map(locations => (
-          <Marker key={locations.name} position={locations} />
-        ))}
-      </GoogleMap>
-    );
-  };
-  const MapWrapped = withScriptjs(withGoogleMap(Map));
+
 
   console.log(persons);
 
@@ -70,8 +61,6 @@ export default function GMap({ persons, loading }) {
     
     //Crime
     // console.log(person.Block);
-
-    //Unidentified
 
   });
   if (locations.length) {
