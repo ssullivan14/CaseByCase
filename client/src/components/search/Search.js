@@ -140,13 +140,10 @@ const Search = ({ history }) => {
 						>
 							<option></option>
 							<option value='assault'>Assault</option>
-							<option value='battery'>Battery</option>
 							<option value='homicide'>Homicide</option>
 							<option value='missing person'>Missing Person</option>
 							<option value='murder'>Murder</option>
-							<option value='rape'>Rape</option>
-							<option value='sexual'>Sexual Criminal Acts</option>
-							<option value='shot'>Shots</option>
+							<option value='sex'>Sex Offense</option>
 							<option value='unidentified persons'>Unidentified Persons</option>
 						</select>
 					</div>
