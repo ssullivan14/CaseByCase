@@ -12,7 +12,7 @@ import {
 
 const initialState = {
 	posts: [],
-	post: null,
+	post: null, 
 	loading: true,
 	error: {}
 };

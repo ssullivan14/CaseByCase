@@ -69,9 +69,10 @@ router.put('/:id', auth, async (req, res) => {
 //@route   GET API/FAVORITES 
 //@desc    GET FAVs by ID
 //@access  Public
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const favs = await favPosts.findById(req.params.id);
+		// const favs = await favPosts.findById(req.params.id);
+		const favs = await favCase.find();
 
         if (!favs) {
             return res.status(404).json({

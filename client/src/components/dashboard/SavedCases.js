@@ -1,6 +1,13 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect} from 'react';
+import { getFavs } from '../../actions/favorites';
+import { connect } from 'react-redux';
+import Spinner from '../Layout/Spinner/Spinner';
+import PropTypes from 'prop-types';
 
-const SavedCases = props => {
+const SavedCases = ({getFavs, favs}) => {
+    useEffect(() => {
+        getFavs();
+    }, [getFavs]);
 	return (
 		<Fragment>
 			<div className='card bg-dark'>
@@ -53,6 +60,13 @@ const SavedCases = props => {
 	);
 };
 
-SavedCases.propTypes = {};
+SavedCases.propTypes = {
+  getFavs: PropTypes.func.isRequired,
+  favs: PropTypes.object.isRequired,
 
-export default SavedCases;
+};
+ const mapStateToProps = state => ({
+     favs: state.favs
+ });
+
+export default connect(mapStateToProps,{ getFavs })(SavedCases);

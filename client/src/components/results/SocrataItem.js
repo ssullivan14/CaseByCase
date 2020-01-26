@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import Spinner from '../Layout/Spinner/Spinner';
 import { Link } from 'react-router-dom';
+// import {Favorites} from '../../actions/favorites';
 
 const SocrataItem = ({ incidents, loading }) => {
 	return loading && incidents === null ? (

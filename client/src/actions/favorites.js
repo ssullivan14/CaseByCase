@@ -1,17 +1,49 @@
-// import axios from 'axios';
-// import { POST_FAVORITES, ADD_FAVORITES } from './types';
-// import { types } from 'util';
+import axios from 'axios';
+import { POST_FAVORITES, GET_FAVORITES, PUT_FAVORITES, FAVS_ERROR } from './types';
 
-// export const postFavorite = //(what goes here?) 
-// => (dispatch) => {
-//     setTimeout(() => {
-//         dispatch(addFavorite //(what goes here?)
-//         );
-//     }, 2000);
-// }
+//GET FAVS
+export const getFavs = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/favorites');
 
-// export const addFavorite = //(what should i put here?) 
-// => ({
-//     type: types.ADD_FAVORITE,
-//     payload: dishID
-// });
+        dispatch({
+            type: GET_FAVORITES,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+			type: FAVS_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status }
+		});
+    }
+};
+export const postFavs = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/favorites');
+
+        dispatch({
+            type: POST_FAVORITES,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+			type: FAVS_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status }
+		});
+    }
+};
+export const putFavs = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/favorites');
+
+        dispatch({
+            type: PUT_FAVORITES,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+			type: FAVS_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status }
+		});
+    }
+};
