@@ -25,55 +25,51 @@ var geoCity = searchRequest.location;
 // console.log("SearchType: " + searchType);
 
 
-const Map = () => {
-  const [selectCase, setSelectedCase] = useState();
-  console.log(locations);
 
-  return (
-    <GoogleMap
-      defaultZoom={searchType === "state" ? 7 : 10}
-      defaultCenter={locations[0]}
-      defaultOptions={{ styles: mapStyles }}
-    >
-      {locations.map(locations => (
-        <Marker key={locations.name} position={locations} />
-      ))}
-    </GoogleMap>
-  );
-};
-const MapWrapped = withScriptjs(withGoogleMap(Map));
 
 export default function GMap({ persons, loading }) {
   locations = [];
   let mapLoaded = false;
-
+  const Map = () => {
+    const [selectCase, setSelectedCase] = useState();
+    console.log(locations);
   
+    return (
+      <GoogleMap
+        defaultZoom={searchType === "state" ? 7 : 10}
+        defaultCenter={locations[0]}
+        defaultOptions={{ styles: mapStyles }}
+      >
+        {locations.map(locations => (
+          <Marker key={locations.name} position={locations} />
+        ))}
+      </GoogleMap>
+    );
+  };
+  const MapWrapped = withScriptjs(withGoogleMap(Map));
+
+  console.log(persons);
+
   persons.forEach(person => {
+
+  //   console.log(String(person.latitude));
+  //   console.log(String(person.longitude));
+    console.log(person.latitude);
+    console.log(person.longitude);
+    console.log(person._id);
+    
     // console.log(tempKey)
     // console.log(nameKey)
     
     //Missing Person
     let temp = {};
-    temp["lat"] = parseFloat(person.Latitude);
-    temp["lng"] = parseFloat(person.Longitude);
+    temp["lat"] = parseFloat(person.latitude);
+    temp["lng"] = parseFloat(person.longitude);
     temp.name = person._id;
     locations.push(temp);
     
     //Crime
-    console.log(person.Block);
-
- Geocode.fromAddress(person.Block + geoCity).then(
-        response => {
-          const { lat, lng } = response.results[0].geometry.location;
-          locations.push({ lat, lng });
-          console.log({ lat, lng });
-        },
-        // error => {
-        //   console.error(error);
-        // }
-      )
-    
-
+    // console.log(person.Block);
 
     //Unidentified
 
