@@ -14,7 +14,7 @@ const CrimesCase = ({
   useEffect(() => {
     console.log("here");
     getCrimesCase(match.params.id);
-  }, [getCrimesCase]);
+  }, [getCrimesCase, match.params.id]);
   console.log("showing crimesCase: " + crimesCase);
 
   return (
@@ -34,7 +34,7 @@ const CrimesCase = ({
           <h1 className="page-header">Case #{match.params.id}</h1>
           <p className="lead">
             <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;
-            {crimesCase.State} > Crime Case
+            {crimesCase.state} > Crime Case
           </p>
           <h5>
             <strong>Case Number: </strong>
