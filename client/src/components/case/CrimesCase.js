@@ -14,7 +14,7 @@ const CrimesCase = ({
   useEffect(() => {
     console.log("here");
     getCrimesCase(match.params.id);
-  }, [getCrimesCase]);
+  }, [getCrimesCase, match.params.id]);
   console.log("showing crimesCase: " + crimesCase);
 
   return (
