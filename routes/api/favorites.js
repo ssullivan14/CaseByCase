@@ -7,6 +7,7 @@ const auth = require('../../middleware/auth');
 const favCase = require('../../models/Favorites');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
+const mongoose = require('mongoose');
 
 //@route    Post api/favorites/
 //@desc     Create a favorite
@@ -75,9 +76,11 @@ router.get('/:id', async (req, res) => {
 			'-password -email -avatar -date'
 		);
 
-		console.log(user);
+		const favs = await favCase.find(
+			{ Users: { $elemMatch: { _id: user._id } }
+		});
 
-		await favCase.find({'Users': user._id});
+		console.log(favs);
 
 		if (!favs) {
 			return res.status(404).json({
