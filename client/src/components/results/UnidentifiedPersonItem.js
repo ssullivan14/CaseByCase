@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 import Spinner from '../Layout/Spinner/Spinner';
 import { Link } from 'react-router-dom';
+// import Favorites from '../../actions/favorites';
 
 const UnidentifiedPersonItem = ({ persons, loading }) => {
 	return loading && persons === null ? (

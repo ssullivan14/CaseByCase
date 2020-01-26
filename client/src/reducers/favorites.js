@@ -1,14 +1,46 @@
-import * as types from './types';
+import { GET_FAVORITES, POST_FAVORITES, PUT_FAVORITES, FAVS_ERROR } from '../actions/types';
 
-export const favorites = (state = [], action) => {
-    switch(action.type) {
-        case types.ADD_FAVORITE:
-            if (state.some(el => el === action.payload))
-                return state;
-            else
-                return state.concat(action.payload);
-
-        default:
-            return state;
-    }
+const initialState = {
+    favs: [],
+    fav: null,
+    loading: true,
+    error: {}
 }
+
+export default function(state = initialState, action) {
+    const { type, payload } = action;
+    
+    switch (type) {
+		case GET_FAVORITES:
+			return {
+				...state,
+				favs: payload,
+				loading: false
+			};
+
+		case POST_FAVORITES:
+			return {
+				...state,
+				favs: payload,
+				loading: false
+			};
+
+		case PUT_FAVORITES:
+			return {
+				...state,
+				favs: [payload, ...state.favs],
+				loading: false
+			};
+
+		case FAVS_ERROR:
+			return {
+				...state,
+				error: payload,
+				loading: false
+			};
+
+		default:
+			return state;
+	}
+}
+
