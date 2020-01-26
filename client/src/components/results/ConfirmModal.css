@@ -1,0 +1,12 @@
+.modal-backdrop {
+	background-color: black;
+}
+
+.modal-header, .modal-body, .modal-footer {
+    background-color: #32383e;
+    border: 0px;
+}
+
+.red-icon {
+	color: #931d14;
+}
