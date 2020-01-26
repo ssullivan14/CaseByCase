@@ -12,9 +12,20 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
   }, [getNamusCase]);
   console.log("showing namusCase: " + namusCase);
 
+  // function waitForResults(variable) {
+  //   if (typeof variable !== "undefined") {
+  //     // wait
+
+  //   } else {
+  //     setTimeout(waitForResults, 1000);
+  //   }
+  // }
+
+  // let check = waitForResults(namusCase);
+
   return (
     <Fragment>
-      {namusCase === null || loading ? (
+      {namusCase === undefined || loading ? (
         <Spinner />
       ) : (
         <Fragment>

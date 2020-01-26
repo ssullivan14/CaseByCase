@@ -4,22 +4,21 @@ import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
-import { getCrimesCase } from "../../actions/crimes";
+import { getUnidentifiedCase } from "../../actions/unidentified";
 
-const CrimesCase = ({
-  getCrimesCase,
-  crimes: { crimesCase, crimeLoading },
+const UnidentifiedCase = ({
+  getUnidentifiedCase,
+  unidentified: { unIDcase, unIDloading },
   match
 }) => {
   useEffect(() => {
     console.log("here");
-    getCrimesCase(match.params.id);
-  }, [getCrimesCase, match.params.id]);
-  console.log("showing crimesCase: " + crimesCase);
+    getUnidentifiedCase(match.params.id);
+  }, [getUnidentifiedCase, match.params.id]);
 
   return (
     <Fragment>
-      {crimesCase === null || crimeLoading ? (
+      {unIDcase === undefined || unIDloading ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -34,29 +33,32 @@ const CrimesCase = ({
           <h1 className="page-header">Case #{match.params.id}</h1>
           <p className="lead">
             <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;
-            {crimesCase.State} > Crime Case
+            {unIDcase.state} > Unidenfied Persons
           </p>
           <h5>
             <strong>Case Number: </strong>
-            {crimesCase.Case_Number}
+            {unIDcase.casenumber}
           </h5>
           <div className="row no-gutters">
             <div className="col-md-10">
               <div className="card-body">
                 <p className="card-text">
-                  <strong>Type of Offense: </strong> {crimesCase.Offense}
+                  <strong>Gender: </strong> {unIDcase.gender}
                 </p>
                 <p className="card-text">
-                  <strong>Date of Offense: </strong>{" "}
-                  <Moment format="MM/DD/YYYY">{crimesCase.Date}</Moment>
+                  <strong>Ethnicity: </strong> {unIDcase.ethinicity}
                 </p>
                 <p className="card-text">
-                  <strong>Incident Day of Week: </strong>{" "}
-                  <Moment format="dddd">{crimesCase.Date}</Moment>
+                  <strong>Date Found: </strong>{" "}
+                  <Moment format="MM/DD/YYYY">{unIDcase.date_found}</Moment>
+                </p>
+                <p className="card-text">
+                  <strong>Found Day of Week: </strong>{" "}
+                  <Moment format="dddd">{unIDcase.date_found}</Moment>
                 </p>
                 <p className="card-text">
                   <strong>Description: </strong>{" "}
-                  {crimesCase.Descript || crimesCase.Description}
+                  {unIDcase.circumstancesOfRecovery}
                 </p>
                 <br />
               </div>
@@ -135,13 +137,15 @@ const CrimesCase = ({
   );
 };
 
-CrimesCase.propTypes = {
-  getCrimesCase: PropTypes.func.isRequired,
-  crimes: PropTypes.object.isRequired
+UnidentifiedCase.propTypes = {
+  getUnidentifiedCase: PropTypes.func.isRequired,
+  unidentified: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  crimes: state.crimes
+  unidentified: state.unidentified
 });
 
-export default connect(mapStateToProps, { getCrimesCase })(CrimesCase);
+export default connect(mapStateToProps, { getUnidentifiedCase })(
+  UnidentifiedCase
+);

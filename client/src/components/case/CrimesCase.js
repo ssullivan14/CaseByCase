@@ -19,7 +19,7 @@ const CrimesCase = ({
 
   return (
     <Fragment>
-      {crimesCase === null || crimeLoading ? (
+      {crimesCase === undefined || crimeLoading ? (
         <Spinner />
       ) : (
         <Fragment>

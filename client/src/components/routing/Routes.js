@@ -21,6 +21,7 @@ import CreateProfile from "../profile-forms/CreateProfile";
 import EditProfile from "../profile-forms/EditProfile";
 import NamusCase from "../case/NamusCase";
 import CrimeCase from "../case/CrimesCase";
+import UnidentifiedCase from "../case/UnidentifiedCase";
 
 const Routes = () => {
   return (
@@ -45,6 +46,11 @@ const Routes = () => {
         <PrivateRoute exact path="/case/:id" component={Case} />
         <Route exact path="/namus/case/:id" component={NamusCase} />
         <Route exact path="/crimes/case/:id" component={CrimeCase} />
+        <Route
+          exact
+          path="/unidentified/case/:id"
+          component={UnidentifiedCase}
+        />
         <Route component={NotFound} />
       </Switch>
     </section>
