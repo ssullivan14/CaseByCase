@@ -7,11 +7,6 @@ const favCase = require('../../models/Favorites');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
-const auth = require('../../middleware/auth');
-const {
-    check,
-    validationResult
-} = require('express-validator');
 
 //@route    Post api/favorites
 //@desc     Create a favorite
@@ -41,20 +36,49 @@ router.post('/', async (req, res) => {
 });
 
 
-//@route   GET api/favorites
-//@desc    GET ALL FAVS
-router.get('/', async (req, res) => {
+// @route   Delete api/favorites/:id
+// @desc    Delete favorite case
+// @access  Public
+router.delete('/:id', async (req, res) => {
     try {
-        const favs = await favPosts.find().sort({
-            Date_Added: -1
+        const favs = await favCase.findById(req.params.id);
+
+        // Check user
+        if (favs.users.id !== req.body.users.id) {
+            return res.status(401).json({
+                msg: 'No saved case found'
+            });
+        }
+
+        await favs.remove();
+
+        res.json({
+            msg: 'Saved case removed'
         });
-        res.json(favs);
     } catch (err) {
         console.log(err.message);
         res.status(500).send('Server error');
     }
 });
 
+//@route   GET API/FAVORITES 
+//@desc    GET FAVs by ID
+//@access  Public
+router.get('/:id', async (req, res) => {
+    try {
+        const favs = await favPosts.findById(req.params.id);
+
+        if (!favs) {
+            return res.status(404).json({
+                msg: 'Fav not found'
+            });
+        }
+        res.json(favs);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server error');
+    }
+});
 
 
 module.exports = router;
