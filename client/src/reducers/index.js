@@ -5,6 +5,7 @@ import profile from './profile';
 import post from './post';
 import namus from './namus';
 import crimes from './crimes';
+import unidentified from './unidentified';
 
 export default combineReducers({
     alert,
@@ -12,5 +13,6 @@ export default combineReducers({
     profile,
     post,
     namus,
-    crimes
+    crimes,
+    unidentified
 });

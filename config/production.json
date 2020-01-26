@@ -1,0 +1,6 @@
+{
+    "mongoURI": "mongodb://casebycaseadmin:password1@ds259518.mlab.com:59518/heroku_vbtj03qx",
+    "jwtSecret": "afraidCOWSpowerMEASURE68",
+    "githubClientId": "5fdf3dfb5be32ab3cf9d",
+    "githubSecret": "739355e296ebfd5531a5a61b017fffb79c2f5db1"
+}

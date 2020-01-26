@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getNamus } from '../../actions/namus';
 import { getCrimes } from '../../actions/crimes';
+import { getUnidentified } from '../../actions/unidentified';
 import Spinner from '../Layout/Spinner/Spinner';
 import Pagination from './Pagination';
 import MissingPersonItem from './MissingPersonItem';
 import SocrataItem from './SocrataItem';
+import UnidentifiedPersonItem from './UnidentifiedPersonItem';
+import ConfirmModal from './ConfirmModal';
 import './Results.css';
 
 
@@ -16,8 +19,9 @@ const Results = ({
 	getNamus,
 	namus: { persons, loading },
 	getCrimes,
-	crimes: { incidents, crimeLoading }
-
+	crimes: { incidents, crimeLoading },
+	getUnidentified,
+	unidentified: { unIDpersons, unIDloading }
 }) => {
 	// Get search request out of local storage and convert back to an object
 	const searchRequest = JSON.parse(localStorage.getItem('searchRequest'));
@@ -33,13 +37,14 @@ const Results = ({
 				getNamus(searchRequest);
 				break;
 			case 'unidentified persons':
-				console.log('Unidentified persons search');
+				getUnidentified(searchRequest);
 				break;
 			default:
 				getCrimes(searchRequest);
 		}
-	}, [getNamus, getCrimes]);
+	}, [getNamus, getCrimes, getUnidentified]);
 
+	// Setup different result headers
 	const socrataHeader = (
 		<Fragment>
 			<th scope='col'></th>
@@ -54,23 +59,21 @@ const Results = ({
 
 	const unidentifiedHeader = (
 		<Fragment>
+			<th scope='col'></th>
 			<th scope='col'>Case Number</th>
 			<th scope='col'>Date Found</th>
+			<th scope='col'>Gender</th>
+			<th scope='col'>Estimated Age</th>
 			<th scope='col'>Description</th>
-			<th scope='col'>Address</th>
-			<th scope='col'>Location Details</th>
+			<th scope='col'>Location</th>
 			<th scope='col'>Images</th>
 		</Fragment>
 	);
-	
-	function waitForResults(variable){
-		if(typeof variable !== "undefined"){
-			getCurrentResults = variable.slice(
-				indexofFirstResult,
-				indexOfLastResult
-			);
-		}
-		else{
+
+	function waitForResults(variable) {
+		if (typeof variable !== 'undefined') {
+			getCurrentResults = variable.slice(indexofFirstResult, indexOfLastResult);
+		} else {
 			setTimeout(waitForResults, 1000);
 		}
 	}
@@ -84,7 +87,7 @@ const Results = ({
 			waitForResults(persons);
 			break;
 		case 'unidentified persons':
-			console.log('Unidentified persons search');
+			waitForResults(unIDpersons);
 			break;
 		case 'assault':
 		case 'battery':
@@ -100,10 +103,16 @@ const Results = ({
 	const paginate = pageNumber => setCurrentPage(pageNumber);
 
 	return (loading && persons === null) ||
-		(crimeLoading && incidents === null) ? (
+		(crimeLoading && incidents === null) ||
+		(unIDloading && unIDpersons === null) ? (
 		<Spinner />
 	) : (
 		<Fragment>
+			{searchRequest.incidentType === 'unidentified persons' ? (
+				<ConfirmModal />
+			) : (
+				<Fragment></Fragment>
+			)}
 			<div className='row'>
 				<div className='col-md-12'>
 					<Link to='/search' className='btn btn-secondary back-btn'>
@@ -134,7 +143,10 @@ const Results = ({
 				</thead>
 				<tbody>
 					{searchRequest.incidentType === 'unidentified persons' ? (
-						unidentifiedHeader
+						<UnidentifiedPersonItem
+							persons={getCurrentResults}
+							loading={unIDloading}
+						/>
 					) : searchRequest.incidentType === 'missing person' ? (
 						<MissingPersonItem persons={getCurrentResults} loading={loading} />
 					) : (
@@ -155,12 +167,19 @@ Results.propTypes = {
 	getNamus: PropTypes.func.isRequired,
 	namus: PropTypes.object.isRequired,
 	getCrimes: PropTypes.func.isRequired,
-	crimes: PropTypes.object.isRequired
+	crimes: PropTypes.object.isRequired,
+	getUnidentified: PropTypes.func.isRequired,
+	unidentified: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
 	namus: state.namus,
-	crimes: state.crimes
+	crimes: state.crimes,
+	unidentified: state.unidentified
 });
 
-export default connect(mapStateToProps, { getNamus, getCrimes })(Results);
+export default connect(mapStateToProps, {
+	getNamus,
+	getCrimes,
+	getUnidentified
+})(Results);
