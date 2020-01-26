@@ -34,7 +34,7 @@ const CrimesCase = ({
           <h1 className="page-header">Case #{match.params.id}</h1>
           <p className="lead">
             <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;
-            {crimesCase.state} > Crime Case
+            {crimesCase.State} > Crime Case
           </p>
           <h5>
             <strong>Case Number: </strong>
