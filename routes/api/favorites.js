@@ -50,11 +50,11 @@ router.post('/:id', auth, async (req, res) => {
 // @route   Delete api/favorites/:id
 // @desc    Delete favorite case
 // @access  Private
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select(
-			'-password -email -avatar -date'
-		);
+            '-password -email -avatar -date'
+        ); 
         const favs = await favCase.findOneAndUpdate({$pull: {Users: { _id: user._id, name: user.name}}});
 
         res.json({
