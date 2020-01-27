@@ -44,9 +44,6 @@ const UnidentifiedCase = ({
             <div className="col-md-5">
               <div className="card-body">
                 <p className="card-text">
-                  <strong>City: </strong> {unIDcase.city}
-                </p>
-                <p className="card-text">
                   <strong>Gender: </strong> {unIDcase.gender}
                 </p>
                 <p className="card-text">
