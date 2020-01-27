@@ -10,6 +10,9 @@ const FavoritesSchema = new mongoose.Schema({
             type: String
         }
     }],
+    id: {
+        type: String
+    },
     Case_Number: {
         type: String
     },
@@ -17,6 +20,9 @@ const FavoritesSchema = new mongoose.Schema({
         type: Date
     },
     Description: {
+        type: String
+    },
+    State: {
         type: String
     },
     Link: {
