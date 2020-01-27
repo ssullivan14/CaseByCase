@@ -5,23 +5,13 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getNamusCase } from "../../actions/namus";
+import CommentForm from "./CommentForm";
 
 const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
   useEffect(() => {
     getNamusCase(match.params.id);
   }, [getNamusCase]);
   console.log("showing namusCase: " + namusCase);
-
-  // function waitForResults(variable) {
-  //   if (typeof variable !== "undefined") {
-  //     // wait
-
-  //   } else {
-  //     setTimeout(waitForResults, 1000);
-  //   }
-  // }
-
-  // let check = waitForResults(namusCase);
 
   return (
     <Fragment>
@@ -114,6 +104,16 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
             </div>
           </div>
           <h3 className="page-header spacer">Comments</h3>
+          <CommentForm postId={namusCase._id} />
+          {/* <div className="comments">
+            {post.comments.map(comment => (
+              <CommentItem
+                key={comment._id}
+                comment={comment}
+                postId={namusCase._id}
+              />
+            ))}
+          </div> */}
           <div class="post bg-comment p-1 my-1">
             <div>
               <Link to="!#">

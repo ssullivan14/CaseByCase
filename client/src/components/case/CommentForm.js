@@ -6,6 +6,21 @@ import { addComment } from "../../actions/post";
 const CommentForm = ({ caseId, addComment }) => {
   const [text, setText] = useState("");
 
+  // pass span id value along with form data to select proper action to take
+
+  // switch case using
+
+  // switch (searchRequest.incidentType) {
+  //     case 'missing person':
+  //         getNamus(searchRequest);
+  //         break;
+  //     case 'unidentified persons':
+  //         getUnidentified(searchRequest);
+  //         break;
+  //     default:
+  //         getCrimes(searchRequest);
+  // }
+
   return (
     <div className="post-form">
       <div className="post-form-header">
