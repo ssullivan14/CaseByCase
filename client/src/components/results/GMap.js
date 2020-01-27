@@ -30,7 +30,9 @@ const Map = () => {
       defaultOptions={{ styles: mapStyles }}
     >
       {locations.map(locations => (
-        <Marker position={locations} />
+        <Marker 
+        key={locations.name}
+        position={locations} />
       ))}
     </GoogleMap>
   );
@@ -55,7 +57,7 @@ export default function GMap({ persons, loading }) {
     let temp = {};
     temp["lat"] = parseFloat(person.latitude);
     temp["lng"] = parseFloat(person.longitude);
-    // temp.name = person._id;
+    temp.name = person._id;
     locations.push(temp);
 
   });

@@ -30,15 +30,15 @@ export default function GMap({ persons }) {
       <GoogleMap
         defaultZoom={10}
         defaultCenter={{ 
-          lat: persons.latitude, 
-          lng: persons.longitude
+          lat: parseFloat(persons.latitude),  
+          lng: parseFloat(persons.longitude)
         }}
         defaultOptions={{ styles: mapStyles }}
       >
         {
           <Marker position={{ 
-            lat: persons.latitude, 
-            lng: persons.longitude
+            lat: parseFloat(persons.latitude), 
+            lng: parseFloat(persons.longitude)
           }} />
         }
       </GoogleMap>
