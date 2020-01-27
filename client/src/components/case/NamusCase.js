@@ -29,8 +29,8 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
           </div>
           <h1 className="page-header">Case #{namusCase.namus2Number}</h1>
           <p className="lead">
-            <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;VA >
-            Missing Person
+            <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;
+            {namusCase.State_Of_Last_Contact} > Missing Person
           </p>
           <h5>
             {namusCase.First_Name} {namusCase.Middle_Name} {namusCase.Last_Name}
@@ -54,7 +54,6 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
                   <strong>Age at Time of Disappearance:</strong>{" "}
                   {namusCase.Computed_Missing_Min_Age}
                 </p>
-                <br />
                 <p className="card-text">
                   <strong>Current Age:</strong> {namusCase.Current_Age_To}
                 </p>
@@ -76,38 +75,21 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-6 spacer">
-              <h5>Attachments</h5>
-              <ul>
-                <li>
-                  <i class="fas fa-paperclip text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">IncidentReport.docx</a>
-                </li>
-                <li>
-                  <i class="fas fa-paperclip text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">WitnessTestimony.docx</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-6 spacer">
+            <div className="col-md-10 spacer">
               <h5>Links</h5>
               <ul>
                 <li>
                   <i className="fas fa-link text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">YouTube video - Witness report</a>
-                </li>
-                <li>
-                  <i className="fas fa-link text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">News article on wtv10.com</a>
+                  <a href={namusCase.link} target="_blank">
+                    Official Namus Case File
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
-          <GMap 
-            persons={namusCase} 
-			  	  		/>
+          <GMap persons={namusCase} />
           <h3 className="page-header spacer">Comments</h3>
-          
+
           {/* <div className="comments">
             {post.comments.map(comment => (
               <CommentItem
