@@ -50,53 +50,60 @@ const UnidentifiedCase = ({
                   <strong>Ethnicity: </strong> {unIDcase.ethinicity}
                 </p>
                 <p className="card-text">
-                  <strong>Estimated Age Range: </strong>{" "}
-                  {unIDcase.estimated_age_from
-                    ? <span>{unIDcase.estimated_age_from}</span> &&
-                      "-" && <span>{unIDcase.estimated_age_to}</span> &&
-                      "years old"
-                    : "No Details Available"}
+                  <strong>Estimated Age Range (Years): </strong>{" "}
+                  {unIDcase.estimated_age_from && unIDcase.estimated_age_to ? (
+                    <span>
+                      {unIDcase.estimated_age_from} -{" "}
+                      {unIDcase.estimated_age_to}
+                    </span>
+                  ) : (
+                    <span>
+                      {unIDcase.estimated_age_from} {unIDcase.estimated_age_to}
+                    </span>
+                  )}
                 </p>
                 <p className="card-text">
-                  <strong>Estimated Weight Range: </strong>{" "}
-                  {unIDcase.estimated_weight_from
-                    ? ((
-                        <span>
-                          {unIDcase.estimated_weight_from}, "-",
-                          {unIDcase.estimated_weight_to}
-                        </span>
-                      ),
-                      "lbs.")
-                    : "No Details Available"}
+                  <strong>Estimated Weight Range (Pounds): </strong>{" "}
+                  {unIDcase.estimated_weight_from &&
+                  unIDcase.estimated_weight_to ? (
+                    <span>
+                      {unIDcase.estimated_weight_from} -{" "}
+                      {unIDcase.estimated_weight_to}
+                    </span>
+                  ) : (
+                    <span>
+                      {unIDcase.estimated_weight_from}{" "}
+                      {unIDcase.estimated_weight_to}
+                    </span>
+                  )}
                 </p>
                 <p className="card-text">
-                  <strong>Estimated Height Range: </strong>{" "}
-                  {unIDcase.estimated_height_from !== null
-                    ? (unIDcase.estimated_height_from,
-                      "-",
-                      unIDcase.estimated_height_to)
-                    : "No Details Available"}
+                  <strong>Estimated Height Range (inches): </strong>{" "}
+                  {unIDcase.estimated_height_from &&
+                  unIDcase.estimated_height_to ? (
+                    <span>
+                      {unIDcase.estimated_height_from} -{" "}
+                      {unIDcase.estimated_height_to}
+                    </span>
+                  ) : (
+                    <span>
+                      {unIDcase.estimated_height_from}{" "}
+                      {unIDcase.estimated_height_to}
+                    </span>
+                  )}
                 </p>
                 <p className="card-text">
                   <strong>Hair Color: </strong>{" "}
                   {unIDcase.physicalDescription_hairColor}
                 </p>
                 <p className="card-text">
-                  <strong>Hair Details: </strong>{" "}
-                  {unIDcase.headHairDescription ? (
-                    <span>{unIDcase.headHairDescription}</span>
-                  ) : (
-                    "No Details Available"
-                  )}
+                  <strong>Hair Details: </strong> {unIDcase.headHairDescription}
                 </p>
                 <p className="card-text">
                   <strong>Left Eye Color: </strong> {unIDcase.leftEyeColor}
                 </p>
                 <p className="card-text">
-                  <strong>Right Eye Color: </strong>{" "}
-                  {unIDcase.rightEyeColor === ""
-                    ? "No Details Available"
-                    : unIDcase.rightEyeColor}
+                  <strong>Right Eye Color: </strong> {unIDcase.rightEyeColor}
                 </p>
                 <p className="card-text">
                   <strong>Physical Description: </strong>{" "}
@@ -161,31 +168,9 @@ const UnidentifiedCase = ({
             </div>
           </div>
           <div className="row">
-            <div className="col-md-6 spacer">
-              <h5>Attachments</h5>
-              <ul>
-                <li>
-                  <i class="fas fa-paperclip text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">IncidentReport.docx</a>
-                </li>
-                <li>
-                  <i class="fas fa-paperclip text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">WitnessTestimony.docx</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-6 spacer">
+            <div className="col-md-10 spacer">
               <h5>Links</h5>
-              <ul>
-                <li>
-                  <i className="fas fa-link text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">YouTube video - Witness report</a>
-                </li>
-                <li>
-                  <i className="fas fa-link text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">News article on wtv10.com</a>
-                </li>
-              </ul>
+              <p>None Added</p>
             </div>
           </div>
           <GMap
