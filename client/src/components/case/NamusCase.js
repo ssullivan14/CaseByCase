@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getNamusCase } from "../../actions/namus";
+import GMap from "./GMap";
 
 const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
   useEffect(() => {
@@ -50,6 +51,9 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
               <img src={namusCase.image} className="card-img" />
             </div>
             <div className="col-md-10">
+            <GMap 
+            persons={namusCase} 
+			  	  		/>
               <div className="card-body">
                 <p className="card-text">
                   <strong>Area of Last Contact: </strong>{" "}

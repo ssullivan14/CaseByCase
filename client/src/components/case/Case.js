@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import GMap from "./GMap";
 
 const Case = ({ match }) => {
     const caseNumber = match.params.id;
-
     return (
         <Fragment>
             <div className='row'>
