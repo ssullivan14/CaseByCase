@@ -37,7 +37,7 @@ const UnidentifiedPersonItem = ({ persons, loading, postFavs }) => {
 								person.circumstancesOfRecovery
 							)}><i className="far fa-heart"></i></Button>
 						</td>
-						<th>{person.casenumber}</th>
+						<th><Link to={`/unidentified/case/${person._id}`}>{person.casenumber}</Link></th>
 						<td>
 							<Moment format='MM/DD/YYYY hh:mm A'>{person.date_found}</Moment>
 						</td>
