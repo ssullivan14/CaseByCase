@@ -27,7 +27,7 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
               </Link>
             </div>
           </div>
-          <h1 className="page-header">Case #{match.params.id}</h1>
+          <h1 className="page-header">Case #{namusCase.namus2Number}</h1>
           <p className="lead">
             <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;VA >
             Missing Person
