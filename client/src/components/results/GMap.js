@@ -41,37 +41,27 @@ export default function GMap({ persons, loading }) {
   locations = [];
   let mapLoaded = false;
 
-
-  // console.log(persons);
+    // console.log(persons);
 
   persons.forEach(person => {
 
-  //   console.log(String(person.latitude));
-  //   console.log(String(person.longitude));
+    // console.log(String(person.latitude));
+    // console.log(String(person.longitude));
     // console.log(person.latitude);
     // console.log(person.longitude);
     // console.log(person._id);
     
-    // console.log(tempKey)
-    // console.log(nameKey)
-    
-    //Missing Person
+    //Builds Object for Marker Positions > Pushes to Locations variable
     let temp = {};
     temp["lat"] = parseFloat(person.latitude);
     temp["lng"] = parseFloat(person.longitude);
     // temp.name = person._id;
     locations.push(temp);
-    
-    //Crime
-    // console.log(person.Block);
 
   });
   if (locations.length) {
     mapLoaded = true;
   }
-  // return locations
-
-  // console.log("locations: " + locations);
 
   return (
     <div style={{ width: "100%", height: "40vh" }}>
