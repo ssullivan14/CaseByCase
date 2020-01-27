@@ -29,7 +29,7 @@ const Dashboard = ({
 				</p>
 				<div className='row'>
 					<div className='col-md-8'>
-						<SavedCases user={user} />
+						<SavedCases user={user} profile={profile}/>
 					</div>
 					<div className='col-md-4'>
 						<RecentPosts />
