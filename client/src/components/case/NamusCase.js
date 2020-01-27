@@ -40,9 +40,6 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
               <img src={namusCase.image} className="card-img" />
             </div>
             <div className="col-md-10">
-            <GMap 
-            persons={namusCase} 
-			  	  		/>
               <div className="card-body">
                 <p className="card-text">
                   <strong>Area of Last Contact: </strong>{" "}
@@ -106,6 +103,9 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
               </ul>
             </div>
           </div>
+          <GMap 
+            persons={namusCase} 
+			  	  		/>
           <h3 className="page-header spacer">Comments</h3>
           
           {/* <div className="comments">
