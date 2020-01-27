@@ -24,6 +24,7 @@ app.use('/api/namus', require('./routes/api/namus'));
 app.use('/api/crimes', require('./routes/api/crimes'));
 app.use('/api/unidentified', require('./routes/api/unidentified'));
 app.use('/api/favorites', require('./routes/api/favorites'));
+app.use('/api/case-comments', require('./routes/api/casecomments'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
