@@ -3,8 +3,9 @@ import { getFavs } from '../../actions/favorites';
 import { connect } from 'react-redux';
 import Spinner from '../Layout/Spinner/Spinner';
 import PropTypes from 'prop-types';
+import SavedCaseItem from './SavedCaseItem';
 
-const SavedCases = ({ user, getFavs, favs }) => {
+const SavedCases = ({ user, getFavs, favorites : { favs } }) => {
     useEffect(() => {
         getFavs(user._id);
     }, [getFavs]);
@@ -26,34 +27,7 @@ const SavedCases = ({ user, getFavs, favs }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>ME2017-03860</td>
-                            <td>08/19/2017</td>
-                            <td>White Male, 123 lbs, 5’9”; the jaw has been previously broken with metal hardware; Clothing: blue flannel boxers, white socks, one black “Nike” sandal</td>
-                            <td>IL</td>
-                            <td>Tony</td>
-                        </tr>
-                        <tr>
-                            <td>17.09171</td>
-                            <td>08/17/2019</td>
-                            <td>Simple Assault</td>
-                            <td>IL</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>17.09159</td>
-                            <td>08/16/2019</td>
-                            <td>Shots Fired</td>
-                            <td>IL</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>MP4890</td>
-                            <td>12/07/2009</td>
-                            <td>Susan was last seen by family and friends on December 6, 2009 and her husband shortly after midnight on the 7th of December.</td>
-                            <td>UT</td>
-                            <td>Sara</td>
-                        </tr>
+                        <SavedCaseItem favorites={favs} />
                     </tbody>
                 </table>
 			</div>
@@ -63,11 +37,11 @@ const SavedCases = ({ user, getFavs, favs }) => {
 
 SavedCases.propTypes = {
   getFavs: PropTypes.func.isRequired,
-  favs: PropTypes.object.isRequired,
+  favorites: PropTypes.object.isRequired,
 
 };
  const mapStateToProps = state => ({
-     favs: state.favs
+     favorites: state.favorites
  });
 
 export default connect(mapStateToProps,{ getFavs })(SavedCases);
