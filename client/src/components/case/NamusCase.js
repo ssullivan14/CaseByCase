@@ -13,17 +13,6 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
   }, [getNamusCase]);
   console.log("showing namusCase: " + namusCase);
 
-  // function waitForResults(variable) {
-  //   if (typeof variable !== "undefined") {
-  //     // wait
-
-  //   } else {
-  //     setTimeout(waitForResults, 1000);
-  //   }
-  // }
-
-  // let check = waitForResults(namusCase);
-
   return (
     <Fragment>
       {namusCase === undefined || loading ? (
@@ -118,7 +107,7 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
             </div>
           </div>
           <h3 className="page-header spacer">Comments</h3>
-          <CommentForm postId={namusCase._id} />
+          
           {/* <div className="comments">
             {post.comments.map(comment => (
               <CommentItem
