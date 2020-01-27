@@ -29,7 +29,7 @@ const UnidentifiedPersonItem = ({ persons, loading, postFavs }) => {
 				{persons.map(person => (
 					<tr key={person._id}>
 						<td>
-							<Button className="btn float-right" onClick={() => addFavorite(
+							<Button className="btn float-right fav-btn" onClick={() => addFavorite(
 								person._id,
 								person.casenumber,
 								person.date_found,

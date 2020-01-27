@@ -82,8 +82,6 @@ router.get('/:id', async (req, res) => {
 			{ Users: { $elemMatch: { _id: user._id } }
 		});
 
-		console.log(favs);
-
 		if (!favs) {
 			return res.status(404).json({
 				msg: 'Fav not found'

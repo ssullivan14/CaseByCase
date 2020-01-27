@@ -42,7 +42,7 @@ const MissingPersonItem = ({ persons, loading, postFavs }) => {
               >
                 <i className="fas fa-external-link-alt"></i>
               </a>
-              <Button className="btn float-right" onClick={() => addFavorite(
+              <Button className="btn float-right fav-btn" onClick={() => addFavorite(
                 person._id,
                 person.namus2Number,
                 person.Date_Of_Last_Contact,

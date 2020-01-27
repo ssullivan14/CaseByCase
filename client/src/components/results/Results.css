@@ -28,3 +28,8 @@
     background-color: #464E56 !Important;
     border: solid 1px #32383e;
 }
+
+.fav-btn, .fav-btn:hover, .fav-btn:active {
+    background: none;
+    color: #212529;
+}
