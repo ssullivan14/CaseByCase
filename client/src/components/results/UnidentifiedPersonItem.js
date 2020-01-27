@@ -1,55 +1,80 @@
 import React, { Fragment } from 'react';
+import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import Spinner from '../Layout/Spinner/Spinner';
 import { Link } from 'react-router-dom';
-// import Favorites from '../../actions/favorites';
+import { Button } from 'react-bootstrap';
+import { connect } from "react-redux";
+import { postFavs } from '../../actions/favorites';
 
-const UnidentifiedPersonItem = ({ persons, loading }) => {
+const UnidentifiedPersonItem = ({ persons, loading, postFavs }) => {
+	const addFavorite = (id, casenumber, date_found, state, circumstancesOfRecovery) => {
+		const link = `unidentified/case/${id}`
+		const favObject = {
+			id: id,
+			Case_Number: casenumber,
+			Date: date_found,
+			State: state,
+			Description: circumstancesOfRecovery,
+			Link: link
+		}
+
+		postFavs(favObject);
+	};
+
 	return loading && persons === null ? (
 		<Spinner />
 	) : (
-		<Fragment>
-			{persons.map(person => (
-				<tr key={person._id}>
-					<td>
-						<a href='#!' className='btn float-right'>
-							<i className='far fa-heart'></i>
-						</a>
-					</td>
-					<th>{person.casenumber}</th>
-					<td>
-						<Moment format='MM/DD/YYYY hh:mm A'>{person.date_found}</Moment>
-					</td>
-					<td>{person.gender}</td>
-					{person.estimated_age_from && person.estimated_age_to ? (
+			<Fragment>
+				{persons.map(person => (
+					<tr key={person._id}>
 						<td>
-							{person.estimated_age_from} - {person.estimated_age_to}
+							<Button className="btn float-right" onClick={() => addFavorite(
+								person._id,
+								person.casenumber,
+								person.date_found,
+								person.state,
+								person.circumstancesOfRecovery
+							)}><i className="far fa-heart"></i></Button>
 						</td>
-					) : (
-						<td>{person.estimated_age_from} {person.estimated_age_to}</td>
-					)}
-					<td>{person.circumstancesOfRecovery}</td>
+						<th>{person.casenumber}</th>
+						<td>
+							<Moment format='MM/DD/YYYY hh:mm A'>{person.date_found}</Moment>
+						</td>
+						<td>{person.gender}</td>
+						{person.estimated_age_from && person.estimated_age_to ? (
+							<td>
+								{person.estimated_age_from} - {person.estimated_age_to}
+							</td>
+						) : (
+								<td>{person.estimated_age_from} {person.estimated_age_to}</td>
+							)}
+						<td>{person.circumstancesOfRecovery}</td>
 
-					{person.city ? (
-						<td>
-							{person.city}, {person.state}
-						</td>
-					) : (
-						<td>{person.state}</td>
-					)}
-					{person.images ? (
-						<td>
-							<a href={`https://www.namus.gov` + person.images} target='_blank'>
-								<i class='fas fa-external-link-alt'></i>
-							</a>
-						</td>
-					) : (
-						<td></td>
-					)}
-				</tr>
-			))}
-		</Fragment>
-	);
+						{person.city ? (
+							<td>
+								{person.city}, {person.state}
+							</td>
+						) : (
+								<td>{person.state}</td>
+							)}
+						{person.images ? (
+							<td>
+								<a href={`https://www.namus.gov` + person.images} target='_blank'>
+									<i class='fas fa-external-link-alt'></i>
+								</a>
+							</td>
+						) : (
+								<td></td>
+							)}
+					</tr>
+				))}
+			</Fragment>
+		);
 };
 
-export default UnidentifiedPersonItem;
+UnidentifiedPersonItem.propTypes = {
+	getFavs: PropTypes.func.isRequired
+}
+
+export default connect(null, { postFavs })(UnidentifiedPersonItem);

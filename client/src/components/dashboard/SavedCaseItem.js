@@ -14,7 +14,7 @@ const SavedCaseItem = ({ favorites }) => {
                         <td><Link to={favorite.Link}>{favorite.Case_Number}</Link></td>
                         <td><Moment format='MM/DD/YYYY hh:mm A'>{favorite.Date_Of_Incident}</Moment></td>
                         <td>{favorite.Description}</td>
-                        <td>Oops</td>
+                        <td>{favorite.State}</td>
                         <td>Users</td>
                     </tr>
                 ))}
