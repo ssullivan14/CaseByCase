@@ -41,7 +41,7 @@ const UnidentifiedCase = ({
             {unIDcase.casenumber}
           </h5>
           <div className="row no-gutters">
-            <div className="col-md-10">
+            <div className="col-md-5">
               <div className="card-body">
                 <p className="card-text">
                   <strong>City: </strong> {unIDcase.city}
@@ -58,7 +58,7 @@ const UnidentifiedCase = ({
                     ? <span>{unIDcase.estimated_age_from}</span> &&
                       "-" && <span>{unIDcase.estimated_age_to}</span> &&
                       "years old"
-                    : "No Details Available"}        
+                    : "No Details Available"}
                 </p>
                 <p className="card-text">
                   <strong>Estimated Weight Range: </strong>{" "}
@@ -105,6 +105,11 @@ const UnidentifiedCase = ({
                   <strong>Physical Description: </strong>{" "}
                   {unIDcase.physicalFeatureDescription}
                 </p>
+                {/* Page Break */}
+              </div>
+            </div>
+            <div className="col-md-5">
+              <div className="card-body">
                 <p className="card-text">
                   <strong>Date Found: </strong>{" "}
                   <Moment format="MM/DD/YYYY">{unIDcase.date_found}</Moment>
@@ -133,6 +138,10 @@ const UnidentifiedCase = ({
                   <strong>Location of Clothing and Accessories : </strong>{" "}
                   {unIDcase.clothingAndAccessories_location}
                 </p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-10">
                 <p>
                   <a
                     href={`https://www.namus.gov` + unIDcase.images}
@@ -182,12 +191,12 @@ const UnidentifiedCase = ({
               </ul>
             </div>
           </div>
-          <GMap 
-            persons={{ 
-              latitude: parseInt(unIDcase.latitude), 
+          <GMap
+            persons={{
+              latitude: parseInt(unIDcase.latitude),
               longitude: parseInt(unIDcase.longitude)
             }}
-			  	  		/>
+          />
           <h3 className="page-header spacer">Comments</h3>
           <div class="post bg-comment p-1 my-1">
             <div>
