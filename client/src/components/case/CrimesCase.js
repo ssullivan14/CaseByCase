@@ -38,17 +38,11 @@ const CrimesCase = ({
             {crimesCase.State} > Crime Case
           </p>
           <h5>
-            <strong>Case Number: </strong>
-            {crimesCase.Case_Number}
+            <strong>Type of Offense: </strong> {crimesCase.Offense}
           </h5>
-          <div style={{position: "static"}} className="row no-gutters">
-
+          <div style={{ position: "static" }} className="row no-gutters">
             <div className="col-md-10">
-
               <div className="card-body">
-                <p className="card-text">
-                  <strong>Type of Offense: </strong> {crimesCase.Offense}
-                </p>
                 <p className="card-text">
                   <strong>Date of Offense: </strong>{" "}
                   <Moment format="MM/DD/YYYY">{crimesCase.Date}</Moment>
@@ -66,36 +60,12 @@ const CrimesCase = ({
             </div>
           </div>
           <div className="row">
-            <div className="col-md-6 spacer">
-              <h5>Attachments</h5>
-              <ul>
-                <li>
-                  <i class="fas fa-paperclip text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">IncidentReport.docx</a>
-                </li>
-                <li>
-                  <i class="fas fa-paperclip text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">WitnessTestimony.docx</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-6 spacer">
+            <div className="col-md-10 spacer">
               <h5>Links</h5>
-              <ul>
-                <li>
-                  <i className="fas fa-link text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">YouTube video - Witness report</a>
-                </li>
-                <li>
-                  <i className="fas fa-link text-muted"></i>&nbsp;&nbsp;
-                  <a href="!#">News article on wtv10.com</a>
-                </li>
-              </ul>
+              <p>None Added</p>
             </div>
           </div>
-          <GMap 
-            persons={crimesCase} 
-			  	  		/>
+          <GMap persons={crimesCase} />
           <h3 className="page-header spacer">Comments</h3>
           <div class="post bg-comment p-1 my-1">
             <div>
