@@ -7,7 +7,6 @@ import Spinner from "../Layout/Spinner/Spinner";
 import { getUnidentifiedCase } from "../../actions/unidentified";
 import GMap from "./GMap";
 
-
 const UnidentifiedCase = ({
   getUnidentifiedCase,
   unidentified: { unIDcase, unIDloading },
@@ -32,7 +31,7 @@ const UnidentifiedCase = ({
               </Link>
             </div>
           </div>
-          <h1 className="page-header">Case #{match.params.id}</h1>
+          <h1 className="page-header">Case #{unIDcase.casenumber}</h1>
           <p className="lead">
             <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;
             {unIDcase.state} > Unidenfied Persons
@@ -51,10 +50,66 @@ const UnidentifiedCase = ({
 			  	  		/>
               <div className="card-body">
                 <p className="card-text">
+                  <strong>City: </strong> {unIDcase.city}
+                </p>
+                <p className="card-text">
                   <strong>Gender: </strong> {unIDcase.gender}
                 </p>
                 <p className="card-text">
                   <strong>Ethnicity: </strong> {unIDcase.ethinicity}
+                </p>
+                <p className="card-text">
+                  <strong>Estimated Age Range: </strong>{" "}
+                  {unIDcase.estimated_age_from
+                    ? <span>{unIDcase.estimated_age_from}</span> &&
+                      "-" && <span>{unIDcase.estimated_age_to}</span> &&
+                      "years old"
+                    : "No Details Available"}        
+                </p>
+                <p className="card-text">
+                  <strong>Estimated Weight Range: </strong>{" "}
+                  {unIDcase.estimated_weight_from
+                    ? ((
+                        <span>
+                          {unIDcase.estimated_weight_from}, "-",
+                          {unIDcase.estimated_weight_to}
+                        </span>
+                      ),
+                      "lbs.")
+                    : "No Details Available"}
+                </p>
+                <p className="card-text">
+                  <strong>Estimated Height Range: </strong>{" "}
+                  {unIDcase.estimated_height_from !== null
+                    ? (unIDcase.estimated_height_from,
+                      "-",
+                      unIDcase.estimated_height_to)
+                    : "No Details Available"}
+                </p>
+                <p className="card-text">
+                  <strong>Hair Color: </strong>{" "}
+                  {unIDcase.physicalDescription_hairColor}
+                </p>
+                <p className="card-text">
+                  <strong>Hair Details: </strong>{" "}
+                  {unIDcase.headHairDescription ? (
+                    <span>{unIDcase.headHairDescription}</span>
+                  ) : (
+                    "No Details Available"
+                  )}
+                </p>
+                <p className="card-text">
+                  <strong>Left Eye Color: </strong> {unIDcase.leftEyeColor}
+                </p>
+                <p className="card-text">
+                  <strong>Right Eye Color: </strong>{" "}
+                  {unIDcase.rightEyeColor === ""
+                    ? "No Details Available"
+                    : unIDcase.rightEyeColor}
+                </p>
+                <p className="card-text">
+                  <strong>Physical Description: </strong>{" "}
+                  {unIDcase.physicalFeatureDescription}
                 </p>
                 <p className="card-text">
                   <strong>Date Found: </strong>{" "}
@@ -65,10 +120,43 @@ const UnidentifiedCase = ({
                   <Moment format="dddd">{unIDcase.date_found}</Moment>
                 </p>
                 <p className="card-text">
-                  <strong>Description: </strong>{" "}
+                  <strong>Address Found: </strong> {unIDcase.address}{" "}
+                  {unIDcase.city}, {unIDcase.state} {unIDcase.zipcode}
+                </p>
+                <p className="card-text">
+                  <strong>Description of Recovery: </strong>{" "}
                   {unIDcase.circumstancesOfRecovery}
                 </p>
+                <p className="card-text">
+                  <strong>Condition of Remains : </strong>{" "}
+                  {unIDcase.conditionOfRemains}
+                </p>
+                <p className="card-text">
+                  <strong>Clothing and Accessories : </strong>{" "}
+                  {unIDcase.clothingAndAccessories}
+                </p>
+                <p className="card-text">
+                  <strong>Location of Clothing and Accessories : </strong>{" "}
+                  {unIDcase.clothingAndAccessories_location}
+                </p>
+                <p>
+                  <a
+                    href={`https://www.namus.gov` + unIDcase.images}
+                    target="_blank"
+                  >
+                    <img
+                      src={`https://www.namus.gov${unIDcase.imageThumbnail}`}
+                    ></img>
+                  </a>
+                </p>
+
                 <br />
+                <p className="card-text">
+                  <strong>Last updated: </strong>{" "}
+                  <Moment format="MM/DD/YYYY hh:mm A">
+                    {unIDcase.modifiedDateTime}
+                  </Moment>
+                </p>
               </div>
             </div>
           </div>

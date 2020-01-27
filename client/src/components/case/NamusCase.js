@@ -38,7 +38,7 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
               </Link>
             </div>
           </div>
-          <h1 className="page-header">Case #{match.params.id}</h1>
+          <h1 className="page-header">Case #{namusCase.namus2Number}</h1>
           <p className="lead">
             <i className="fas fa-folder-open gold-icon"></i>&nbsp;&nbsp;VA >
             Missing Person
@@ -118,6 +118,16 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
             </div>
           </div>
           <h3 className="page-header spacer">Comments</h3>
+          <CommentForm postId={namusCase._id} />
+          {/* <div className="comments">
+            {post.comments.map(comment => (
+              <CommentItem
+                key={comment._id}
+                comment={comment}
+                postId={namusCase._id}
+              />
+            ))}
+          </div> */}
           <div class="post bg-comment p-1 my-1">
             <div>
               <Link to="!#">
