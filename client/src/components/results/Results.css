@@ -30,6 +30,6 @@
 }
 
 .fav-btn, .fav-btn:hover, .fav-btn:active {
-    background: none;
+    background: none !important;
     color: #212529;
 }
