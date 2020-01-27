@@ -19,7 +19,10 @@ var searchType = searchRequest.searchType;
 
 const Map = () => {
   console.log(locations);
-
+  console.log(locations[0]);
+// { lat: 34.0390107, lng: -118.2672801 } - Good
+// { lat: -122.4001337, lng: 37.71790817 } - Bad
+// { lat: 37.71790817, lng: -122.4001337 } - fixed
   return (
     <GoogleMap
       defaultZoom={searchType === "state" ? 7 : 10}
@@ -27,7 +30,7 @@ const Map = () => {
       defaultOptions={{ styles: mapStyles }}
     >
       {locations.map(locations => (
-        <Marker key={locations.name} position={locations} />
+        <Marker position={locations} />
       ))}
     </GoogleMap>
   );
@@ -39,15 +42,15 @@ export default function GMap({ persons, loading }) {
   let mapLoaded = false;
 
 
-  console.log(persons);
+  // console.log(persons);
 
   persons.forEach(person => {
 
   //   console.log(String(person.latitude));
   //   console.log(String(person.longitude));
-    console.log(person.latitude);
-    console.log(person.longitude);
-    console.log(person._id);
+    // console.log(person.latitude);
+    // console.log(person.longitude);
+    // console.log(person._id);
     
     // console.log(tempKey)
     // console.log(nameKey)
@@ -56,7 +59,7 @@ export default function GMap({ persons, loading }) {
     let temp = {};
     temp["lat"] = parseFloat(person.latitude);
     temp["lng"] = parseFloat(person.longitude);
-    temp.name = person._id;
+    // temp.name = person._id;
     locations.push(temp);
     
     //Crime
@@ -71,7 +74,7 @@ export default function GMap({ persons, loading }) {
   // console.log("locations: " + locations);
 
   return (
-    <div style={{ width: "100%", height: "45vh" }}>
+    <div style={{ width: "100%", height: "40vh" }}>
       {mapLoaded && (
         <MapWrapped
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
