@@ -2,10 +2,28 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 import Spinner from "../Layout/Spinner/Spinner";
+import { Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { postFavs } from '../../actions/favorites';
 
-const MissingPersonItem = ({ persons, loading }) => {
+const MissingPersonItem = ({ persons, loading, postFavs }) => {
+  
+  const addFavorite = (id, namus2Number, Date_Of_Last_Contact, State_Of_Last_Contact, First_Name, Middle_Name, Last_Name) => {
+    const link = `namus/case/${id}`
+    const Description = `${First_Name} ${Middle_Name} ${Last_Name}`
+    const favObject = {
+      id: id,
+      Case_Number: namus2Number,
+      Date: Date_Of_Last_Contact,
+      State: State_Of_Last_Contact,
+      Description: Description,
+      Link: link
+    }
+
+    postFavs(favObject);
+  };
+  
   return loading && persons === null ? (
     <Spinner />
   ) : (
@@ -24,6 +42,15 @@ const MissingPersonItem = ({ persons, loading }) => {
               >
                 <i className="fas fa-external-link-alt"></i>
               </a>
+              <Button className="btn float-right" onClick={() => addFavorite(
+                person._id,
+                person.namus2Number,
+                person.Date_Of_Last_Contact,
+                person.State_Of_Last_Contact,
+                person.First_Name,
+                person.Middle_Name,
+                person.Last_Name
+              )}><i className="far fa-heart"></i></Button>
             </h5>
           </div>
           <div className="row no-gutters">
@@ -72,7 +99,8 @@ const MissingPersonItem = ({ persons, loading }) => {
 };
 
 MissingPersonItem.propTypes = {
+  getFavs: PropTypes.func.isRequired,
   person: PropTypes.object.isRequired
 };
 
-export default MissingPersonItem;
+export default connect(null, { postFavs })(MissingPersonItem);
