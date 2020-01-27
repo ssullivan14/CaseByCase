@@ -11,68 +11,60 @@ import mapStyles from "./MapStyles";
 
 // VARIABLES
 var locations;
-//getting search parameters
-const searchRequest = JSON.parse(localStorage.getItem("searchRequest")) || {
-  searchType: "state"
-};
-var searchType = searchRequest.searchType;
 
-const Map = () => {
-  console.log(locations);
-  console.log(locations[0]);
-// { lat: 34.0390107, lng: -118.2672801 } - Good
-// { lat: -122.4001337, lng: 37.71790817 } - Bad
-// { lat: 37.71790817, lng: -122.4001337 } - fixed
-  return (
-    <GoogleMap
-      defaultZoom={searchType === "state" ? 7 : 10}
-      defaultCenter={locations[0]}
-      defaultOptions={{ styles: mapStyles }}
-    >
-      {locations.map(locations => (
-        <Marker position={locations} />
-      ))}
-    </GoogleMap>
-  );
-};
-const MapWrapped = withScriptjs(withGoogleMap(Map));
 
-export default function GMap({ persons, loading }) {
+
+
+
+export default function GMap({ persons }) {
   locations = [];
   let mapLoaded = false;
 
-    // console.log(persons);
+  console.log(persons);
+  console.log(persons.latitude);
+  console.log(persons.longitude);
+  // persons.forEach(person => {})
 
-  persons.forEach(person => {
+  const Map = () => {
+    return (
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ 
+          lat: persons.latitude, 
+          lng: persons.longitude
+        }}
+        defaultOptions={{ styles: mapStyles }}
+      >
+        {
+          <Marker position={{ 
+            lat: persons.latitude, 
+            lng: persons.longitude
+          }} />
+        }
+      </GoogleMap>
+    );
+  };
+const MapWrapped = withScriptjs(withGoogleMap(Map));
+  //   // Builds Object for Marker Positions > Pushes to Locations variable
+  //   let temp = {};
+  //   temp["lat"] = parseFloat(person.latitude);
+  //   temp["lng"] = parseFloat(person.longitude);
+  //   // temp.name = person._id;
+  //   locations.push(temp);
 
-    // console.log(String(person.latitude));
-    // console.log(String(person.longitude));
-    // console.log(person.latitude);
-    // console.log(person.longitude);
-    // console.log(person._id);
-    
-    //Builds Object for Marker Positions > Pushes to Locations variable
-    let temp = {};
-    temp["lat"] = parseFloat(person.latitude);
-    temp["lng"] = parseFloat(person.longitude);
-    // temp.name = person._id;
-    locations.push(temp);
-
-  });
-  if (locations.length) {
-    mapLoaded = true;
-  }
+ 
 
   return (
-    <div style={{ width: "100%", height: "40vh" }}>
-      {mapLoaded && (
+    <div style={{ width: "45vw", height: "45vh", float: "right", overflow: "auto", marginBottom: "50px" }}>
+      {
         <MapWrapped
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}
         />
-      )}
+     
+        }
     </div>
   );
 }
