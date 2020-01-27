@@ -42,12 +42,6 @@ const UnidentifiedCase = ({
           </h5>
           <div className="row no-gutters">
             <div className="col-md-10">
-            <GMap 
-            persons={{ 
-              latitude: parseInt(unIDcase.latitude), 
-              longitude: parseInt(unIDcase.longitude)
-            }}
-			  	  		/>
               <div className="card-body">
                 <p className="card-text">
                   <strong>City: </strong> {unIDcase.city}
@@ -188,6 +182,12 @@ const UnidentifiedCase = ({
               </ul>
             </div>
           </div>
+          <GMap 
+            persons={{ 
+              latitude: parseInt(unIDcase.latitude), 
+              longitude: parseInt(unIDcase.longitude)
+            }}
+			  	  		/>
           <h3 className="page-header spacer">Comments</h3>
           <div class="post bg-comment p-1 my-1">
             <div>

@@ -55,7 +55,8 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
  
 
   return (
-    <div style={{ width: "45vw", height: "45vh", float: "right", overflow: "auto", marginBottom: "50px" }}>
+    <div className="row">
+    <div className="col-md-12" style={{ width: "100vw", height: "250px", paddingBottom :"25px", paddingTop : "25px" }}>
       {
         <MapWrapped
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
@@ -65,6 +66,7 @@ const MapWrapped = withScriptjs(withGoogleMap(Map));
         />
      
         }
+    </div>
     </div>
   );
 }

@@ -44,9 +44,7 @@ const CrimesCase = ({
           <div style={{position: "static"}} className="row no-gutters">
 
             <div className="col-md-10">
-            <GMap 
-            persons={crimesCase} 
-			  	  		/>
+
               <div className="card-body">
                 <p className="card-text">
                   <strong>Type of Offense: </strong> {crimesCase.Offense}
@@ -95,6 +93,9 @@ const CrimesCase = ({
               </ul>
             </div>
           </div>
+          <GMap 
+            persons={crimesCase} 
+			  	  		/>
           <h3 className="page-header spacer">Comments</h3>
           <div class="post bg-comment p-1 my-1">
             <div>
