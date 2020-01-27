@@ -1,9 +1,7 @@
 import {
   GET_NAMUS,
   NAMUS_ERROR,
-  NAMUS_CASE,
-  ADD_NAMUS_COMMENT,
-  REMOVE_NAMUS_COMMENT
+  NAMUS_CASE
 } from "../actions/types";
 
 const initialState = {
@@ -34,23 +32,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         namusCase: payload,
-        loading: false
-      };
-    case ADD_NAMUS_COMMENT:
-      return {
-        ...state,
-        namus: { ...state.namus, comments: payload },
-        loading: false
-      };
-
-    case REMOVE_NAMUS_COMMENT:
-      return {
-        ...state,
-        namus: {
-          comments: state.namus.comments.filter(
-            comment => comment._id !== payload
-          )
-        },
         loading: false
       };
 
