@@ -17,7 +17,7 @@ router.post('/:id', auth, async (req, res) => {
 		const user = await User.findById(req.user.id).select(
 			'-password -email -avatar -date'
 		);
-		const favorited = await favCase.find({ Case_Number: req.params.id });
+		const favorited = await favCase.find({ id: req.params.id });
 		// Check if case has already been favorited
 		if (favorited.length > 0) {
 			favorited[0].Users.push(user);
@@ -26,9 +26,11 @@ router.post('/:id', auth, async (req, res) => {
 			res.json(favorited);
 		} else {
 			const newFav = new favCase({
-				Case_Number: req.params.id,
-				Date_Of_Incident: req.body.Date_Of_Incident,
+				id: req.params.id,
+				Case_Number: req.body.Case_Number,
+				Date_Of_Incident: req.body.Date,
 				Description: req.body.Description,
+				State: req.body.State,
 				Link: req.body.Link,
 				Users: [
 					{
