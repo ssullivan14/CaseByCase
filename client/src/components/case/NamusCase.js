@@ -5,13 +5,24 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getNamusCase } from "../../actions/namus";
-import CommentForm from "./CommentForm";
+import GMap from "./GMap";
 
 const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
   useEffect(() => {
     getNamusCase(match.params.id);
   }, [getNamusCase]);
   console.log("showing namusCase: " + namusCase);
+
+  // function waitForResults(variable) {
+  //   if (typeof variable !== "undefined") {
+  //     // wait
+
+  //   } else {
+  //     setTimeout(waitForResults, 1000);
+  //   }
+  // }
+
+  // let check = waitForResults(namusCase);
 
   return (
     <Fragment>
@@ -40,6 +51,9 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
               <img src={namusCase.image} className="card-img" />
             </div>
             <div className="col-md-10">
+            <GMap 
+            persons={namusCase} 
+			  	  		/>
               <div className="card-body">
                 <p className="card-text">
                   <strong>Area of Last Contact: </strong>{" "}

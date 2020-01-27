@@ -7,11 +7,10 @@ const Collaborate = ({ getCurrentProfile, profile: { profile, loading } }) => {
 	useEffect(() => {
 		const script1 = document.createElement('script');
 		script1.innerHTML = `
-        var avatarUrl = "http://www.gravatar.com/avatar/46e1f7fabd42627db9132dfd84700b2b?s=200&r=pg&d=mm";
+        var avatarUrl = "http://forreadingaddicts.co.uk/wp-content/uploads/2015/12/holmes-icon.jpg";
 
-        TogetherJSConfig_getUserName = function () {return 'Arthidon';};
+        TogetherJSConfig_getUserName = function () {return '';};
         TogetherJSConfig_getUserAvatar = function () {return avatarUrl;};
-        TogetherJSConfig_getUserColor = function () {return '#1d3b68';};
 
         var TogetherJSConfig_suppressJoinConfirmation = true;
         var TogetherJSConfig_findRoom = "CaseByCase";

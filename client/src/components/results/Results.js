@@ -13,6 +13,8 @@ import SocrataItem from './SocrataItem';
 import UnidentifiedPersonItem from './UnidentifiedPersonItem';
 import ConfirmModal from './ConfirmModal';
 import './Results.css';
+import GMap from "./GMap";
+
 
 
 const Results = ({
@@ -128,6 +130,10 @@ const Results = ({
 				<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
 				<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
 			</p>
+			
+			<GMap 
+			  persons={getCurrentResults} loading={loading}
+	  		/>
 			<table className='table table-dark table-striped'>
 				<thead>
 					<tr>

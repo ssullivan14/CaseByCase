@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getUnidentifiedCase } from "../../actions/unidentified";
+import GMap from "./GMap";
 
 const UnidentifiedCase = ({
   getUnidentifiedCase,
@@ -41,6 +42,12 @@ const UnidentifiedCase = ({
           </h5>
           <div className="row no-gutters">
             <div className="col-md-10">
+            <GMap 
+            persons={{ 
+              latitude: parseInt(unIDcase.latitude), 
+              longitude: parseInt(unIDcase.longitude)
+            }}
+			  	  		/>
               <div className="card-body">
                 <p className="card-text">
                   <strong>City: </strong> {unIDcase.city}
@@ -57,7 +64,7 @@ const UnidentifiedCase = ({
                     ? <span>{unIDcase.estimated_age_from}</span> &&
                       "-" && <span>{unIDcase.estimated_age_to}</span> &&
                       "years old"
-                    : "No Details Available"}
+                    : "No Details Available"}        
                 </p>
                 <p className="card-text">
                   <strong>Estimated Weight Range: </strong>{" "}

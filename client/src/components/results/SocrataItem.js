@@ -30,7 +30,7 @@ const SocrataItem = ({ incidents, loading, postFavs }) => {
         {incidents.map(incident => (
           <tr key={incident._id}>
             <td>
-              <Button className="btn float-right" onClick={() => addFavorite(
+              <Button className="btn float-right fav-btn" onClick={() => addFavorite(
                 incident._id,
                 incident.Case_Number,
                 incident.Date,

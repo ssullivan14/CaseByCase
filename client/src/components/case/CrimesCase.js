@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getCrimesCase } from "../../actions/crimes";
+import GMap from "./GMap";
 
 const CrimesCase = ({
   getCrimesCase,
@@ -40,8 +41,12 @@ const CrimesCase = ({
             <strong>Case Number: </strong>
             {crimesCase.Case_Number}
           </h5>
-          <div className="row no-gutters">
+          <div style={{position: "static"}} className="row no-gutters">
+
             <div className="col-md-10">
+            <GMap 
+            persons={crimesCase} 
+			  	  		/>
               <div className="card-body">
                 <p className="card-text">
                   <strong>Type of Offense: </strong> {crimesCase.Offense}
