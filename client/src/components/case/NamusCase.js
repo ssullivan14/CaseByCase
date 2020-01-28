@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getNamusCase } from "../../actions/namus";
 import GMap from "./GMap";
+import CaseComments from './CaseComments';
 import './Case.css'
 
 const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
@@ -89,45 +90,7 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
             </div>
           </div>
           <GMap persons={namusCase} />
-          <h3 className="page-header spacer">Comments</h3>
-          <div class="post bg-comment p-1 my-1">
-            <div>
-              <Link to="!#">
-                <img
-                  class="round-img"
-                  src="https://via.placeholder.com/75"
-                  alt="User's avatar"
-                />
-                <h4>Username</h4>
-              </Link>
-            </div>
-            <div>
-              <p class="my-1">Here is some text.</p>
-              <p class="post-date">
-                Posted on{" "}
-                <Moment format="MM/DD/YYYY hh:mm A">01/16/2020</Moment>
-              </p>
-            </div>
-          </div>
-          <div class="post bg-comment p-1 my-1">
-            <div>
-              <Link to="!#">
-                <img
-                  class="round-img"
-                  src="https://via.placeholder.com/75"
-                  alt="User's avatar"
-                />
-                <h4>Username</h4>
-              </Link>
-            </div>
-            <div>
-              <p class="my-1">A great comment.</p>
-              <p class="post-date">
-                Posted on{" "}
-                <Moment format="MM/DD/YYYY hh:mm A">01/16/2020</Moment>
-              </p>
-            </div>
-          </div>
+          <CaseComments caseid={namusCase._id} />
         </Fragment>
       )}
     </Fragment>

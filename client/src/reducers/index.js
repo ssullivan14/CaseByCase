@@ -7,6 +7,7 @@ import namus from './namus';
 import crimes from './crimes';
 import unidentified from './unidentified';
 import favorites from './favorites';
+import casecomments from './casecomments';
 
 export default combineReducers({
     alert,
@@ -16,5 +17,6 @@ export default combineReducers({
     namus,
     crimes,
     unidentified,
-    favorites
+    favorites,
+    casecomments
 });
