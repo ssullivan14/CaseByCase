@@ -28,7 +28,7 @@ const Search = ({ history }) => {
 		</Fragment>
 	);
 
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date("1990/01/01"));
     const [endDate, setEndDate] = useState(new Date());
 
 	// Form data state

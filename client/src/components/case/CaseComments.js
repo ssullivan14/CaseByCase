@@ -6,7 +6,13 @@ import { getCaseComments } from '../../actions/casecomments';
 import CaseCommentItem from './CaseCommentItem';
 import Spinner from '../Layout/Spinner/Spinner';
 
-const CaseComments = ({ getCaseComments, addCaseComment, caseid, casecomments: {casecomments, ccLoading}, match }) => {
+const CaseComments = ({
+	getCaseComments,
+	addCaseComment,
+	caseid,
+	casecomments: { casecomments, ccLoading },
+	match
+}) => {
 	useEffect(() => {
 		getCaseComments(caseid);
 	}, [getCaseComments]);
@@ -64,9 +70,16 @@ const CaseComments = ({ getCaseComments, addCaseComment, caseid, casecomments: {
 				<i>COMMENTS</i>
 			</h2>
 			<div className='posts'>
-				{casecomments.map(
-					casecomment =>
-						<CaseCommentItem key={casecomment._id} casecommentid={casecomment._id} casecomment={casecomment} />
+				{casecomments.length > 0 ? (
+					casecomments.map(casecomment => (
+						<CaseCommentItem
+							key={casecomment._id}
+							casecommentid={casecomment._id}
+							casecomment={casecomment}
+						/>
+					))
+				) : (
+					<p>Nothing here yet.</p>
 				)}
 			</div>
 		</Fragment>
@@ -81,4 +94,6 @@ const mapStateToProps = state => ({
 	casecomments: state.casecomments
 });
 
-export default connect(mapStateToProps, { addCaseComment, getCaseComments })(CaseComments);
+export default connect(mapStateToProps, { addCaseComment, getCaseComments })(
+	CaseComments
+);
