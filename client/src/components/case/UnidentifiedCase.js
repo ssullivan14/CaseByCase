@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getUnidentifiedCase } from "../../actions/unidentified";
 import GMap from "./GMap";
+import "./Case.css";
 
 const UnidentifiedCase = ({
   getUnidentifiedCase,
@@ -147,18 +148,22 @@ const UnidentifiedCase = ({
             <div className="row">
               <div className="col-md-10">
                 <p>
-                  <a
-                    href={`https://www.namus.gov` + unIDcase.images}
-                    target="_blank"
-                  >
-                    <img
-                      src={`https://www.namus.gov${unIDcase.imageThumbnail}`}
-                    ></img>
-                  </a>
+                  {unIDcase.imageThumbnail ? (
+                    <a
+                      href={`https://www.namus.gov` + unIDcase.images}
+                      target="_blank"
+                    >
+                      <img
+                        src={`https://www.namus.gov${unIDcase.imageThumbnail}`}
+                      ></img>
+                    </a>
+                  ) : (
+                    <Fragment></Fragment>
+                  )}
                 </p>
 
                 <br />
-                <p className="card-text">
+                <p className="card-text text-muted">
                   <strong>Last updated: </strong>{" "}
                   <Moment format="MM/DD/YYYY hh:mm A">
                     {unIDcase.modifiedDateTime}
@@ -169,8 +174,11 @@ const UnidentifiedCase = ({
           </div>
           <div className="row">
             <div className="col-md-10 spacer">
+              <br></br>
               <h5>Links</h5>
-              <p>None Added</p>
+              <ul>
+                <li className="link-plain">&nbsp;&nbsp; Not Added</li>
+              </ul>
             </div>
           </div>
           <GMap

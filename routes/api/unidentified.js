@@ -36,7 +36,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-router.get("/case/:case_id", async (req, res) => {
+router.get("/case/:case_id", auth, async (req, res) => {
   try {
     const unIDcase = await unid.findOne({
       _id: req.params.case_id
