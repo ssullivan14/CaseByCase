@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getCrimesCase } from "../../actions/crimes";
 import GMap from "./GMap";
+import "./Case.css";
 
 const CrimesCase = ({
   getCrimesCase,
@@ -61,8 +62,11 @@ const CrimesCase = ({
           </div>
           <div className="row">
             <div className="col-md-10 spacer">
+              <br></br>
               <h5>Links</h5>
-              <p>None Added</p>
+              <ul>
+                <li className="link-plain">&nbsp;&nbsp; Not Added</li>
+              </ul>
             </div>
           </div>
           <GMap persons={crimesCase} />

@@ -2,10 +2,11 @@
 // DEPENDENCIES
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 const allCrimes = require("../../models/Crimes");
 
 //Routes(to hit route /api/crimes)
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   //find results from crimes collection in the db with a query that finds all in our db
   console.log(req.body);
 
@@ -37,7 +38,7 @@ router.post("/", async (req, res) => {
   res.status(500).send("Server Error");
 });
 
-router.get("/case/:case_id", async (req, res) => {
+router.get("/case/:case_id", auth, async (req, res) => {
   try {
     const crimesCase = await allCrimes.findOne({
       _id: req.params.case_id
