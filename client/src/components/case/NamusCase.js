@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner/Spinner";
 import { getNamusCase } from "../../actions/namus";
 import GMap from "./GMap";
+import './Case.css'
 
 const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
   useEffect(() => {
@@ -89,16 +90,6 @@ const NamusCase = ({ getNamusCase, namus: { namusCase, loading }, match }) => {
           </div>
           <GMap persons={namusCase} />
           <h3 className="page-header spacer">Comments</h3>
-
-          {/* <div className="comments">
-            {post.comments.map(comment => (
-              <CommentItem
-                key={comment._id}
-                comment={comment}
-                postId={namusCase._id}
-              />
-            ))}
-          </div> */}
           <div class="post bg-comment p-1 my-1">
             <div>
               <Link to="!#">

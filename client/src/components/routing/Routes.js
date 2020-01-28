@@ -44,9 +44,9 @@ const Routes = () => {
         <PrivateRoute exact path="/posts/:topic" component={TopicPosts} />
         <PrivateRoute exact path="/post/:id" component={Post} />
         <PrivateRoute exact path="/case/:id" component={Case} />
-        <Route exact path="/namus/case/:id" component={NamusCase} />
-        <Route exact path="/crimes/case/:id" component={CrimeCase} />
-        <Route
+        <PrivateRoute exact path="/namus/case/:id" component={NamusCase} />
+        <PrivateRoute exact path="/crimes/case/:id" component={CrimeCase} />
+        <PrivateRoute
           exact
           path="/unidentified/case/:id"
           component={UnidentifiedCase}
