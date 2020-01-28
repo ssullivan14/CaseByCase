@@ -2,9 +2,15 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addCaseComment } from '../../actions/casecomments';
+import { getCaseComments } from '../../actions/casecomments';
+import CaseCommentItem from './CaseCommentItem';
+import Spinner from '../Layout/Spinner/Spinner';
 
-const CaseComments = ({ addCaseComment, caseid, match }) => {
-	
+const CaseComments = ({ getCaseComments, addCaseComment, caseid, casecomments: {casecomments, ccLoading}, match }) => {
+	useEffect(() => {
+		getCaseComments(caseid);
+	}, [getCaseComments]);
+
 	// Form data state
 	const [formData, setFormData] = useState({
 		text: '',
@@ -27,7 +33,9 @@ const CaseComments = ({ addCaseComment, caseid, match }) => {
 		});
 	};
 
-	return (
+	return casecomments === null || ccLoading ? (
+		<Spinner />
+	) : (
 		<Fragment>
 			<div className='post-form'>
 				<div className='post-form-header'>
@@ -57,10 +65,10 @@ const CaseComments = ({ addCaseComment, caseid, match }) => {
 				<i>COMMENTS</i>
 			</h2>
 			<div className='posts'>
-				{/* {posts.map(
-					post =>
-						post.topic === category && <PostItem key={post._id} post={post} />
-				)} */}
+				{casecomments.map(
+					casecomment =>
+						<CaseCommentItem casecomment={casecomment} />
+				)}
 			</div>
 		</Fragment>
 	);
@@ -71,7 +79,7 @@ CaseComments.propTypes = {
 };
 
 const mapStateToProps = state => ({
-	casecomment: state.casecomment
+	casecomments: state.casecomments
 });
 
-export default connect(null, { addCaseComment })(CaseComments);
+export default connect(mapStateToProps, { addCaseComment, getCaseComments })(CaseComments);

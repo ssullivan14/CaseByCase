@@ -6,7 +6,7 @@ import {
 
 const initialState = {
 	casecomments: [],
-	casecomment: null, 
+	casecomment: null,
 	ccLoading: true,
 	error: {}
 };
@@ -16,6 +16,13 @@ export default function(state = initialState, action) {
 
 	switch (type) {
 		case ADD_CASECOMMENT:
+			return {
+				...state,
+				casecomments: payload,
+				ccLoading: false
+			};
+
+		case GET_CASECOMMENTS:
 			return {
 				...state,
 				casecomments: payload,
