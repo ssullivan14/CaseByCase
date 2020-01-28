@@ -23,7 +23,6 @@ const CaseComments = ({ getCaseComments, addCaseComment, caseid, casecomments: {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const handleSubmit = e => {
-		e.preventDefault();
 		console.log(formData);
 		addCaseComment(formData);
 		//  Clear form after post is submitted
@@ -67,7 +66,7 @@ const CaseComments = ({ getCaseComments, addCaseComment, caseid, casecomments: {
 			<div className='posts'>
 				{casecomments.map(
 					casecomment =>
-						<CaseCommentItem casecomment={casecomment} />
+						<CaseCommentItem key={casecomment._id} casecommentid={casecomment._id} casecomment={casecomment} />
 				)}
 			</div>
 		</Fragment>

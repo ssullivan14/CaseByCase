@@ -29,6 +29,13 @@ export default function(state = initialState, action) {
 				ccLoading: false
 			};
 
+		case REMOVE_CASECOMMENT:
+			return {
+				...state,
+				casecomments: state.casecomments.filter(casecomment => casecomment._id !== payload),
+				loading: false
+			};
+
 		default:
 			return state;
 	}

@@ -10,7 +10,7 @@ import {
 // Get case commemts
 export const getCaseComments = id => async dispatch => {
 	try {
-		const res = await axios.get('/api/case-comments');
+		const res = await axios.get(`/api/case-comments/${id}`);
 
 		dispatch({
 			type: GET_CASECOMMENTS,
@@ -40,7 +40,26 @@ export const addCaseComment = formData => async dispatch => {
 			payload: res.data
 		});
 
-		dispatch(setAlert('Comment created', 'success'));
+		dispatch(setAlert('Comment Created', 'success'));
+	} catch (err) {
+		dispatch({
+			type: CASECOMMENTS_ERROR,
+			payload: { msg: err.response.statusText, status: err.response.status }
+		});
+	}
+};
+
+// Remove case comment
+export const removeCaseComment = id => async dispatch => {
+	try {
+		await axios.delete(`/api/case-comments/${id}`);
+
+		dispatch({
+			type: REMOVE_CASECOMMENT,
+			payload: id
+		});
+
+		dispatch(setAlert('Comment Removed', 'success'));
 	} catch (err) {
 		dispatch({
 			type: CASECOMMENTS_ERROR,

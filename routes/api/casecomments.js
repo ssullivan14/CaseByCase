@@ -9,11 +9,15 @@ const CaseComment = require('../../models/CaseComments');
 // GET ROUTES
 
 // @route   GET api/casecomments
-// @desc    Get all case comments
+// @desc    Get all case comments by case id
 // @access  Private
-router.get('/', auth, async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
+	console.log(req.params.id);
+	
 	try {
-		const casecomments = await CaseComment.find().sort({ date: -1 });
+		const casecomments = await CaseComment.find({
+			topic: req.params.id
+		}).sort({ date: -1 });
 		res.json(casecomments);
 	} catch (err) {
 		console.error(err.message);
@@ -61,5 +65,36 @@ router.post(
 		}
 	}
 );
+
+// DELETE ROUTES
+
+// @route   DELETE api/posts/:id
+// @desc    Delete a post
+// @access  Private
+router.delete('/:id', auth, async (req, res) => {
+	try {
+		const casecomment = await CaseComment.findById(req.params.id);
+
+		// Verify post exists
+		if (!casecomment) {
+			return res.status(404).json({ msg: 'Post not found' });
+		}
+
+		// Verify post belongs to logged in user
+		if (casecomment.user.toString() !== req.user.id) {
+			return res.status(401).json({ msg: 'User not authorized' });
+		}
+
+		await casecomment.remove();
+
+		res.json({ msg: 'Post removed' });
+	} catch (err) {
+		console.error(err.message);
+		if (err.kind === 'ObjectId') {
+			return res.status(404).json({ msg: 'Post not found' });
+		}
+		res.status(500).send('Server error');
+	}
+});
 
 module.exports = router;
