@@ -21,9 +21,9 @@ const Profile = ({ getProfileById, profile: { profile, loading }, match }) => {
 				<Fragment>
 					<div className='row'>
 						<div className='col-md-12'>
-							<Link to='/users' className='btn btn-secondary back-btn'>
+							<Link to='/dashboard' className='btn btn-secondary back-btn'>
 								<i id='toggleIcon' className='fa fa-angle-double-down'></i> Back to
-								Users
+								Dash
 							</Link>
 						</div>
 					</div>
