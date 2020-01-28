@@ -13,9 +13,7 @@ import SocrataItem from './SocrataItem';
 import UnidentifiedPersonItem from './UnidentifiedPersonItem';
 import ConfirmModal from './ConfirmModal';
 import './Results.css';
-import GMap from "./GMap";
-
-
+import GMap from './GMap';
 
 const Results = ({
 	getNamus,
@@ -130,41 +128,49 @@ const Results = ({
 				<Moment format='MM/DD/YYYY'>{searchRequest.startDate}</Moment> -{' '}
 				<Moment format='MM/DD/YYYY'>{searchRequest.endDate}</Moment>
 			</p>
-			
-			<GMap 
-			  persons={getCurrentResults} loading={loading}
-	  		/>
-			<table className='table table-dark table-striped'>
-				<thead>
-					<tr>
-						{/* Check incident type and display appropriate headers */}
-						{searchRequest.incidentType === 'unidentified persons' ? (
-							unidentifiedHeader
-						) : searchRequest.incidentType === 'missing person' ? (
-							<Fragment></Fragment>
-						) : (
-							socrataHeader
-						)}
-					</tr>
-				</thead>
-				<tbody>
-					{searchRequest.incidentType === 'unidentified persons' ? (
-						<UnidentifiedPersonItem
-							persons={getCurrentResults}
-							loading={unIDloading}
-						/>
-					) : searchRequest.incidentType === 'missing person' ? (
-						<MissingPersonItem persons={getCurrentResults} loading={loading} />
-					) : (
-						<SocrataItem incidents={getCurrentResults} loading={crimeLoading} />
-					)}
-				</tbody>
-			</table>
-			<Pagination
-				resultsPerPage={resultsPerPage}
-				totalResults={persons.length}
-				paginate={paginate}
-			/>
+			{getCurrentResults.length > 0 ? (
+				<Fragment>
+					<GMap persons={getCurrentResults} loading={loading} />
+					<table className='table table-dark table-striped'>
+						<thead>
+							<tr>
+								{searchRequest.incidentType === 'unidentified persons' ? (
+									unidentifiedHeader
+								) : searchRequest.incidentType === 'missing person' ? (
+									<Fragment></Fragment>
+								) : (
+									socrataHeader
+								)}
+							</tr>
+						</thead>
+						<tbody>
+							{searchRequest.incidentType === 'unidentified persons' ? (
+								<UnidentifiedPersonItem
+									persons={getCurrentResults}
+									loading={unIDloading}
+								/>
+							) : searchRequest.incidentType === 'missing person' ? (
+								<MissingPersonItem
+									persons={getCurrentResults}
+									loading={loading}
+								/>
+							) : (
+								<SocrataItem
+									incidents={getCurrentResults}
+									loading={crimeLoading}
+								/>
+							)}
+						</tbody>
+					</table>
+					<Pagination
+						resultsPerPage={resultsPerPage}
+						totalResults={persons.length}
+						paginate={paginate}
+					/>
+				</Fragment>
+			) : (
+				<p>No results found</p>
+			)}
 		</Fragment>
 	);
 };
