@@ -22,27 +22,9 @@ const Navbar = ({ auth: { user, isAuthenticated, loading }, logout }) => {
 			<span id="collab">	
 				<Collaborate />		
 			</span>
-			<li className='nav-item dropdown'>
-				<Link
-					className='nav-link dropdown-toggle'
-					to='!#'
-					id='navbarDropdown'
-					role='button'
-					data-toggle='dropdown'
-					aria-haspopup='true'
-					aria-expanded='false'
-				>
-					Community
-				</Link>
-				<div className='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
-					<Link className='dropdown-item' to='/posts'>
-						Posts
-					</Link>
-					<Link className='dropdown-item' to='/users'>
-						Users
-					</Link>
-				</div>
-			</li>
+			<Link to='/posts' className='nav-item nav-link'>
+				Community
+			</Link>
 			<Link to='!#' className='nav-item nav-link disabled'>
 				|
 			</Link>

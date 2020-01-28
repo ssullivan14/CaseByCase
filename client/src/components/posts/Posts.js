@@ -73,7 +73,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
 	) : (
 		<Fragment>
 			<h1>
-				<i>POSTS</i>
+				<i>COMMUNITY</i>
 			</h1>
 			<p className='lead'>
 				<i className='fas fa-comments gold-icon'></i> Discuss cases with other
